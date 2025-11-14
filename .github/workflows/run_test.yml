@@ -1,4 +1,3 @@
-cat <<EOF > .github/workflows/run_test.yml
 name: Run scBOA Test
 
 on:
@@ -35,4 +34,3 @@ jobs:
           --min_genes 1 \
           --min_cells 1 \
           --seed 123
-EOF
