@@ -136,7 +136,7 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
     sc.pp.scale(adata_proc, max_value=10)
     
     # Cap n_pcs_compute by the number of available features
-    n_pcs_to_compute = min(ARGS.n_pcs_compute, adata_proc.n_vars - 1)
+    n_pcs_to_compute = min(ARGS.n_pcs_compute, adata_proc.n_obs - 1, adata_proc.n_vars - 1)
     if n_pcs > n_pcs_to_compute:
         print(f"     [WARNING] Requested n_pcs ({n_pcs}) > computed PCs ({n_pcs_to_compute}). Capping at {n_pcs_to_compute}.")
         n_pcs = n_pcs_to_compute
@@ -274,7 +274,7 @@ def evaluate_final_metrics(params_dict):
     adata_final = adata_final[:, adata_final.var.highly_variable].copy()
     sc.pp.scale(adata_final, max_value=10)
     
-    n_pcs_to_compute = min(ARGS.n_pcs_compute, adata_final.n_vars - 1)
+    n_pcs_to_compute = min(ARGS.n_pcs_compute, adata_final.n_obs - 1, adata_final.n_vars - 1)
     n_pcs = min(params_dict['n_pcs'], n_pcs_to_compute)
     sc.tl.pca(adata_final, svd_solver='arpack', n_comps=n_pcs_to_compute, random_state=RANDOM_SEED)
 
@@ -838,7 +838,10 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     sc.pp.scale(adata, max_value=10)
 
     print("\n--- Step 4: Dimensionality Reduction and Clustering (using optimal params) ---")
-    n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_vars - 1)
+    # --- BUG FIX START ---
+    # Robustly cap the number of PCs by both cells and genes, crucial for refinement runs.
+    n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_obs - 1, adata.n_vars - 1)
+    # --- BUG FIX END ---
     n_pcs_to_use = min(optimal_params['n_pcs'], n_pcs_to_compute)
     sc.tl.pca(adata, svd_solver='arpack', n_comps=n_pcs_to_compute, random_state=cli_args.seed)
     sc.pl.pca_variance_ratio(adata, log=True, n_pcs=n_pcs_to_compute, save=f"_{cli_args.final_run_prefix}_pca_variance.png", show=False); plt.close()
@@ -1080,7 +1083,10 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     sc.pp.scale(adata, max_value=10)
 
     print("\n--- Step 5: PCA and Batch Correction with Harmony ---")
-    n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_vars - 1)
+    # --- BUG FIX START ---
+    # Robustly cap the number of PCs by both cells and genes, crucial for refinement runs.
+    n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_obs - 1, adata.n_vars - 1)
+    # --- BUG FIX END ---
     n_pcs_to_use = min(optimal_params['n_pcs'], n_pcs_to_compute)
     print(f"[INFO] Computing {n_pcs_to_compute} PCs, using top {n_pcs_to_use} for downstream.")
     sc.tl.pca(adata, svd_solver='arpack', n_comps=n_pcs_to_compute, random_state=cli_args.seed)
