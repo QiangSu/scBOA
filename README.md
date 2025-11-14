@@ -44,7 +44,7 @@ scBOA/
 ### 2. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/scBOA.git
+git clone https://github.com/QiangSu/scBOA.git
 cd scBOA
 ```
 
