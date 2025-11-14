@@ -34,7 +34,7 @@ jobs:
         python scBOA.py \
           --data_dir ./example_data/ \
           --output_dir ./test_output/ \
-          --model_path ./Immune_All_Low.pkl \
+          --model_path ./test_assets/Healthy_COVID19_PBMC.pkl \
           --n_calls 1 \
           --target weighted_cas \
           --min_genes 1 \
