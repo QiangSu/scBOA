@@ -1,5 +1,5 @@
-# In scBOA/.github/workflows/run_test.yml
-name: scBOA Test Workflow
+cat <<EOF > .github/workflows/run_test.yml
+name: Run scBOA Test
 
 on:
   push:
@@ -8,28 +8,23 @@ on:
     branches: [ main ]
 
 jobs:
-  test-script:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: 3.9
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Download a small CellTypist model for testing
-      run: |
-        pip install wget
-        python -c "import wget; url = 'https://celltypist.s3.eu-west-2.amazonaws.com/models/Pan_Fetal_Human/v2/Immune_All_Low.pkl'; wget.download(url)"
-
-    - name: Run a quick test of scBOA.py
+    - name: Run test using local model (NO DOWNLOAD)
       run: |
         python scBOA.py \
           --data_dir ./example_data/ \
@@ -40,3 +35,4 @@ jobs:
           --min_genes 1 \
           --min_cells 1 \
           --seed 123
+EOF
