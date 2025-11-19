@@ -914,22 +914,66 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     print("\n--- Step 6: Marker Gene Analysis and MCS Calculation ---")
     marker_groupby_key = 'ctpt_consensus_prediction'; top_genes_df, mcs_df = None, None
     valid_labels = adata.obs[marker_groupby_key].value_counts()[lambda x: x > 1].index.tolist()
-    if len(valid_labels) < 2: print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
+    if len(valid_labels) < 2: 
+        print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
     else:
         sc.tl.rank_genes_groups(adata, marker_groupby_key, groups=valid_labels, method='wilcoxon', use_raw=True, key_added=f"wilcoxon_{marker_groupby_key}")
         marker_df = sc.get.rank_genes_groups_df(adata, key=f"wilcoxon_{marker_groupby_key}", group=None)
 
         is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
-        filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
-        top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        if cli_args.marker_gene_model == 'non-mitochondrial':
+            filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
+        else:
+            filtered_rows = [sub.head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
+        top_genes_df = pd.concat(filtered_rows, ignore_index=True) if filtered_rows else pd.DataFrame()
 
-        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-            sc.pl.dotplot(adata, var_names=top_genes_df.groupby('group')['names'].apply(list).to_dict(), groupby=marker_groupby_key, categories_order=top_genes_df['group'].unique().tolist(), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
+        # --- MODIFICATION START: Add guard against empty top_genes_df AND validate gene dictionary ---
+        if top_genes_df is not None and not top_genes_df.empty:
+            print("[INFO] Found valid marker genes. Proceeding with dotplot and MCS calculation.")
+            
+            # Build the gene dictionary
+            genes_to_plot_dict = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+            
+            # Validate that each group has at least one gene
+            valid_groups = {k: v for k, v in genes_to_plot_dict.items() if len(v) > 0}
+            
+            if len(valid_groups) == 0:
+                print("[WARNING] No groups with marker genes available for dotplot. Skipping dotplot generation.")
+            else:
+                # Further validate that genes exist in adata
+                available_genes = adata.var_names.tolist()
+                validated_genes_dict = {}
+                for group, genes in valid_groups.items():
+                    existing_genes = [g for g in genes if g in available_genes]
+                    if existing_genes:
+                        validated_genes_dict[group] = existing_genes
+                
+                if len(validated_genes_dict) == 0:
+                    print("[WARNING] No marker genes found in the dataset for any group. Skipping dotplot generation.")
+                else:
+                    try:
+                        sc.pl.dotplot(
+                            adata,
+                            var_names=validated_genes_dict,
+                            groupby=marker_groupby_key,
+                            categories_order=list(validated_genes_dict.keys()),
+                            use_raw=True,
+                            save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png",
+                            show=False
+                        )
+                        print(f"       -> Successfully generated dotplot.")
+                    except Exception as e:
+                        print(f"[WARNING] Dotplot generation failed despite validation. Error: {e}. Skipping dotplot.")
 
-        mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
-        if mcs_df is not None and top_genes_df is not None:
-            top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
-            pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
+            # MCS calculation can still proceed with the original top_genes_df
+            mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
+            if mcs_df is not None:
+                top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
+                pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
+        else:
+            print("[WARNING] No valid (non-mitochondrial) marker genes found for this subset. Skipping dotplot and MCS calculation.")
+        # --- MODIFICATION END ---
+
 
     print("\n--- Step 7: Optional Manual-Style Annotation & Scoring ---")
     if cli_args.cellmarker_db and os.path.exists(cli_args.cellmarker_db):
@@ -1185,13 +1229,55 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         sc.tl.rank_genes_groups(adata, FINAL_ANNOTATION_COLUMN, method='wilcoxon', use_raw=True, key_added=marker_key)
         marker_df = sc.get.rank_genes_groups_df(adata, key=marker_key, group=None)
         is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
-        filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
-        top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        if cli_args.marker_gene_model == 'non-mitochondrial':
+            filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
+        else:
+            filtered_rows = [sub.head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
+        top_genes_df = pd.concat(filtered_rows, ignore_index=True) if filtered_rows else pd.DataFrame()
 
-        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-            genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
-            sc.pl.dotplot(adata, var_names=genes_to_plot, groupby=FINAL_ANNOTATION_COLUMN, categories_order=list(genes_to_plot.keys()), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
-        extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
+        # --- MODIFICATION START: Add guard against empty top_genes_df AND validate gene dictionary ---
+        if top_genes_df is not None and not top_genes_df.empty:
+            print("[INFO] Found valid marker genes. Proceeding with dotplot.")
+            
+            # Build the gene dictionary
+            genes_to_plot_dict = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+            
+            # Validate that each group has at least one gene
+            valid_groups = {k: v for k, v in genes_to_plot_dict.items() if len(v) > 0}
+            
+            if len(valid_groups) == 0:
+                print("[WARNING] No groups with marker genes available for dotplot. Skipping dotplot generation.")
+            else:
+                # Further validate that genes exist in adata
+                available_genes = adata.var_names.tolist()
+                validated_genes_dict = {}
+                for group, genes in valid_groups.items():
+                    existing_genes = [g for g in genes if g in available_genes]
+                    if existing_genes:
+                        validated_genes_dict[group] = existing_genes
+                
+                if len(validated_genes_dict) == 0:
+                    print("[WARNING] No marker genes found in the dataset for any group. Skipping dotplot generation.")
+                else:
+                    try:
+                        sc.pl.dotplot(
+                            adata,
+                            var_names=validated_genes_dict,
+                            groupby=FINAL_ANNOTATION_COLUMN,
+                            categories_order=list(validated_genes_dict.keys()),
+                            use_raw=True,
+                            save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png",
+                            show=False
+                        )
+                        print(f"       -> Successfully generated dotplot.")
+                    except Exception as e:
+                        print(f"[WARNING] Dotplot generation failed despite validation. Error: {e}. Skipping dotplot.")
+            
+            # Fraction data extraction can still proceed with the original top_genes_df
+            extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
+        else:
+            print("[WARNING] No valid (non-mitochondrial) marker genes found for this subset. Skipping dotplot.")
+        # --- MODIFICATION END ---
     else:
         print("[INFO] CellTypist not run. Using Leiden clusters for downstream analysis.")
         adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs['leiden'].astype('category')
@@ -1305,7 +1391,6 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     print("="*50 + "\n\n--- MULTI-SAMPLE ANALYSIS PIPELINE COMPLETE ---")
     
     return adata, cas_path_for_refinement
-
 # ==============================================================================
 # ==============================================================================
 # --- *** STAGE 3 & 4: REFINEMENT PIPELINE *** ---
