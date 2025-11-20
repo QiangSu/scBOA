@@ -24,11 +24,14 @@ scBOA/
 │   ├── barcodes.tsv.gz      # Example Cell Ranger output
 │   ├── features.tsv.gz      # Example Cell Ranger output
 │   └── matrix.mtx.gz        # Example Cell Ranger output
+├── test_assets/
+│   └── Healthy_COVID19_PBMC.pkl  # Pre-trained CellTypist model for testing/examples
 ├── .gitignore               # Specifies files for Git to ignore
 ├── LICENSE                  # Project license (e.g., MIT)
 ├── README.md                # This documentation file
 ├── requirements.txt         # Exact Python dependencies for reproducibility
 └── scBOA.py                 # The main executable Python script
+
 ```
 
 ---
