@@ -1,0 +1,23 @@
+# Core analysis and data handling
+anndata
+h5py
+numpy
+pandas
+scanpy
+
+# Machine learning and optimization
+joblib
+scikit-learn
+scikit-misc
+scikit-optimize
+
+# Single-cell specific tools
+celltypist
+harmonypy
+umap-learn
+
+# Plotting and utilities
+matplotlib
+seaborn
+session-info
+tqdm

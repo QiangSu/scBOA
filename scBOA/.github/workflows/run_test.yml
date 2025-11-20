@@ -1,0 +1,42 @@
+name: Run scBOA Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run test using local model (NO DOWNLOAD)
+      run: |
+        python scBOA.py \
+          --data_dir ./example_data/ \
+          --output_dir ./test_output/ \
+          --model_path ./test_assets/Healthy_COVID19_PBMC.pkl \
+          --n_calls 11 \
+          --target all \
+          --model_type biological \
+          --seed 42 \
+          --marker_gene_model non-mitochondrial \
+          --hvg_min_mean 0.0125 \
+          --hvg_max_mean 3.0 \
+          --hvg_min_disp 0.3 \
+          --cas_aggregation_method consensus
+
+       
