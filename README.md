@@ -56,6 +56,15 @@ cd scBOA
 Using a virtual environment prevents conflicts with other Python projects.
 
 ```bash
+# Create a new conda environment with Python 3.9
+conda create -n scboa_env python=3.9
+
+# Activate the environment
+conda activate scboa_env
+
+```
+
+```bash
 # Create a virtual environment named 'venv'
 python3 -m venv venv
 
