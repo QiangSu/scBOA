@@ -2,6 +2,10 @@
 
 # scBOA: scRNA-seq Bayesian Optimization and Analysis
 
+[![PyPI version](https://img.shields.io/pypi/v/scboa.svg)](https://pypi.org/project/scboa/)
+[![GitHub Tests](https://github.com/QiangSu/scBOA/actions/workflows/run_test.yml/badge.svg)](https://github.com/QiangSu/scBOA/actions/workflows/run_test.yml)
+[![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](https://github.com/QiangSu/scBOA)
+
 **scBOA** is an integrated, two-stage computational pipeline for single-cell RNA sequencing (scRNA-seq) analysis. It automates the discovery of optimal processing parameters using Bayesian Optimization (Stage 1) and then applies these parameters to a comprehensive downstream analysis workflow (Stage 2). The pipeline also features an optional multi-level refinement process (Stage 3/4) to iteratively re-analyze and improve annotations for low-confidence cell clusters.
 
 ## Key Features
@@ -54,6 +58,15 @@ cd scBOA
 ### 3. Set Up a Python Environment (Recommended)
 
 Using a virtual environment prevents conflicts with other Python projects.
+
+```bash
+# Create a new conda environment with Python 3.9
+conda create -n scboa_env python=3.9
+
+# Activate the environment
+conda activate scboa_env
+
+```
 
 ```bash
 # Create a virtual environment named 'venv'
