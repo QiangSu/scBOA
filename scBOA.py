@@ -707,18 +707,19 @@ def _generate_greyed_out_umap_plot(adata, cas_df, threshold, cas_aggregation_met
         color_map[low_conf_label] = '#bbbbbb'  # Medium grey
 
     # Generate the plot in memory
-    sc.pl.umap(
-        adata,
-        color=plot_annotation_col,
-        palette=color_map,
-        title=title,
-        legend_loc='right margin',
-        legend_fontsize=legend_fontsize,
-        frameon=False,
-        size=10,
-        show=False,
-        save=False
-    )
+    with plt.rc_context({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+        sc.pl.umap(
+            adata,
+            color=plot_annotation_col,
+            palette=color_map,
+            title=title,
+            legend_loc='right margin',
+            legend_fontsize=legend_fontsize,
+            frameon=False,
+            size=10,
+            show=False,
+            save=False
+        )
     
     _bold_right_margin_legend(output_path)
     plt.close()
@@ -733,8 +734,6 @@ def _bold_right_margin_legend(fig_path):
         if (leg := ax.get_legend()) is not None:
             for txt in leg.get_texts(): txt.set_fontweight('bold')
     fig.savefig(fig_path, dpi=plt.rcParams['savefig.dpi'], bbox_inches='tight')
-
-# --- MODIFICATION: Updated Helper Functions for Robust Dotplot Logic ---
 def reformat_dotplot_data(fraction_df: pd.DataFrame, top_genes_df: pd.DataFrame, output_dir: str, output_prefix: str, groupby_key: str):
     """(Stage 2) Reformats dot plot fraction data to a gene-centric sparse table."""
     print(f"[INFO] Reformatting dot plot data for '{groupby_key}'...")
@@ -750,7 +749,6 @@ def reformat_dotplot_data(fraction_df: pd.DataFrame, top_genes_df: pd.DataFrame,
     reformatted_csv_path = os.path.join(output_dir, f"{output_prefix}_dotplot_fractions_{groupby_key}_reformatted.csv")
     reformatted_df.to_csv(reformatted_csv_path, index=False)
     print(f"       -> Saved reformatted fraction data to: {reformatted_csv_path}")
-
 def extract_fraction_data_and_calculate_mcs(adata: anndata.AnnData, output_dir: str, output_prefix: str, groupby_key: str, top_genes_df: pd.DataFrame, cli_args):
     """(Stage 2, Single-Sample) Calculates and saves expression fractions and the MCS."""
     print(f"[INFO] Calculating MCS and expression fractions for '{groupby_key}'...")
@@ -764,7 +762,6 @@ def extract_fraction_data_and_calculate_mcs(adata: anndata.AnnData, output_dir: 
     fraction_df.to_csv(os.path.join(output_dir, f"{output_prefix}_dotplot_fractions_{groupby_key}.csv")); print(f"       -> Saved full fraction data.")
     reformat_dotplot_data(fraction_df, top_genes_df, output_dir, output_prefix, groupby_key)
     return mcs_df
-
 def extract_fraction_data_for_dotplot(adata: anndata.AnnData, output_dir: str, output_prefix: str, groupby_key: str, top_genes_df: pd.DataFrame):
     """(Stage 2, Multi-Sample) Calculates and saves expression fractions for dotplot."""
     print(f"[INFO] Calculating expression fractions for dotplot for '{groupby_key}'...")
@@ -778,7 +775,6 @@ def extract_fraction_data_for_dotplot(adata: anndata.AnnData, output_dir: str, o
     fraction_df.to_csv(output_csv_path)
     print(f"       -> Saved full fraction data to: {output_csv_path}")
     reformat_dotplot_data(fraction_df, top_genes_df, output_dir, output_prefix, groupby_key)
-# --- END MODIFICATION ---
 
 def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=None, adata_input=None):
     """
@@ -921,70 +917,21 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     valid_labels = adata.obs[marker_groupby_key].value_counts()[lambda x: x > 1].index.tolist()
     if len(valid_labels) < 2: print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
     else:
-        # 1. Calculate Rank Genes Groups (Wilcoxon)
         sc.tl.rank_genes_groups(adata, marker_groupby_key, groups=valid_labels, method='wilcoxon', use_raw=True, key_added=f"wilcoxon_{marker_groupby_key}")
         marker_df = sc.get.rank_genes_groups_df(adata, key=f"wilcoxon_{marker_groupby_key}", group=None)
 
-        # 2. Filter Mitochondrial Genes
         is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
         filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
         top_genes_df = pd.concat(filtered_rows, ignore_index=True)
 
-        # 3. Plotting Logic with Safety Checks
-        # --- MODIFICATION START: Explicitly pass full list per cluster (No Deduplication) with validation ---
-        if top_genes_df is not None and not top_genes_df.empty:
-            print("[INFO] Found valid marker genes. Proceeding with dotplot and MCS calculation.")
-            
-            # A. Build the gene dictionary
-            # This preserves duplicates across groups (e.g. if GeneA is a marker for both Group1 and Group2, it stays in both lists)
-            genes_to_plot_dict = top_genes_df.groupby('group')['names'].apply(list).to_dict()
-            
-            # B. Validate that each group has at least one gene
-            valid_groups_count = sum(1 for v in genes_to_plot_dict.values() if len(v) > 0)
-            
-            if valid_groups_count == 0:
-                print("[WARNING] No groups with marker genes available for dotplot. Skipping dotplot generation.")
-            else:
-                # C. Further validate that genes exist in adata.var_names to prevent crash
-                # We check against adata.raw.var_names if use_raw=True, but usually checking adata.var_names (or raw) is safer.
-                available_genes = set(adata.raw.var_names) if adata.raw is not None else set(adata.var_names)
-                
-                validated_genes_dict = {}
-                for group, genes in genes_to_plot_dict.items():
-                    # Keep genes only if they exist in the data
-                    existing_genes = [g for g in genes if g in available_genes]
-                    if existing_genes:
-                        validated_genes_dict[group] = existing_genes
-                
-                if len(validated_genes_dict) == 0:
-                    print("[WARNING] No marker genes found in the dataset for any group. Skipping dotplot generation.")
-                else:
-                    try:
-                        # D. Generate the Dotplot
-                        # Passing the dict ensures Scanpy groups genes by cluster.
-                        sc.pl.dotplot(
-                            adata,
-                            var_names=validated_genes_dict,
-                            groupby=marker_groupby_key,
-                            categories_order=list(validated_genes_dict.keys()),
-                            use_raw=True,
-                            save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png",
-                            show=False
-                        )
-                        print(f"       -> Successfully generated dotplot.")
-                    except Exception as e:
-                        print(f"[WARNING] Dotplot generation failed despite validation. Reason: {e}")
+        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+            sc.pl.dotplot(adata, var_names=top_genes_df.groupby('group')['names'].apply(list).to_dict(), groupby=marker_groupby_key, categories_order=top_genes_df['group'].unique().tolist(), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
 
-            # E. Export Data
-            mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
-            if mcs_df is not None and top_genes_df is not None:
-                top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
-                pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
-            
-        else:
-            print("[WARNING] No valid (non-mitochondrial) marker genes found for this subset. Skipping dotplot and MCS calculation.")
-        # --- MODIFICATION END ---
-    
+        mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
+        if mcs_df is not None and top_genes_df is not None:
+            top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
+            pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
+
     print("\n--- Step 7: Optional Manual-Style Annotation & Scoring ---")
     if cli_args.cellmarker_db and os.path.exists(cli_args.cellmarker_db):
         try:
@@ -1242,58 +1189,10 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
         top_genes_df = pd.concat(filtered_rows, ignore_index=True)
 
-        # 3. Plotting Logic with Safety Checks (Multi-Sample)
-        # --- MODIFICATION START: Explicitly pass full list per cluster (No Deduplication) with validation ---
-        if top_genes_df is not None and not top_genes_df.empty:
-            print("[INFO] Found valid marker genes. Proceeding with dotplot and MCS calculation.")
-            
-            # A. Build the gene dictionary
-            # This preserves duplicates across groups (e.g. if GeneA is a marker for both Group1 and Group2, it stays in both lists)
-            genes_to_plot_dict = top_genes_df.groupby('group')['names'].apply(list).to_dict()
-            
-            # B. Validate that each group has at least one gene
-            valid_groups_count = sum(1 for v in genes_to_plot_dict.values() if len(v) > 0)
-            
-            if valid_groups_count == 0:
-                print("[WARNING] No groups with marker genes available for dotplot. Skipping dotplot generation.")
-            else:
-                # C. Further validate that genes exist in adata.var_names to prevent crash
-                # We check against adata.raw.var_names if use_raw=True, but usually checking adata.var_names (or raw) is safer.
-                available_genes = set(adata.raw.var_names) if adata.raw is not None else set(adata.var_names)
-                
-                validated_genes_dict = {}
-                for group, genes in genes_to_plot_dict.items():
-                    # Keep genes only if they exist in the data
-                    existing_genes = [g for g in genes if g in available_genes]
-                    if existing_genes:
-                        validated_genes_dict[group] = existing_genes
-                
-                if len(validated_genes_dict) == 0:
-                    print("[WARNING] No marker genes found in the dataset for any group. Skipping dotplot generation.")
-                else:
-                    try:
-                        # D. Generate the Dotplot
-                        # Passing the dict ensures Scanpy groups genes by cluster.
-                        sc.pl.dotplot(
-                            adata,
-                            var_names=validated_genes_dict,
-                            groupby=FINAL_ANNOTATION_COLUMN,
-                            categories_order=list(validated_genes_dict.keys()),
-                            use_raw=True,
-                            save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png",
-                            show=False
-                        )
-                        print(f"       -> Successfully generated dotplot.")
-                    except Exception as e:
-                        print(f"[WARNING] Dotplot generation failed despite validation. Reason: {e}")
-
-            # E. Export Data
-            extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
-            
-        else:
-            print("[WARNING] No valid (non-mitochondrial) marker genes found for this subset. Skipping dotplot and MCS calculation.")
-        # --- MODIFICATION END ---
-
+        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+            genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+            sc.pl.dotplot(adata, var_names=genes_to_plot, groupby=FINAL_ANNOTATION_COLUMN, categories_order=list(genes_to_plot.keys()), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
+        extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
     else:
         print("[INFO] CellTypist not run. Using Leiden clusters for downstream analysis.")
         adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs['leiden'].astype('category')
@@ -1460,18 +1359,19 @@ def _generate_cumulative_refinement_umap(adata_full, failing_cell_indices, thres
         color_map[low_conf_label] = '#bbbbbb'  # Medium grey
 
     # Generate the plot in memory
-    sc.pl.umap(
-        adata_plot,
-        color=plot_annotation_col,
-        palette=color_map,
-        title=title,
-        legend_loc='right margin',
-        legend_fontsize=legend_fontsize,
-        frameon=False,
-        size=10,
-        show=False,
-        save=False
-    )
+    with plt.rc_context({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+        sc.pl.umap(
+            adata_plot,
+            color=plot_annotation_col,
+            palette=color_map,
+            title=title,
+            legend_loc='right margin',
+            legend_fontsize=legend_fontsize,
+            frameon=False,
+            size=10,
+            show=False,
+            save=False
+        )
     
     _bold_right_margin_legend(output_path)
     plt.close()
@@ -1544,14 +1444,42 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
             print(f"Found {len(failing_clusters)} consensus types below threshold at depth {depth-1}: {', '.join(failing_clusters)}")
             failing_cell_indices_input = adata_to_check.obs[adata_to_check.obs['ctpt_consensus_prediction'].isin(failing_clusters)].index
 
-        MINIMUM_CELLS_FOR_REFINEMENT = 50
-        if len(failing_cell_indices_input) < MINIMUM_CELLS_FOR_REFINEMENT:
-            print(f"\n[STOP] Stopping refinement. Only {len(failing_cell_indices_input)} failing cells, below the minimum of {MINIMUM_CELLS_FOR_REFINEMENT}.\n")
+        if len(failing_cell_indices_input) < args.min_cells_refinement:
+            print(f"\n[STOP] Stopping refinement. Only {len(failing_cell_indices_input)} failing cells, below the minimum of {args.min_cells_refinement}.\n")
             break
 
         # Isolate the subset of raw data for this refinement level
         adata_refine_raw = adata_raw_full[failing_cell_indices_input, :].copy()
         print(f"Isolated {adata_refine_raw.n_obs} cells for refinement analysis at depth {depth}.")
+
+        # --- ADDED CHECK: Verify Gene Content (Pre-Flight Check) ---
+        # Create a temp object to check if we have enough HVGs to satisfy the optimizer
+        check_adata = adata_refine_raw.copy()
+        sc.pp.normalize_total(check_adata, target_sum=1e4)
+        sc.pp.log1p(check_adata)
+
+        n_found_hvgs = 0
+        # Check if using strict thresholding (Two-Step)
+        if all(p is not None for p in [args.hvg_min_mean, args.hvg_max_mean, args.hvg_min_disp]):
+             sc.pp.highly_variable_genes(
+                check_adata,
+                min_mean=args.hvg_min_mean,
+                max_mean=args.hvg_max_mean,
+                min_disp=args.hvg_min_disp,
+                batch_key='sample' if 'sample' in check_adata.obs.columns else None
+            )
+             n_found_hvgs = check_adata.var.highly_variable.sum()
+        else:
+            # If rank based, the limit is just the total number of genes available
+            n_found_hvgs = check_adata.n_vars
+
+        MIN_HVG_LIMIT = 200 # As defined in Integer(200, 20000)
+        if n_found_hvgs < MIN_HVG_LIMIT:
+            print(f"\n[STOP] Stopping refinement at depth {depth}.")
+            print(f"       Reason: Found only {n_found_hvgs} potential HVGs (or total genes), which is less than the optimizer lower bound of {MIN_HVG_LIMIT}.")
+            print(f"       This usually happens when the subset is too homogeneous or too small.")
+            break
+        # -----------------------------------------------------------
         
         # --- Step 3: Run Stage 1 (BO) on the subset ---
         stage1_refinement_dir = os.path.join(main_stage1_dir, f"refinement_depth_{depth}")
@@ -1641,7 +1569,8 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
     print("\n\n" + "="*80 + "\n### FINALIZING ALL REFINEMENT RESULTS ###\n" + "="*80)
     
     print("--- Generating final combined UMAP plot with consistent styling ---")
-    sc.pl.umap(adata_s2, color='combined_annotation', palette=sc.pl.palettes.godsnot_102, 
+    with plt.rc_context({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+        sc.pl.umap(adata_s2, color='combined_annotation', palette=sc.pl.palettes.godsnot_102, 
                 legend_loc='right margin', legend_fontsize=8, 
                 title='Final Annotation (High-Confidence + All Refined Levels)', 
                 show=False, size=10)
@@ -1918,10 +1847,10 @@ if __name__ == '__main__':
     stage2_group.add_argument('--n_pcs_compute', type=int, default=105, help="Number of principal components to COMPUTE in Stage 1 and 2.")
     stage2_group.add_argument('--n_top_genes', type=int, default=5, help="Number of top marker genes to show in plots/tables in Stage 1 and 2.")
     stage2_group.add_argument('--cellmarker_db', type=str, default=None, help="(Optional) Path to a cell marker database (.csv) for manual annotation in Stage 2.")
-    stage2_group.add_argument('--n_degs_for_capture', type=int, default=50, help="Number of top DEGs per cluster to use for the Marker Capture Score calculation in Stage 2.")
+    stage2_group.add_argument('--n_degs_for_capture', type=int, default=5, help="Number of top DEGs per cluster to use for the Marker Capture Score calculation in Stage 2.")
     stage2_group.add_argument('--cas_refine_threshold', type=float, default=None, help="(Optional) CAS percentage threshold (0-100). If a cluster's CAS is below this, its cells are pooled for a second, refined optimization run.")
     stage2_group.add_argument('--refinement_depth', type=int, default=1, help="(Optional) Maximum number of times to repeat the refinement process on failing cells. Default is 1.")
-
+    stage2_group.add_argument('--min_cells_refinement', type=int, default=100, help="(Optional) Minimum number of failing cells required to trigger a refinement loop. Default is 100.")
 
     parsed_args = parser.parse_args()
 
