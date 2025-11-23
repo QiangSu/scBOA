@@ -161,6 +161,7 @@ python scBOA.py \
 | `--n_degs_for_capture <int>` | DEGs per cluster for Marker Capture Score. | Default: `50`. Number of top differentially expressed genes used to match against the marker DB. |
 | `--cas_refine_threshold <float>`| CAS threshold to trigger refinement. | **(Optional)** If a cluster's CAS score is below this value (e.g., `90`), its cells are pooled for a new round of optimization and analysis. |
 | `--refinement_depth <int>` | Maximum number of refinement iterations. | Default: `1`. If refinement is triggered, this controls how many times the process can repeat on the subsequently failing cells. |
+| `--min_cells_refinement <int>` | Min cells required to trigger refinement. | Default: `100`. Prevents the pipeline from attempting refinement if the pool of low-quality cells is too small for valid statistical analysis. |
 
 ---
 
