@@ -915,23 +915,77 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     print("\n--- Step 6: Marker Gene Analysis and MCS Calculation ---")
     marker_groupby_key = 'ctpt_consensus_prediction'; top_genes_df, mcs_df = None, None
     valid_labels = adata.obs[marker_groupby_key].value_counts()[lambda x: x > 1].index.tolist()
-    if len(valid_labels) < 2: print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
+    if len(valid_labels) < 2: 
+        print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
     else:
         sc.tl.rank_genes_groups(adata, marker_groupby_key, groups=valid_labels, method='wilcoxon', use_raw=True, key_added=f"wilcoxon_{marker_groupby_key}")
         marker_df = sc.get.rank_genes_groups_df(adata, key=f"wilcoxon_{marker_groupby_key}", group=None)
 
         is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
+        # Filter out mitochondrial genes
         filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
-        top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        
+        if filtered_rows:
+            top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        else:
+            top_genes_df = pd.DataFrame()
 
-        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-            sc.pl.dotplot(adata, var_names=top_genes_df.groupby('group')['names'].apply(list).to_dict(), groupby=marker_groupby_key, categories_order=top_genes_df['group'].unique().tolist(), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
+        # ========== ENHANCED VALIDATION: Total + Partial Failure Detection ==========
+        if top_genes_df.empty:
+            # SCENARIO 1: Total Failure
+            print("\n" + "="*80)
+            print("[CRITICAL WARNING] TOTAL MARKER FAILURE")
+            print("="*80)
+            print("No valid non-mitochondrial marker genes found for ANY cluster.")
+            print("ACTION: Skipping dotplot and MCS calculation. Proceeding to final save.")
+            print("="*80 + "\n")
+            mcs_df = None 
+        else:
+            # Check for SCENARIO 2: Partial Failure
+            clusters_in_data = set(adata.obs[marker_groupby_key].unique())
+            clusters_with_markers = set(top_genes_df['group'].unique())
+            missing_markers = clusters_in_data - clusters_with_markers
+            
+            if missing_markers:
+                failure_rate = len(missing_markers) / len(clusters_in_data)
+                print("\n" + "="*80)
+                print(f"[WARNING] PARTIAL MARKER FAILURE DETECTED (Rate: {failure_rate*100:.1f}%)")
+                print(f"Clusters without markers: {sorted(list(missing_markers))}")
+                
+                if failure_rate > 0.5:
+                    print("!"*80)
+                    print("[ERROR] CRITICAL: More than 50% of clusters lack distinctive markers!")
+                    print("This indicates severe over-clustering or technical dominance.")
+                    print("ACTION: STOPPING downstream analysis for this branch - results would be unreliable.")
+                    print("!"*80 + "\n")
+                    mcs_df = None
+                    top_genes_df = pd.DataFrame() # Force empty to skip plotting below
+                else:
+                    print("ACTION: Proceeding with PARTIAL analysis (excluding failing clusters).")
+                    print("="*80 + "\n")
 
-        mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
-        if mcs_df is not None and top_genes_df is not None:
-            top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
-            pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
+            # Only run plotting and MCS if we still have valid markers after the critical check
+            if not top_genes_df.empty:
+                with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+                    sc.pl.dotplot(
+                        adata, 
+                        var_names=top_genes_df.groupby('group')['names'].apply(list).to_dict(), 
+                        groupby=marker_groupby_key, 
+                        categories_order=top_genes_df['group'].unique().tolist(), 
+                        use_raw=True, 
+                        save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", 
+                        show=False
+                    )
+                    plt.close()
 
+                mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
+                
+                if mcs_df is not None:
+                    top_genes_agg = top_genes_df.groupby('group')['names'].apply(', '.join).reset_index().rename(columns={'names': f'Top_{cli_args.n_top_genes}_Markers', 'group': 'Cell_Type'})
+                    pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
+            else:
+                mcs_df = None  
+    
     print("\n--- Step 7: Optional Manual-Style Annotation & Scoring ---")
     if cli_args.cellmarker_db and os.path.exists(cli_args.cellmarker_db):
         try:
@@ -1186,13 +1240,64 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         sc.tl.rank_genes_groups(adata, FINAL_ANNOTATION_COLUMN, method='wilcoxon', use_raw=True, key_added=marker_key)
         marker_df = sc.get.rank_genes_groups_df(adata, key=marker_key, group=None)
         is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
+        
+        # Filter out mitochondrial genes
         filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
-        top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        
+        if filtered_rows:
+            top_genes_df = pd.concat(filtered_rows, ignore_index=True)
+        else:
+            top_genes_df = pd.DataFrame()
 
-        with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-            genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
-            sc.pl.dotplot(adata, var_names=genes_to_plot, groupby=FINAL_ANNOTATION_COLUMN, categories_order=list(genes_to_plot.keys()), use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False); plt.close()
-        extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
+        # ========== ENHANCED VALIDATION: Total + Partial Failure Detection ==========
+        if top_genes_df.empty:
+            # SCENARIO 1: Total Failure
+            print("\n" + "="*80)
+            print("[CRITICAL WARNING] TOTAL MARKER FAILURE (Multi-Sample)")
+            print("="*80)
+            print("No valid non-mitochondrial marker genes found for ANY integrated cluster.")
+            print("ACTION: Skipping dotplot. Proceeding to final save.")
+            print("="*80 + "\n")
+        else:
+            # Check for SCENARIO 2: Partial Failure
+            clusters_in_data = set(adata.obs[FINAL_ANNOTATION_COLUMN].unique())
+            clusters_with_markers = set(top_genes_df['group'].unique())
+            missing_markers = clusters_in_data - clusters_with_markers
+            
+            if missing_markers:
+                failure_rate = len(missing_markers) / len(clusters_in_data)
+                print("\n" + "="*80)
+                print(f"[WARNING] PARTIAL MARKER FAILURE DETECTED (Multi-Sample) (Rate: {failure_rate*100:.1f}%)")
+                print(f"Clusters without markers: {sorted(list(missing_markers))}")
+                
+                if failure_rate > 0.5:
+                    print("!"*80)
+                    print("[ERROR] CRITICAL: More than 50% of integrated clusters lack markers!")
+                    print("This indicates severe integration or clustering issues (over-correction/over-clustering).")
+                    print("ACTION: STOPPING downstream plotting - results would be unreliable.")
+                    print("!"*80 + "\n")
+                    top_genes_df = pd.DataFrame() # Force empty to skip plotting
+                else:
+                    print("ACTION: Proceeding with PARTIAL analysis (excluding failing clusters).")
+                    print("="*80 + "\n")
+        
+            # Only run plotting if we still have markers
+            if not top_genes_df.empty:
+                with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+                    genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+                    sc.pl.dotplot(
+                        adata, 
+                        var_names=genes_to_plot, 
+                        groupby=FINAL_ANNOTATION_COLUMN, 
+                        categories_order=top_genes_df['group'].unique().tolist(), 
+                        use_raw=True, 
+                        save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", 
+                        show=False
+                    ) 
+                    plt.close()
+                
+                extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
+                
     else:
         print("[INFO] CellTypist not run. Using Leiden clusters for downstream analysis.")
         adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs['leiden'].astype('category')
