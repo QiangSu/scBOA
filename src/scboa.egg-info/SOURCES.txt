@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/scboa/__init__.py
+src/scboa/cli.py
+src/scboa/pipeline.py
+src/scboa.egg-info/PKG-INFO
+src/scboa.egg-info/SOURCES.txt
+src/scboa.egg-info/dependency_links.txt
+src/scboa.egg-info/entry_points.txt
+src/scboa.egg-info/requires.txt
+src/scboa.egg-info/top_level.txt

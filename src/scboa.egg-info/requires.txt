@@ -1,0 +1,14 @@
+scanpy>=1.9.0
+anndata
+pandas
+numpy
+scipy
+scikit-learn
+matplotlib
+seaborn
+scikit-optimize
+celltypist>=1.5.0
+harmonypy
+leidenalg
+python-igraph
+openpyxl

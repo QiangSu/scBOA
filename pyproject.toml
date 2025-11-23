@@ -1,0 +1,68 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scboa"
+version = "0.1.5"
+description = "scBOA: scRNA-seq Bayesian Optimization and Analysis pipeline"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Qiang Su", email = "su@chemie.uni-siegen.de" }
+]
+maintainers = [
+  { name = "Qiang Su", email = "su@chemie.uni-siegen.de" }
+]
+keywords = [
+  "single-cell RNA-seq",
+  "scRNA-seq",
+  "bayesian optimization",
+  "bioinformatics",
+  "cell type annotation",
+  "scanpy"
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+# Core dependencies required for the tool to run
+dependencies = [
+  "scanpy>=1.9.0",     # Core analysis framework
+  "anndata",           # Data structure for scanpy
+  "pandas",
+  "numpy",
+  "scipy",
+  "scikit-learn",
+  "matplotlib",
+  "seaborn",
+  "scikit-optimize",   # Bayesian Optimization
+  "celltypist>=1.5.0", # Cell annotation
+  "harmonypy",         # Multi-sample integration
+  "leidenalg",         # Leiden clustering
+  "python-igraph",     # Graph backend
+  "openpyxl",          # Excel export
+]
+
+[project.urls]
+Homepage = "https://github.com/QiangSu/scBOA"
+"Bug Tracker" = "https://github.com/QiangSu/scBOA/issues"
+Source = "https://github.com/QiangSu/scBOA"
+
+[project.scripts]
+scboa = "scboa.cli:run"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
