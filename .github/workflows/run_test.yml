@@ -30,7 +30,7 @@ jobs:
           --output_dir ./test_output/ \
           --model_path ./test_assets/Healthy_COVID19_PBMC.pkl \
           --n_calls 15 \
-          --target weighted_cas \
+          --target all \
           --min_genes 1 \
           --min_cells 1 \
           --seed 123
