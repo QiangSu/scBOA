@@ -53,9 +53,9 @@ Rscript simu_step1_simulate_scRNA_seq_data_15000c_10g_standard_2.R
 ```
 Outputs:
 
-ground_truth_matrix.csv: The gene count matrix.
-ground_truth_celltypes.txt: Cell ID to Cell Type mapping.
-simulated_fastq_15000c_10g_standard/: Directory containing individual FASTA/FASTQ files for each cell.
+*   ground_truth_matrix.csv: The gene count matrix.
+*   ground_truth_celltypes.txt: Cell ID to Cell Type mapping.
+*   simulated_fastq_15000c_10g_standard/: Directory containing individual FASTA/FASTQ files for each cell.
 
 ### Step 2: Add Barcodes, UMIs, and Format for Cell Ranger
 This script mimics the 10x Genomics 3' v3 library structure. It samples real barcodes, generates random UMIs, creates Read 1 (Barcode+UMI+PolyT) and Read 2 (Transcript), and merges all cells into a single pair of FASTQ files.
@@ -65,15 +65,15 @@ python3 simu_step2_add_barcodes_umis_cellranger_15000c_10g_standard_2.py
 ```
 Outputs:
 
-simulated_S1_R1_001.fastq.gz: Read 1 (16bp Barcode + 12bp UMI + 20bp PolyT).
-simulated_S1_R2_001.fastq.gz: Read 2 (cDNA sequence).
-simulated_barcode_mapping.txt: Log file mapping input cell indices to the assigned 10x barcode.
+*   simulated_S1_R1_001.fastq.gz: Read 1 (16bp Barcode + 12bp UMI + 20bp PolyT).
+*   simulated_S1_R2_001.fastq.gz: Read 2 (cDNA sequence).
+*   simulated_barcode_mapping.txt: Log file mapping input cell indices to the assigned 10x barcode.
 
 ### Downstream Usage
 The output FASTQ files can be directly processed using cellranger count. Ensure you use the --sample name defined in the Python script (default: simulated).
 
 Example:
-cellranger count --id=simulated_run \
+*   cellranger count --id=simulated_run \
                  --sample=simulated \
                  --fastqs=/path/to/output_dir \
                  --transcriptome=/path/to/refdata \
