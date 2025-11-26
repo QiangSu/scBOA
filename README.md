@@ -99,14 +99,61 @@ Here is an example command for a single-sample analysis:
 python scBOA.py \
   --data_dir /path/to/your/cellranger_output/ \
   --output_dir ./my_analysis_output/ \
-  --model_path /path/to/your/celltypist_model.pkl \
+  --output_dir ./my_analysis_output/ \
+  --model_path ./reference/Healthy_COVID19_PBMC.pkl \
+  --output_prefix sample \
+  --seed 42 \
   --n_calls 50 \
-  --target balanced \
-  --model_type structural \
-  --cas_refine_threshold 90 \
-  --refinement_depth 2
+  --target all \
+  --model_type biological \
+  --cas_aggregation_method leiden \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 
 ```
 
+Single-sample refinement analysis
+
+```bash
+python scBOA.py \
+  --data_dir /path/to/your/cellranger_output/ \
+  --output_dir ./my_analysis_output/ \
+  --output_dir ./my_analysis_output/ \
+  --model_path ./reference/Healthy_COVID19_PBMC.pkl \
+  --output_prefix sample \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --cas_aggregation_method leiden \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 
+```
+
+Multiple-sample refinement analysis:
+
+```bash
+python ./scBOA/scBOA.py \
+  --multi_sample ./WT_CellRanger/ ./treated_CellRanger/ \
+  --output_dir ./my_analysis_output/ \
+  --model_path ./reference/Mouse_Whole_Brain.pkl \
+  --output_prefix WTTR \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --cas_aggregation_method leiden \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 
+```
 ---
 
 ## Command-Line Arguments Explained
