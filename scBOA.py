@@ -527,7 +527,10 @@ def _get_metric_and_strategy_from_filename(filename):
     if 'bo_ei' in base: strategy = 'BO-EI'
     elif 'exploit' in base: strategy = 'Exploit'
     elif 'explore' in base: strategy = 'Explore'
-    else: strategy = (m.group(1).capitalize() if (m := re.search(r'_(\w+)_opt_result', base)) else 'Unknown')
+    else: 
+        # FIXED: Removed walrus operator (:=) for Python < 3.8 compatibility
+        m = re.search(r'_(\w+)_opt_result', base)
+        strategy = m.group(1).capitalize() if m else 'Unknown'
     if 'weighted_cas' in base: metric_label = 'Weighted CAS (%)'
     elif 'simple_cas' in base: metric_label = 'Simple CAS (%)'
     elif 'mcs' in base: metric_label = 'Mean MCS (%)'
@@ -731,8 +734,11 @@ def _bold_right_margin_legend(fig_path):
     """(Stage 2) Finds legend in current figure, makes text bold, and saves."""
     fig = plt.gcf()
     for ax in fig.axes:
-        if (leg := ax.get_legend()) is not None:
-            for txt in leg.get_texts(): txt.set_fontweight('bold')
+        # FIXED: Removed walrus operator (:=) for Python < 3.8 compatibility
+        leg = ax.get_legend()
+        if leg is not None:
+            for txt in leg.get_texts(): 
+                txt.set_fontweight('bold')
     fig.savefig(fig_path, dpi=plt.rcParams['savefig.dpi'], bbox_inches='tight')
 def reformat_dotplot_data(fraction_df: pd.DataFrame, top_genes_df: pd.DataFrame, output_dir: str, output_prefix: str, groupby_key: str):
     """(Stage 2) Reformats dot plot fraction data to a gene-centric sparse table."""
@@ -850,10 +856,27 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'], n_pcs=n_pcs_to_use, random_state=cli_args.seed)
     sc.tl.leiden(adata, resolution=optimal_params['resolution'], random_state=cli_args.seed)
     sc.tl.umap(adata, random_state=cli_args.seed)
-    silhouette_avg = silhouette_score(adata.obsm['X_pca'][:, :n_pcs_to_use], adata.obs['leiden'])
-    print(f"       -> Average Silhouette Score for Leiden clustering: {silhouette_avg:.3f}")
-    sc.pl.umap(adata, color='leiden', legend_fontweight='bold', legend_loc='on data', title=f'Leiden Clusters ({adata.obs["leiden"].nunique()} clusters)\nSilhouette: {silhouette_avg:.3f}', palette=sc.pl.palettes.godsnot_102, save=f"_{cli_args.final_run_prefix}_umap_leiden.png", show=False, size=10); plt.close()
+    
+    # ==============================================================================
+    # --- *** CRASH FIX: Safe Silhouette Calculation *** ---
+    # ==============================================================================
+    silhouette_avg = 0.0
+    try:
+        n_clusters = adata.obs['leiden'].nunique()
+        n_cells = adata.n_obs
+        # Silhouette requires: 2 <= n_labels <= n_samples - 1
+        if 1 < n_clusters < n_cells:
+            silhouette_avg = silhouette_score(adata.obsm['X_pca'][:, :n_pcs_to_use], adata.obs['leiden'])
+            print(f"       -> Average Silhouette Score for Leiden clustering: {silhouette_avg:.3f}")
+        else:
+            print(f"       -> [WARNING] Silhouette score skipped. Clusters ({n_clusters}) must be > 1 and < Cells ({n_cells}).")
+            silhouette_avg = 0.0
+    except Exception as e:
+        print(f"       -> [WARNING] Silhouette calculation failed safely: {e}")
+        silhouette_avg = 0.0
+    # ==============================================================================
 
+    sc.pl.umap(adata, color='leiden', legend_fontweight='bold', legend_loc='on data', title=f'Leiden Clusters ({adata.obs["leiden"].nunique()} clusters)\nSilhouette: {silhouette_avg:.3f}', palette=sc.pl.palettes.godsnot_102, save=f"_{cli_args.final_run_prefix}_umap_leiden.png", show=False, size=10); plt.close()
     print("\n--- Step 5: CellTypist Annotation and CAS Calculation ---")
     model_ct = models.Model.load(cli_args.model_path)
     print("[INFO] Annotating cells using the full log-normalized transcriptome (from adata.raw)...")
@@ -1130,18 +1153,26 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     sc.tl.umap(adata, random_state=cli_args.seed)
     sc.pl.umap(adata, color='sample', title='UMAP by Sample', save=f"_{cli_args.final_run_prefix}_umap_sample.png", show=False, size=10); plt.close()
 
+    # ==============================================================================
+    # --- *** CRASH FIX: Safe Silhouette Calculation *** ---
+    # ==============================================================================
     silhouette_avg = 0.0
     try:
-        if adata.obs['leiden'].nunique() > 1:
+        n_clusters = adata.obs['leiden'].nunique()
+        n_cells = adata.n_obs
+        # Silhouette requires: 2 <= n_labels <= n_samples - 1
+        if 1 < n_clusters < n_cells:
             silhouette_avg = silhouette_score(adata.obsm[pca_rep_key][:, :n_pcs_to_use], adata.obs['leiden'])
             print(f"       -> Average Silhouette Score for Leiden clustering (on '{pca_rep_key}'): {silhouette_avg:.3f}")
         else:
-            print("       -> Silhouette score not computed (only 1 cluster).")
+            print(f"       -> [WARNING] Silhouette score skipped. Clusters ({n_clusters}) must be > 1 and < Cells ({n_cells}).")
+            silhouette_avg = 0.0
     except Exception as e:
         print(f"       -> [WARNING] Could not compute silhouette score: {e}")
+        silhouette_avg = 0.0
+    # ==============================================================================
 
     sc.pl.umap(adata, color='leiden', legend_loc='on data', legend_fontweight='bold', title=f'Leiden Clusters (res={optimal_params["resolution"]})\nSilhouette: {silhouette_avg:.3f}', palette=sc.pl.palettes.godsnot_102, save=f"_{cli_args.final_run_prefix}_umap_leiden.png", show=False, size=10); plt.close()
-
 
     print("\n--- Step 7: Cell Type Annotation with CellTypist ---")
     top_genes_df = None
@@ -1570,6 +1601,21 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
             )
         
         args.final_run_prefix = original_final_run_prefix # Restore for next loop
+
+        # Check if the refinement produced too many clusters (Over-clustering check)
+        # If clusters > 1/5th of the cells, discard this level and stop.
+        
+        current_n_clusters = adata_refinement_processed.obs['leiden'].nunique()
+        current_n_cells = adata_refinement_processed.n_obs
+        ratio_threshold = current_n_cells / 5.0
+
+        if current_n_clusters > ratio_threshold:
+            print(f"\n[STOP] Refinement stopped at Depth {depth} due to over-clustering.")
+            print(f"       Reason: Cluster count ({current_n_clusters}) is higher than 1/5th of processing cells ({current_n_cells}).")
+            print(f"       Threshold was: > {ratio_threshold:.2f}")
+            print(f"       Results from this depth will NOT be merged into the final object.")
+            break
+        # ==============================================================================
 
         # --- Step 5: Update master annotation in the main adata_s2 object ---
         all_refinement_cas_paths.append(cas_csv_path_refinement)
