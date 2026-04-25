@@ -1,0 +1,22 @@
+,AssignedType
+B_immature,B cell
+B_malignant,B cell
+B_naive,B cell
+B_switched_memory,B cell
+CD14_mono,Monocyte
+CD16_mono,Cd1c-cd141- dendritic cell
+CD4.Naive,Naive cd4+ t cell
+CD8.EM,Cytotoxic cd8+ t cell
+CD8.Naive,Naive cd4+ t cell
+CD83_CD14_mono,B cell
+DC1,Cd141+clec9a+ dendritic cell
+DC3,Myeloid cell
+HSC_CD38pos,Progenitor cell
+MAIT,Memory cd8+ t cell
+NK_16hi,Natural killer cell
+NK_56hi,Natural killer cell
+NK_prolif,Cycling cell
+Plasma_cell_IgA,Plasma cell
+Platelets,Megakaryocyte
+gdT,Gamma delta(γδ) t cell
+pDC,Plasmacytoid dendritic cell(pdc)

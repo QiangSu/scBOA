@@ -1,0 +1,9 @@
+,AssignedType
+CD4.Prolif,Cycling cell
+CD8.Naive,Gamma delta(γδ) t cell
+CD8.Prolif,Immature b cell
+DC3,Myeloid cell
+HSC_CD38pos,Hematopoietic stem cell
+NKT,Cytotoxic cd8+ t cell
+Treg,Regulatory t (treg) cell
+gdT,Effector memory t cell

@@ -1,0 +1,1158 @@
+,ctpt_consensus_prediction,Cluster_ID,Marker_Match_1,Marker_Match_1_F1 (%),Marker_Match_2,Marker_Match_2_F1 (%),Marker_Match_3,Marker_Match_3_F1 (%)
+0,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+2,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+3,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+4,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+5,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+6,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+7,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+8,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+9,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+10,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+11,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+12,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+13,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+14,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+15,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+16,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+17,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+18,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+19,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+20,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+21,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+22,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+23,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+24,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+25,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+26,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+27,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+28,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+29,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+30,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+31,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+32,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+33,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+34,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+35,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+36,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+37,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+38,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+39,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+40,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+41,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+42,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+43,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+44,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+45,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+46,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+47,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+48,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+49,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+50,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+51,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+52,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+53,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+54,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+55,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+56,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+57,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+58,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+59,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+60,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+61,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+62,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+63,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+64,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+65,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+66,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+67,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+68,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+69,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+70,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+71,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+72,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+73,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+74,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+75,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+76,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+77,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+78,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+79,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+80,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+81,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+82,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+83,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+84,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+85,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+86,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+87,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+88,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+89,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+90,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+91,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+92,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+93,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+94,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+95,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+96,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+97,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+98,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+99,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+100,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+101,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+102,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+103,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+104,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+105,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+106,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+107,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+108,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+109,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+110,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+111,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+112,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+113,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+114,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+115,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+116,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+117,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+118,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+119,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+120,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+121,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+122,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+123,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+124,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+125,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+126,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+127,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+128,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+129,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+130,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+131,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+132,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+133,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+134,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+135,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+136,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+137,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+138,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+139,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+140,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+141,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+142,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+143,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+144,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+145,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+146,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+147,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+148,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+149,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+150,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+151,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+152,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+153,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+154,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+155,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+156,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+157,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+158,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+159,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+160,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+161,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+162,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+163,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+164,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+165,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+166,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+167,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+168,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+169,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+170,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+171,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+172,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+173,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+174,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+175,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+176,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+177,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+178,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+179,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+180,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+181,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+182,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+183,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+184,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+185,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+186,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+187,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+188,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+189,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+190,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+191,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+192,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+193,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+194,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+195,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+196,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+197,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+198,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+199,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+200,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+201,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+202,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+203,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+204,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+205,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+206,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+207,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+208,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+209,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+210,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+211,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+212,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+213,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+214,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+215,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+216,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+217,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+218,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+219,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+220,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+221,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+222,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+223,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+224,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+225,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+226,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+227,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+228,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+229,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+230,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+231,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+232,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+233,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+234,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+235,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+236,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+237,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+238,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+239,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+240,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+241,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+242,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+243,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+244,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+245,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+246,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+247,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+248,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+249,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+250,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+251,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+252,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+253,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+254,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+255,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+256,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+257,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+258,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+259,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+260,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+261,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+262,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+263,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+264,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+265,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+266,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+267,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+268,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+269,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+270,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+271,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+272,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+273,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+274,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+275,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+276,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+277,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+278,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+279,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+280,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+281,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+282,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+283,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+284,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+285,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+286,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+287,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+288,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+289,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+290,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+291,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+292,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+293,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+294,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+295,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+296,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+297,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+298,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+299,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+300,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+301,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+302,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+303,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+304,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+305,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+306,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+307,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+308,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+309,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+310,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+311,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+312,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+313,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+314,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+315,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+316,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+317,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+318,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+319,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+320,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+321,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+322,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+323,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+324,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+325,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+326,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+327,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+328,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+329,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+330,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+331,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+332,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+333,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+334,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+335,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+336,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+337,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+338,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+339,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+340,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+341,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+342,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+343,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+344,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+345,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+346,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+347,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+348,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+349,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+350,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+351,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+352,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+353,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+354,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+355,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+356,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+357,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+358,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+359,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+360,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+361,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+362,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+363,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+364,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+365,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+366,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+367,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+368,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+369,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+370,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+371,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+372,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+373,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+374,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+375,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+376,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+377,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+378,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+379,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+380,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+381,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+382,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+383,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+384,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+385,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+386,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+387,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+388,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+389,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+390,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+391,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+392,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+393,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+394,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+395,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+396,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+397,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+398,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+399,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+400,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+401,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+402,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+403,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+404,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+405,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+406,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+407,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+408,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+409,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+410,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+411,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+412,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+413,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+414,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+415,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+416,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+417,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+418,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+419,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+420,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+421,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+422,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+423,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+424,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+425,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+426,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+427,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+428,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+429,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+430,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+431,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+432,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+433,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+434,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+435,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+436,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+437,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+438,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+439,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+440,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+441,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+442,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+443,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+444,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+445,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+446,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+447,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+448,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+449,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+450,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+451,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+452,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+453,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+454,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+455,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+456,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+457,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+458,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+459,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+460,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+461,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+462,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+463,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+464,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+465,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+466,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+467,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+468,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+469,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+470,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+471,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+472,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+473,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+474,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+475,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+476,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+477,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+478,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+479,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+480,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+481,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+482,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+483,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+484,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+485,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+486,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+487,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+488,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+489,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+490,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+491,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+492,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+493,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+494,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+495,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+496,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+497,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+498,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+499,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+500,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+501,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+502,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+503,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+504,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+505,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+506,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+507,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+508,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+509,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+510,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+511,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+512,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+513,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+514,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+515,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+516,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+517,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+518,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+519,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+520,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+521,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+522,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+523,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+524,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+525,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+526,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+527,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+528,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+529,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+530,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+531,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+532,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+533,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+534,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+535,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+536,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+537,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+538,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+539,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+540,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+541,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+542,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+543,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+544,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+545,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+546,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+547,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+548,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+549,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+550,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+551,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+552,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+553,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+554,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+555,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+556,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+557,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+558,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+559,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+560,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+561,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+562,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+563,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+564,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+565,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+566,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+567,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+568,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+569,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+570,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+571,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+572,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+573,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+574,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+575,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+576,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+577,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+578,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+579,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+580,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+581,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+582,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+583,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+584,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+585,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+586,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+587,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+588,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+589,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+590,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+591,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+592,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+593,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+594,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+595,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+596,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+597,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+598,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+599,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+600,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+601,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+602,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+603,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+604,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+605,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+606,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+607,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+608,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+609,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+610,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+611,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+612,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+613,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+614,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+615,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+616,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+617,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+618,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+619,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+620,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+621,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+622,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+623,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+624,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+625,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+626,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+627,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+628,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+629,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+630,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+631,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+632,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+633,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+634,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+635,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+636,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+637,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+638,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+639,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+640,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+641,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+642,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+643,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+644,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+645,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+646,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+647,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+648,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+649,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+650,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+651,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+652,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+653,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+654,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+655,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+656,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+657,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+658,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+659,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+660,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+661,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+662,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+663,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+664,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+665,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+666,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+667,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+668,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+669,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+670,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+671,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+672,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+673,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+674,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+675,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+676,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+677,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+678,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+679,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+680,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+681,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+682,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+683,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+684,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+685,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+686,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+687,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+688,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+689,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+690,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+691,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+692,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+693,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+694,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+695,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+696,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+697,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+698,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+699,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+700,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+701,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+702,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+703,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+704,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+705,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+706,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+707,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+708,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+709,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+710,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+711,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+712,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+713,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+714,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+715,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+716,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+717,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+718,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+719,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+720,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+721,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+722,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+723,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+724,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+725,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+726,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+727,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+728,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+729,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+730,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+731,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+732,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+733,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+734,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+735,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+736,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+737,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+738,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+739,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+740,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+741,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+742,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+743,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+744,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+745,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+746,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+747,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+748,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+749,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+750,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+751,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+752,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+753,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+754,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+755,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+756,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+757,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+758,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+759,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+760,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+761,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+762,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+763,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+764,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+765,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+766,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+767,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+768,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+769,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+770,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+771,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+772,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+773,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+774,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+775,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+776,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+777,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+778,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+779,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+780,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+781,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+782,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+783,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+784,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+785,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+786,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+787,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+788,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+789,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+790,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+791,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+792,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+793,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+794,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+795,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+796,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+797,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+798,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+799,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+800,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+801,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+802,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+803,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+804,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+805,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+806,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+807,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+808,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+809,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+810,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+811,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+812,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+813,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+814,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+815,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+816,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+817,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+818,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+819,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+820,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+821,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+822,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+823,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+824,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+825,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+826,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+827,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+828,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+829,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+830,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+831,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+832,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+833,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+834,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+835,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+836,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+837,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+838,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+839,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+840,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+841,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+842,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+843,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+844,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+845,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+846,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+847,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+848,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+849,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+850,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+851,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+852,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+853,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+854,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+855,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+856,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+857,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+858,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+859,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+860,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+861,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+862,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+863,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+864,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+865,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+866,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+867,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+868,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+869,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+870,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+871,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+872,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+873,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+874,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+875,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+876,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+877,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+878,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+879,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+880,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+881,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+882,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+883,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+884,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+885,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+886,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+887,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+888,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+889,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+890,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+891,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+892,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+893,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+894,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+895,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+896,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+897,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+898,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+899,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+900,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+901,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+902,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+903,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+904,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+905,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+906,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+907,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+908,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+909,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+910,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+911,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+912,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+913,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+914,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+915,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+916,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+917,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+918,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+919,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+920,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+921,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+922,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+923,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+924,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+925,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+926,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+927,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+928,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+929,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+930,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+931,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+932,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+933,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+934,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+935,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+936,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+937,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+938,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+939,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+940,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+941,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+942,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+943,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+944,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+945,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+946,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+947,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+948,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+949,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+950,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+951,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+952,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+953,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+954,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+955,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+956,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+957,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+958,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+959,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+960,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+961,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+962,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+963,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+964,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+965,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+966,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+967,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+968,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+969,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+970,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+971,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+972,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+973,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+974,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+975,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+976,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+977,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+978,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+979,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+980,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+981,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+982,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+983,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+984,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+985,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+986,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+987,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+988,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+989,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+990,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+991,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+992,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+993,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+994,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+995,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+996,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+997,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+998,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+999,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1000,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1001,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1002,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1003,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1004,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1005,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1006,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1007,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+1008,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1009,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1010,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1011,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1012,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1013,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1014,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1015,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1016,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1017,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1018,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1019,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+1020,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1021,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1022,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1023,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1024,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1025,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1026,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1027,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1028,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1029,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1030,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1031,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1032,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1033,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1034,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1035,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1036,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1037,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1038,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1039,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1040,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1041,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1042,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1043,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1044,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1045,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1046,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1047,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1048,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1049,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1050,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1051,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1052,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1053,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1054,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1055,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1056,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1057,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1058,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1059,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1060,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1061,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1062,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1063,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1064,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1065,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1066,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1067,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1068,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1069,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+1070,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1071,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1072,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1073,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1074,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1075,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1076,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1077,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1078,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1079,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1080,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1081,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+1082,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1083,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1084,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1085,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1086,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1087,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1088,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1089,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1090,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1091,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1092,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1093,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1094,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1095,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1096,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1097,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+1098,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1099,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1100,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1101,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1102,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1103,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1104,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+1105,Platelets,Platelets,Myeloid cell,17.97752808988764,Monocyte,16.666666666666664,Natural killer cell,15.151515151515152
+1106,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1107,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1108,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1109,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1110,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1111,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1112,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1113,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1114,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1115,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1116,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1117,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1118,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1119,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1120,HSC_CD38pos,HSC_CD38pos,Hematopoietic stem cell,10.638297872340427,Progenitor cell,9.375,Plasmacytoid dendritic cell(pdc),7.792207792207792
+1121,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1122,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1123,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1124,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1125,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1126,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1127,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1128,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1129,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1130,CD8.EM,CD8.EM,Cd8+ t cell,23.404255319148938,Cytotoxic t cell,19.672131147540984,Cytotoxic cd8+ t cell,16.666666666666668
+1131,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1132,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1133,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1134,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1135,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1136,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1137,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1138,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1139,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654
+1140,CD4.Prolif,CD4.Prolif,Regulatory t(treg) cell,11.363636363636363,Cd4+ t cell,8.547008547008547,Leukocyte,4.761904761904763
+1141,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1142,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1143,NK_prolif,NK_prolif,Effector cd8+ t cell,10.0,Cytotoxic t cell,9.836065573770492,Effector cd4+ t cell,9.67741935483871
+1144,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1145,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1146,CD8.Naive,CD8.Naive,Naive cd8+ t cell,12.269938650306749,Naive cd4+ t cell,10.869565217391305,Memory cd8+ t cell,9.230769230769232
+1147,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1148,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1149,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1150,gdT,gdT,Naive cd8+ t cell,1.2269938650306749,Multilymphoid progenitor cell,0.30959752321981415,,
+1151,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1152,NKT,NKT,Cd8+ t cell,21.276595744680854,Cytotoxic cd8+ t cell,20.0,Cytotoxic t cell,19.672131147540984
+1153,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1154,DC3,DC3,Myeloid cell,24.719101123595507,Monocyte,19.23076923076923,Cd1c+_b dendritic cell,16.9811320754717
+1155,CD8.Prolif,CD8.Prolif,B cell,21.73913043478261,Mature b cell,17.54385964912281,Immature b cell,16.129032258064516
+1156,Treg,Treg,Regulatory t (treg) cell,22.857142857142858,Regulatory t(treg) cell,15.909090909090908,Natural regulatory t cell,13.114754098360654

@@ -1,0 +1,12 @@
+,AssignedType
+CD4.Prolif,Regulatory t(treg) cell
+CD8.EM,Cd8+ t cell
+CD8.Naive,Naive cd8+ t cell
+CD8.Prolif,B cell
+DC3,Myeloid cell
+HSC_CD38pos,Hematopoietic stem cell
+NKT,Cd8+ t cell
+NK_prolif,Effector cd8+ t cell
+Platelets,Myeloid cell
+Treg,Regulatory t (treg) cell
+gdT,Naive cd8+ t cell

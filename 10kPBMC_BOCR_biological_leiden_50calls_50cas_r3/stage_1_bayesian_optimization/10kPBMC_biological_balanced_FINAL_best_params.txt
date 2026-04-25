@@ -1,0 +1,21 @@
+--- Bayesian Optimization Results ---
+Optimization Model Type: biological
+Marker Gene Model for MCS: non-mitochondrial
+Optimization Target: Balanced Score (Geometric Mean of CAS & MCS)
+Winning Strategy: BO-EI
+Random Seed Used: 42
+
+Best n_hvg: 2947
+Best n_pcs: 51
+Best n_neighbors: 10
+Best resolution: 1.746
+
+Highest_base_balanced_score: 78.5695
+Corresponding_weighted_mean_cas_pct: 78.82
+Corresponding_simple_mean_cas_pct: 71.81
+Corresponding_mean_mcs_pct: 93.43
+Corresponding_mean_f1_pct: 0.00
+Corresponding_mean_confidence_pct: 72.06
+Corresponding_silhouette_score: 0.1563
+Final_n_individual_labels: 49
+Final_n_consensus_labels: 21
