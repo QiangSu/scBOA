@@ -5,7 +5,8 @@ Integrated Two-Stage Bayesian Optimization and Final Analysis Pipeline for scRNA
 
 This script combines a Bayesian optimization stage for parameter discovery with a
 final, detailed analysis stage that uses the discovered optimal parameters. It now
-supports iterative refinement for low-confidence cells.
+supports iterative refinement for low-confidence cells, and features an Additive 
+Bonus system for the F1 Marker Prior Score (MPS).
 """
 
 import scanpy as sc
@@ -21,7 +22,10 @@ import re
 import anndata
 import sys
 import matplotlib
+import warnings
+from pandas.errors import PerformanceWarning
 
+warnings.simplefilter("ignore", PerformanceWarning)
 # Added import for robust marker aggregation in Stage 2
 from collections import defaultdict
 
@@ -32,8 +36,17 @@ matplotlib.use('Agg')
 try:
     import harmonypy as hm
 except ImportError:
-    print("Warning: harmonypy is not installed. Multi-sample integration mode will not be available.")
-    print("Please run 'pip install harmonypy'")
+    print("Warning: harmonypy is not installed. 'harmony' integration will fail.")
+
+try:
+    import scanorama
+except ImportError:
+    print("Warning: scanorama is not installed. 'scanorama' integration will fail.")
+
+try:
+    import bbknn
+except ImportError:
+    print("Warning: bbknn is not installed. 'bbknn' integration will fail.")
 
 
 # --- Bayesian Optimization Imports ---
@@ -68,7 +81,7 @@ MITO_REGEX_PATTERN = r'^(MT|Mt|mt)[-._:]'
 
 # Default search space for Stage 1, 'n_hvg' may be dynamically changed later
 search_space = [
-    Integer(800, 20000, name='n_hvg'),
+    Integer(200, 20000, name='n_hvg'),
     Integer(10, 100, name='n_pcs'),
     Integer(10, 50, name='n_neighbors'),
     Real(0.2, 2.0, name='resolution')
@@ -83,6 +96,12 @@ CURRENT_OPTIMIZATION_TARGET = None
 CURRENT_STRATEGY_NAME = ""
 TRIAL_METADATA = [] # Holds per-trial metadata (e.g., scores, label counts)
 
+def make_batches_contiguous(adata, batch_key='sample'):
+    """Reorder AnnData so that batches are contiguous (required by Scanorama)."""
+    if batch_key not in adata.obs.columns:
+        return adata
+    order = np.argsort(adata.obs[batch_key].astype(str).values, kind='stable')
+    return adata[order].copy()
 
 # ==============================================================================
 # ==============================================================================
@@ -94,7 +113,7 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
     """
     (Stage 1) Runs the appropriate pipeline (single-sample or integrated), calculates all
     metrics (CAS, MCS, Silhouette), and returns a score based on the global
-    CURRENT_OPTIMIZATION_TARGET.
+    CURRENT_OPTIMIZATION_TARGET. F1 is applied as an Additive Bonus.
     """
     global adata_base, model, RANDOM_SEED, ARGS, CURRENT_OPTIMIZATION_TARGET, CURRENT_STRATEGY_NAME, TRIAL_METADATA
 
@@ -109,6 +128,10 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
     print("     [INFO] Annotating individual cells on full log-normalized data...")
     predictions = celltypist.annotate(adata_for_annot, model=model, majority_voting=False)
     adata_proc.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels']
+
+    # --- ADDED: Extract confidence and calculate mean for optimization ---
+    adata_proc.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+    mean_confidence = adata_proc.obs['ctpt_confidence'].mean() * 100
 
     is_two_step_hvg = all(p is not None for p in [ARGS.hvg_min_mean, ARGS.hvg_max_mean, ARGS.hvg_min_disp])
     if is_two_step_hvg:
@@ -145,16 +168,34 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
 
     embedding_to_use = 'X_pca'
     if is_multi_sample:
-        sc.external.pp.harmony_integrate(
-            adata_proc,
-            key='sample',
-            basis='X_pca',
-            adjusted_basis='X_pca_harmony',
-            random_state=RANDOM_SEED
-        )
-        embedding_to_use = 'X_pca_harmony'
+        if ARGS.integration_method == 'harmony':
+            sc.external.pp.harmony_integrate(
+                adata_proc, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=RANDOM_SEED
+            )
+            embedding_to_use = 'X_pca_harmony'
+            sc.pp.neighbors(adata_proc, n_neighbors=n_neighbors, n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
+            
+        elif ARGS.integration_method == 'scanorama':
+            # === INSERT THIS LINE ===
+            adata_proc = make_batches_contiguous(adata_proc, batch_key='sample')
+            # === EXISTING CODE ===
+            sc.external.pp.scanorama_integrate(
+                adata_proc, key='sample', basis='X_pca', adjusted_basis='X_scanorama'
+            )
+            embedding_to_use = 'X_scanorama'
+            sc.pp.neighbors(adata_proc, n_neighbors=n_neighbors, n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
+            
+        elif ARGS.integration_method == 'bbknn':
+            # BBKNN replaces the standard sc.pp.neighbors step entirely
+            import bbknn
+            # Approximate neighbors_within_batch to maintain the global n_neighbors target
+            neighbors_within = max(3, n_neighbors // adata_proc.obs['sample'].nunique())
+            bbknn.bbknn(adata_proc, batch_key='sample', neighbors_within_batch=neighbors_within, n_pcs=n_pcs)
+            embedding_to_use = 'X_pca' # BBKNN corrects the graph, not the PCA space
+    else:
+        # Single sample standard neighbors
+        sc.pp.neighbors(adata_proc, n_neighbors=n_neighbors, n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
 
-    sc.pp.neighbors(adata_proc, n_neighbors=n_neighbors, n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
     sc.tl.leiden(adata_proc, resolution=resolution, random_state=RANDOM_SEED)
 
     silhouette_avg = 0.0
@@ -217,30 +258,157 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
         print(f"     [WARNING] Could not calculate MCS for this trial. Error: {e}. MCS set to 0.")
         mean_mcs = 0.0
 
+    # ------------------------------------------------------------
+    # Optional F1 score for optimization
+    # ------------------------------------------------------------
+    mean_f1 = 0.0
+    try:
+        if ARGS.use_f1 and ARGS.reference_marker_db and os.path.exists(ARGS.reference_marker_db):
+            header = pd.read_csv(ARGS.reference_marker_db, nrows=0).columns.tolist()
+
+            type_col = ARGS.f1_db_celltype_col if ARGS.f1_db_celltype_col in header else None
+            gene_col = ARGS.f1_db_gene_col if ARGS.f1_db_gene_col in header else None
+
+            if type_col is None or gene_col is None:
+                if 'cell_name' in header and 'Symbol' in header:
+                    type_col, gene_col = 'cell_name', 'Symbol'
+                elif 'Cell Type' in header and 'Cell Marker' in header:
+                    type_col, gene_col = 'Cell Type', 'Cell Marker'
+                elif 'cell_type' in header and 'marker_genes' in header:
+                    type_col, gene_col = 'cell_type', 'marker_genes'
+                elif 'cell_type' in header and 'gene' in header:
+                    type_col, gene_col = 'cell_type', 'gene'
+                else:
+                    raise ValueError(
+                        "Marker DB must contain one of these schemas: "
+                        "('cell_name', 'Symbol'), ('Cell Type', 'Cell Marker'), "
+                        "('cell_type', 'marker_genes'), or ('cell_type', 'gene')."
+                    )
+
+            db_df = pd.read_csv(ARGS.reference_marker_db)
+            
+            if ARGS.marker_prior_species:
+                species_col = next((c for c in db_df.columns if c.lower() in ['species']), None)
+                if species_col:
+                    db_df = db_df[db_df[species_col].astype(str).str.contains(ARGS.marker_prior_species, case=False, na=False)]
+            
+            if ARGS.marker_prior_organ:
+                organ_col = next((c for c in db_df.columns if c.lower() in ['organ', 'tissue', 'tissue_class', 'tissue_type']), None)
+                if organ_col:
+                    db_df = db_df[db_df[organ_col].astype(str).str.contains(ARGS.marker_prior_organ, case=False, na=False)]
+
+            db_markers_dict = defaultdict(set)
+            for _, row in db_df.iterrows():
+                ct = row.get(type_col)
+                genes = row.get(gene_col)
+                if pd.notna(ct) and pd.notna(genes):
+                    gene_list = re.split(r'[;,]', str(genes))
+                    db_markers_dict[str(ct)].update({m.strip().upper() for m in gene_list if m.strip()})
+
+            scoring_groupby_key = 'ctpt_consensus_prediction'
+            f1_label_counts = adata_proc.obs[scoring_groupby_key].value_counts()
+            f1_valid_labels = f1_label_counts[f1_label_counts > 1].index.tolist()
+            if len(f1_valid_labels) < 2:
+                raise ValueError("Fewer than 2 consensus groups with >1 cell; skipping F1.")
+            sc.tl.rank_genes_groups(
+                adata_proc,
+                scoring_groupby_key,
+                groups=f1_valid_labels,
+                method='wilcoxon',
+                use_raw=True,
+                key_added='wilcoxon_f1_trial'
+            )
+            ranked_markers_df = sc.get.rank_genes_groups_df(adata_proc, key='wilcoxon_f1_trial', group=None)
+
+            is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
+            filtered_rows = []
+            for grp, sub in ranked_markers_df.groupby('group', sort=False):
+                filtered_rows.append(sub[~sub['names'].map(is_mito)].head(ARGS.n_top_genes))
+            top_genes_df_f1 = pd.concat(filtered_rows, ignore_index=True) if filtered_rows else pd.DataFrame()
+
+            f1_vals = []
+            if top_genes_df_f1 is not None and not top_genes_df_f1.empty:
+                for grp in top_genes_df_f1['group'].unique():
+                    predicted_genes = set(
+                        top_genes_df_f1[top_genes_df_f1['group'] == grp]['names']
+                        .astype(str).str.upper().tolist()
+                    )
+
+                    best_f1 = 0.0
+                    for _, db_genes in db_markers_dict.items():
+                        ref_genes = {g.upper() for g in db_genes}
+                        tp = len(predicted_genes.intersection(ref_genes))
+                        precision = tp / len(predicted_genes) if len(predicted_genes) else 0.0
+                        recall = tp / len(ref_genes) if len(ref_genes) else 0.0
+                        f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+                        best_f1 = max(best_f1, f1)
+                    f1_vals.append(best_f1)
+
+            mean_f1 = float(np.mean(f1_vals) * 100) if f1_vals else 0.0
+    except Exception as e:
+        print(f"     [WARNING] Could not calculate F1 for this trial. Error: {e}. F1 set to 0.")
+        mean_f1 = 0.0
+
     TRIAL_METADATA.append({
         'n_individual_labels': adata_proc.obs['ctpt_individual_prediction'].nunique(),
         'n_consensus_labels': adata_proc.obs['ctpt_consensus_prediction'].nunique(),
-        'weighted_mean_cas': weighted_mean_cas, 'simple_mean_cas': simple_mean_cas,
-        'mean_mcs': mean_mcs, 'silhouette_score_original': silhouette_avg, 'silhouette_score_rescaled': rescaled_silhouette
+        'weighted_mean_cas': weighted_mean_cas,
+        'simple_mean_cas': simple_mean_cas,
+        'mean_mcs': mean_mcs,
+        'mean_f1': mean_f1,
+        'silhouette_score_original': silhouette_avg,
+        'silhouette_score_rescaled': rescaled_silhouette
     })
     end_time = time.time()
 
+    # ------------------------------------------------------------
+    # MODIFIED: Calculation of Objective Score with Additive Bonus
+    # ------------------------------------------------------------
+    base_score = 0.0
+
     if CURRENT_OPTIMIZATION_TARGET == 'weighted_cas':
-        score = weighted_mean_cas
+        base_score = weighted_mean_cas
     elif CURRENT_OPTIMIZATION_TARGET == 'simple_cas':
-        score = simple_mean_cas
+        base_score = simple_mean_cas
     elif CURRENT_OPTIMIZATION_TARGET == 'mcs':
-        score = mean_mcs
+        base_score = mean_mcs
     elif CURRENT_OPTIMIZATION_TARGET == 'balanced':
         epsilon = 1e-6
+        # --- NEW: Include confidence in geometric mean if flag is set ---
+        conf_factor = (mean_confidence / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) else 1.0
+        
         if ARGS.model_type == 'structural':
-            score = (((weighted_mean_cas / 100 + epsilon) * (simple_mean_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * (rescaled_silhouette + epsilon)) ** (1/4.0)) * 100
+            power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
+            base_score = (((weighted_mean_cas / 100 + epsilon) *
+                           (simple_mean_cas / 100 + epsilon) *
+                           (mean_mcs / 100 + epsilon) *
+                           (rescaled_silhouette + epsilon) * 
+                           conf_factor) ** power) * 100
         elif ARGS.model_type == 'silhouette':
-            score = silhouette_avg
-        else: # 'biological' model
-            score = (((weighted_mean_cas / 100 + epsilon) * (simple_mean_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon)) ** (1/3.0)) * 100
+            base_score = silhouette_avg
+        else:  # 'biological'
+            power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
+            base_score = (((weighted_mean_cas / 100 + epsilon) *
+                           (simple_mean_cas / 100 + epsilon) *
+                           (mean_mcs / 100 + epsilon) * 
+                           conf_factor) ** power) * 100
     else:
         raise ValueError(f"Invalid optimization target: '{CURRENT_OPTIMIZATION_TARGET}'")
+
+    # --- Apply MPS (F1) as an ADDITIVE BONUS ---
+    # Final Score = Base Score + (mps_bonus_weight * F1_fraction * scale)
+    # For percentage-based scores we scale the bonus to percentage units; for
+    # silhouette (≈ -1..1) we keep the bonus in fractional units.
+    mps_fraction = (mean_f1 / 100.0) if mean_f1 else 0.0
+    if ARGS.use_f1 and ARGS.mps_bonus_weight > 0 and mps_fraction > 0:
+        if CURRENT_OPTIMIZATION_TARGET == 'balanced' and ARGS.model_type == 'silhouette':
+            bonus = ARGS.mps_bonus_weight * mps_fraction   # fractional units
+        else:
+            bonus = ARGS.mps_bonus_weight * mps_fraction * 100.0  # percentage units
+        score = base_score + bonus
+        print(f"     [MPS] base={base_score:.3f}  F1={mean_f1:.2f}%  bonus=+{bonus:.3f}  final={score:.3f}")
+    else:
+        score = base_score
 
     print(f"<--- Results (Time: {end_time - start_time:.1f}s) -> Score: {score:.3f}")
     return -score
@@ -255,6 +423,10 @@ def evaluate_final_metrics(params_dict):
     print("     [INFO] Final run: Annotating individual cells on full log-normalized data...")
     predictions = celltypist.annotate(adata_for_annot, model=model, majority_voting=False)
     adata_final.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels']
+
+    # --- ADDED: Extract confidence and calculate mean ---
+    adata_final.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+    mean_confidence = adata_final.obs['ctpt_confidence'].mean() * 100
 
     is_two_step_hvg = all(p is not None for p in [ARGS.hvg_min_mean, ARGS.hvg_max_mean, ARGS.hvg_min_disp])
     if is_two_step_hvg:
@@ -280,10 +452,27 @@ def evaluate_final_metrics(params_dict):
 
     embedding_to_use = 'X_pca'
     if is_multi_sample:
-        sc.external.pp.harmony_integrate(adata_final, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=RANDOM_SEED)
-        embedding_to_use = 'X_pca_harmony'
+        if ARGS.integration_method == 'harmony':
+            sc.external.pp.harmony_integrate(adata_final, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=RANDOM_SEED)
+            embedding_to_use = 'X_pca_harmony'
+            sc.pp.neighbors(adata_final, n_neighbors=params_dict['n_neighbors'], n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
+            
+        elif ARGS.integration_method == 'scanorama':
+            adata_final = make_batches_contiguous(adata_final, batch_key='sample')
+            sc.external.pp.scanorama_integrate(
+                adata_final, key='sample', basis='X_pca', adjusted_basis='X_scanorama'
+            )
+            embedding_to_use = 'X_scanorama'
+            sc.pp.neighbors(adata_final, n_neighbors=params_dict['n_neighbors'], n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
+            
+        elif ARGS.integration_method == 'bbknn':
+            import bbknn
+            neighbors_within = max(3, params_dict['n_neighbors'] // adata_final.obs['sample'].nunique())
+            bbknn.bbknn(adata_final, batch_key='sample', neighbors_within_batch=neighbors_within, n_pcs=n_pcs)
+            embedding_to_use = 'X_pca'
+    else:
+        sc.pp.neighbors(adata_final, n_neighbors=params_dict['n_neighbors'], n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
 
-    sc.pp.neighbors(adata_final, n_neighbors=params_dict['n_neighbors'], n_pcs=n_pcs, use_rep=embedding_to_use, random_state=RANDOM_SEED)
     sc.tl.leiden(adata_final, resolution=params_dict['resolution'], random_state=RANDOM_SEED)
     sc.tl.umap(adata_final, random_state=RANDOM_SEED)
 
@@ -335,19 +524,26 @@ def evaluate_final_metrics(params_dict):
         mean_mcs = 0.0
 
     epsilon = 1e-6
+    # --- NEW: Include confidence in geometric mean if flag is set ---
+    conf_factor = (mean_confidence / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) else 1.0
+    
     if ARGS.model_type == 'structural':
-        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * (rescaled_silhouette + epsilon)) ** (1/4.0)) * 100
+        power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
+        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * (rescaled_silhouette + epsilon) * conf_factor) ** power) * 100
     elif ARGS.model_type == 'silhouette':
         balanced_score = silhouette_avg
     else: # 'biological' model
-        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon)) ** (1/3.0)) * 100
+        power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
+        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * conf_factor) ** power) * 100
 
     return {
         "weighted_mean_cas": weighted_cas, "simple_mean_cas": simple_cas, "mean_mcs": mean_mcs,
+        "mean_confidence": mean_confidence, # <-- ADDED
         "silhouette_score_original": silhouette_avg, "rescaled_silhouette_score": rescaled_silhouette,
         "balanced_score": balanced_score, "n_individual_labels": adata_final.obs['ctpt_individual_prediction'].nunique(),
         "n_consensus_labels": adata_final.obs['ctpt_consensus_prediction'].nunique()
     }, adata_final
+
 def print_final_report(target_name, params, metrics, winning_strategy):
     """(Stage 1) Prints a formatted final report to the console."""
     target_title_map = {'weighted_cas': "Weighted Mean CAS", 'simple_cas': "Simple Mean CAS", 'mcs': "Mean MCS", 'balanced': "Balanced Score (CAS & MCS)"}
@@ -359,12 +555,22 @@ def print_final_report(target_name, params, metrics, winning_strategy):
     print("\n--- Final Metrics for Optimal Parameters ---")
     if target_name == 'balanced':
         format_str = ".3f" if ARGS.model_type == 'silhouette' else ".2f"
-        print(f"  - Highest {target_title}: {metrics['balanced_score']:{format_str}}")
-    elif target_name == 'weighted_cas': print(f"  - Highest Weighted Mean CAS: {metrics['weighted_mean_cas']:.2f}%")
-    elif target_name == 'simple_cas': print(f"  - Highest Simple Mean CAS: {metrics['simple_mean_cas']:.2f}%")
-    elif target_name == 'mcs': print(f"  - Highest Mean MCS: {metrics['mean_mcs']:.2f}%")
+        print(f"  - Highest Base {target_title}: {metrics['balanced_score']:{format_str}}")
+    elif target_name == 'weighted_cas': print(f"  - Highest Base Weighted Mean CAS: {metrics['weighted_mean_cas']:.2f}%")
+    elif target_name == 'simple_cas': print(f"  - Highest Base Simple Mean CAS: {metrics['simple_mean_cas']:.2f}%")
+    elif target_name == 'mcs': print(f"  - Highest Base Mean MCS: {metrics['mean_mcs']:.2f}%")
 
-    print(f"  - Corresponding Weighted Mean CAS: {metrics['weighted_mean_cas']:.2f}%\n  - Corresponding Simple Mean CAS: {metrics['simple_mean_cas']:.2f}%\n  - Corresponding Mean MCS: {metrics['mean_mcs']:.2f}%\n  - Corresponding Silhouette Score: {metrics['silhouette_score_original']:.3f}\n  - Final # of individual cell labels: {metrics['n_individual_labels']}\n  - Final # of consensus cluster labels: {metrics['n_consensus_labels']}\n" + "="*60)
+    print(
+        f"  - Corresponding Weighted Mean CAS: {metrics['weighted_mean_cas']:.2f}%\n"
+        f"  - Corresponding Simple Mean CAS: {metrics['simple_mean_cas']:.2f}%\n"
+        f"  - Corresponding Mean MCS: {metrics['mean_mcs']:.2f}%\n"
+        f"  - Corresponding Mean F1: {metrics.get('mean_f1', 0.0):.2f}%\n"
+        f"  - Corresponding Mean Confidence: {metrics.get('mean_confidence', 0.0):.2f}%\n"
+        f"  - Corresponding Silhouette Score: {metrics['silhouette_score_original']:.3f}\n"
+        f"  - Final # of individual cell labels: {metrics['n_individual_labels']}\n"
+        f"  - Final # of consensus cluster labels: {metrics['n_consensus_labels']}\n"
+        + "="*60
+    )
 def save_results_to_file(output_path, target_name, params, metrics, winning_strategy):
     """(Stage 1) Saves the final report to a text file."""
     target_title_map = {'weighted_cas': "Weighted Mean CAS", 'simple_cas': "Simple Mean CAS", 'mcs': "Mean MCS", 'balanced': "Balanced Score (Geometric Mean of CAS & MCS)"}
@@ -377,13 +583,23 @@ def save_results_to_file(output_path, target_name, params, metrics, winning_stra
         f.write("\n")
         if target_name == 'balanced':
             if ARGS.model_type == 'silhouette':
-                f.write(f"Highest_silhouette_score: {metrics['balanced_score']:.4f}\n")
+                f.write(f"Highest_base_silhouette_score: {metrics['balanced_score']:.4f}\n")
             else:
-                f.write(f"Highest_balanced_score: {metrics['balanced_score']:.4f}\n")
-        elif target_name == 'weighted_cas': f.write(f"Highest_weighted_mean_cas_pct: {metrics['weighted_mean_cas']:.2f}\n")
-        elif target_name == 'simple_cas': f.write(f"Highest_simple_mean_cas_pct: {metrics['simple_mean_cas']:.2f}\n")
-        elif target_name == 'mcs': f.write(f"Highest_mean_mcs_pct: {metrics['mean_mcs']:.2f}\n")
-        f.write(f"Corresponding_weighted_mean_cas_pct: {metrics['weighted_mean_cas']:.2f}\nCorresponding_simple_mean_cas_pct: {metrics['simple_mean_cas']:.2f}\nCorresponding_mean_mcs_pct: {metrics['mean_mcs']:.2f}\nCorresponding_silhouette_score: {metrics['silhouette_score_original']:.4f}\nFinal_n_individual_labels: {metrics['n_individual_labels']}\nFinal_n_consensus_labels: {metrics['n_consensus_labels']}\n")
+                f.write(f"Highest_base_balanced_score: {metrics['balanced_score']:.4f}\n")
+        elif target_name == 'weighted_cas': f.write(f"Highest_base_weighted_mean_cas_pct: {metrics['weighted_mean_cas']:.2f}\n")
+        elif target_name == 'simple_cas': f.write(f"Highest_base_simple_mean_cas_pct: {metrics['simple_mean_cas']:.2f}\n")
+        elif target_name == 'mcs': f.write(f"Highest_base_mean_mcs_pct: {metrics['mean_mcs']:.2f}\n")
+        f.write(
+            f"Corresponding_weighted_mean_cas_pct: {metrics['weighted_mean_cas']:.2f}\n"
+            f"Corresponding_simple_mean_cas_pct: {metrics['simple_mean_cas']:.2f}\n"
+            f"Corresponding_mean_mcs_pct: {metrics['mean_mcs']:.2f}\n"
+            f"Corresponding_mean_f1_pct: {metrics.get('mean_f1', 0.0):.2f}\n"
+            f"Corresponding_mean_confidence_pct: {metrics.get('mean_confidence', 0.0):.2f}\n"
+            f"Corresponding_silhouette_score: {metrics['silhouette_score_original']:.4f}\n"
+            f"Final_n_individual_labels: {metrics['n_individual_labels']}\n"
+            f"Final_n_consensus_labels: {metrics['n_consensus_labels']}\n"
+        )
+
 def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
     """(Stage 1) Generates a consolidated CSV file with detailed results from all trials."""
     print("\n--- Generating consolidated yield CSV report ---")
@@ -397,7 +613,17 @@ def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
         else:
             print(f"  [WARNING] Per-trial metadata not found for strategy '{name}'. Metric/label columns will be empty.")
             base_df = params_df.copy()
-            for col in ['n_individual_labels', 'n_consensus_labels', 'weighted_mean_cas', 'simple_mean_cas', 'mean_mcs', 'silhouette_score_original', 'silhouette_score_rescaled']:
+            for col in [
+                'n_individual_labels',
+                'n_consensus_labels',
+                'weighted_mean_cas',
+                'simple_mean_cas',
+                'mean_mcs',
+                'mean_f1',
+                'mean_confidence',
+                'silhouette_score_original',
+                'silhouette_score_rescaled'
+            ]:
                 base_df[col] = np.nan
         base_df['yield_score_target'], base_df['call_number'], base_df['strategy'] = -np.array(result.func_vals), range(1, len(result.func_vals) + 1), name
         all_dfs.append(base_df)
@@ -407,21 +633,53 @@ def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
 
     required_cols = ['weighted_mean_cas', 'simple_mean_cas', 'mean_mcs', 'silhouette_score_rescaled', 'silhouette_score_original']
     if all(col in final_df.columns for col in required_cols):
+        # 1. Calculate Base Metric
+        # --- NEW: Safely add confidence factor ---
+        conf_factor = (final_df['mean_confidence'].fillna(0) / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) and 'mean_confidence' in final_df.columns else 1.0
+        
         if ARGS.model_type == 'structural':
-            final_df['balanced_score_gmean'] = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
-                                                 (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
-                                                 (final_df['mean_mcs'].fillna(0) / 100 + epsilon) *
-                                                 (final_df['silhouette_score_rescaled'].fillna(0) + epsilon)) ** (1/4.0)) * 100
+            power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
+            base_gmean = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
+                           (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
+                           (final_df['mean_mcs'].fillna(0) / 100 + epsilon) *
+                           (final_df['silhouette_score_rescaled'].fillna(0) + epsilon) *
+                           conf_factor) ** power) * 100
         elif ARGS.model_type == 'silhouette':
-            final_df['balanced_score_gmean'] = final_df['silhouette_score_original']
+            base_gmean = final_df['silhouette_score_original']
         else: # 'biological' model
-            final_df['balanced_score_gmean'] = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
-                                                 (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
-                                                 (final_df['mean_mcs'].fillna(0) / 100 + epsilon)) ** (1/3.0)) * 100
+            power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
+            base_gmean = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
+                           (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
+                           (final_df['mean_mcs'].fillna(0) / 100 + epsilon) *
+                           conf_factor) ** power) * 100
+        
+        # 2. Add Bonus if F1 is used
+        if ARGS.use_f1 and 'mean_f1' in final_df.columns:
+            final_df['balanced_score_gmean'] = base_gmean + (ARGS.mps_bonus_weight * final_df['mean_f1'].fillna(0))
+        else:
+            final_df['balanced_score_gmean'] = base_gmean
     else:
         final_df['balanced_score_gmean'] = np.nan
+        
     final_df.rename(columns={'silhouette_score_original': 'silhouette_score'}, inplace=True)
-    final_column_order = ['call_number', 'strategy', 'n_hvg', 'n_pcs', 'n_neighbors', 'resolution', 'yield_score_target', 'balanced_score_gmean', 'weighted_mean_cas', 'simple_mean_cas', 'mean_mcs', 'silhouette_score', 'n_individual_labels', 'n_consensus_labels']
+    final_column_order = [
+        'call_number',
+        'strategy',
+        'n_hvg',
+        'n_pcs',
+        'n_neighbors',
+        'resolution',
+        'yield_score_target',
+        'balanced_score_gmean',
+        'weighted_mean_cas',
+        'simple_mean_cas',
+        'mean_mcs',
+        'mean_f1',
+        'mean_confidence',
+        'silhouette_score',
+        'n_individual_labels',
+        'n_consensus_labels'
+    ]
     final_df = final_df.reindex(columns=final_column_order)
     output_path = os.path.join(output_dir, f"{output_prefix}_{target_metric}_yield_scores_report.csv")
     final_df.to_csv(output_path, index=False, float_format='%.4f')
@@ -527,10 +785,7 @@ def _get_metric_and_strategy_from_filename(filename):
     if 'bo_ei' in base: strategy = 'BO-EI'
     elif 'exploit' in base: strategy = 'Exploit'
     elif 'explore' in base: strategy = 'Explore'
-    else: 
-        # FIXED: Removed walrus operator (:=) for Python < 3.8 compatibility
-        m = re.search(r'_(\w+)_opt_result', base)
-        strategy = m.group(1).capitalize() if m else 'Unknown'
+    else: strategy = (m.group(1).capitalize() if (m := re.search(r'_(\w+)_opt_result', base)) else 'Unknown')
     if 'weighted_cas' in base: metric_label = 'Weighted CAS (%)'
     elif 'simple_cas' in base: metric_label = 'Simple CAS (%)'
     elif 'mcs' in base: metric_label = 'Mean MCS (%)'
@@ -573,9 +828,6 @@ def generate_skopt_visualizations(skopt_files, output_prefix_base, target_metric
 # ==============================================================================
 # ==============================================================================
 
-# ==============================================================================
-# --- START: INTEGRATED REFINEMENT JOURNEY SUMMARY FUNCTION ---
-# ==============================================================================
 def summarize_annotation_journey(input_file, output_file):
     """
     (Refinement Helper) Reads a detailed annotation scores log and creates a 
@@ -656,10 +908,6 @@ def summarize_annotation_journey(input_file, output_file):
     print(f"✅ Success! Saving cell type journey summary report to: {output_file}")
     summary_df.to_csv(output_file, index=False)
 
-# ==============================================================================
-# --- END: INTEGRATED REFINEMENT JOURNEY SUMMARY FUNCTION ---
-# ==============================================================================
-
 def _generate_greyed_out_umap_plot(adata, cas_df, threshold, cas_aggregation_method, output_path, title, legend_fontsize=8):
     """
     (Stage 2 Helper) Generates a UMAP plot highlighting low-confidence cells in grey.
@@ -734,11 +982,8 @@ def _bold_right_margin_legend(fig_path):
     """(Stage 2) Finds legend in current figure, makes text bold, and saves."""
     fig = plt.gcf()
     for ax in fig.axes:
-        # FIXED: Removed walrus operator (:=) for Python < 3.8 compatibility
-        leg = ax.get_legend()
-        if leg is not None:
-            for txt in leg.get_texts(): 
-                txt.set_fontweight('bold')
+        if (leg := ax.get_legend()) is not None:
+            for txt in leg.get_texts(): txt.set_fontweight('bold')
     fig.savefig(fig_path, dpi=plt.rcParams['savefig.dpi'], bbox_inches='tight')
 def reformat_dotplot_data(fraction_df: pd.DataFrame, top_genes_df: pd.DataFrame, output_dir: str, output_prefix: str, groupby_key: str):
     """(Stage 2) Reformats dot plot fraction data to a gene-centric sparse table."""
@@ -782,6 +1027,92 @@ def extract_fraction_data_for_dotplot(adata: anndata.AnnData, output_dir: str, o
     print(f"       -> Saved full fraction data to: {output_csv_path}")
     reformat_dotplot_data(fraction_df, top_genes_df, output_dir, output_prefix, groupby_key)
 
+def compute_marker_f1_scores(adata: anndata.AnnData, groupby_key: str, db_markers_dict: dict,
+                             top_genes_df: pd.DataFrame = None, n_top_genes: int = 5,
+                             use_raw: bool = True):
+    """
+    Compute marker precision, recall, and F1 for annotated groups.
+    Uses the cell-annotated cluster labels in `groupby_key` (e.g. ctpt_consensus_prediction).
+    """
+    if groupby_key not in adata.obs.columns:
+        raise ValueError(f"groupby_key '{groupby_key}' not found in adata.obs")
+
+    # If no top_genes_df is provided, derive marker genes per group from rank_genes_groups later
+    # but here we assume top_genes_df exists and contains columns ['group', 'names'].
+    if top_genes_df is None or top_genes_df.empty:
+        return pd.DataFrame()
+
+    results = []
+    groups = top_genes_df['group'].unique().tolist()
+
+    for group_name in groups:
+        predicted_genes = set(
+            top_genes_df[top_genes_df['group'] == group_name]['names']
+            .astype(str).str.upper().tolist()
+        )
+        ref_genes = set(db_markers_dict.get(group_name, set()))
+
+        if len(predicted_genes) == 0 or len(ref_genes) == 0:
+            precision = recall = f1 = 0.0
+            jaccard = 0.0
+        else:
+            tp = len(predicted_genes.intersection(ref_genes))
+            precision = tp / len(predicted_genes) if len(predicted_genes) else 0.0
+            recall = tp / len(ref_genes) if len(ref_genes) else 0.0
+            f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+            jaccard = tp / len(predicted_genes.union(ref_genes)) if len(predicted_genes.union(ref_genes)) else 0.0
+
+        results.append({
+            "Cell_Type": group_name,
+            "Predicted_Marker_Count": len(predicted_genes),
+            "Reference_Marker_Count": len(ref_genes),
+            "True_Positive_Count": len(predicted_genes.intersection(ref_genes)),
+            "Precision": precision * 100,
+            "Recall": recall * 100,
+            "F1_Score (%)": f1 * 100,
+            "Jaccard (%)": jaccard * 100
+        })
+
+    return pd.DataFrame(results)
+def _write_top3_marker_annotation_csv(adata, cluster_top3, groupby_key, output_dir, final_run_prefix):
+    """
+    Write a per-cell CSV containing the top-3 marker-based cell-type matches
+    (with F1 scores) for each cell's cluster.
+    """
+    try:
+        if not cluster_top3:
+            print("[INFO] cluster_top3 is empty; skipping top-3 marker annotation CSV.")
+            return
+        if groupby_key not in adata.obs.columns:
+            print(f"[WARNING] '{groupby_key}' not in adata.obs; cannot write top-3 marker annotation CSV.")
+            return
+
+        rows = []
+        for cid, top3 in cluster_top3.items():
+            row = {'Cluster_ID': str(cid)}
+            for i in range(3):
+                if i < len(top3):
+                    ct, f1 = top3[i]
+                    row[f'Marker_Match_{i+1}'] = ct
+                    row[f'Marker_Match_{i+1}_F1 (%)'] = f1 * 100
+                else:
+                    row[f'Marker_Match_{i+1}'] = ''
+                    row[f'Marker_Match_{i+1}_F1 (%)'] = ''
+            rows.append(row)
+        top3_df = pd.DataFrame(rows)
+
+        merged = adata.obs[[groupby_key]].copy()
+        merged['Cluster_ID'] = merged[groupby_key].astype(str)
+        merged = merged.merge(top3_df, on='Cluster_ID', how='left')
+
+        out_path = os.path.join(
+            output_dir, f"{final_run_prefix}_annotation_with_top3_markers.csv"
+        )
+        merged.to_csv(out_path)
+        print(f"       -> Saved per-cell annotation with top-3 marker matches to: {out_path}")
+    except Exception as e:
+        print(f"[WARNING] Could not write top-3 marker annotation CSV. Reason: {e}")
+
 def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=None, adata_input=None):
     """
     (Stage 2) Executes the detailed single-sample analysis pipeline using
@@ -790,7 +1121,7 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     """
     print("--- Initializing Stage 2: CAS-MCS Scoring Pipeline with Optimal Parameters ---")
 
-    random.seed(cli_args.seed); np.random.seed(cli_args.seed); sc.settings.njobs = 1
+    random.seed(cli_args.seed); np.random.seed(cli_args.seed); sc.settings.njobs = cli_args.threads
     print(f"[INFO] Global random seed set to: {cli_args.seed}")
 
     sc.settings.verbosity = 3; sc.logging.print_header()
@@ -856,36 +1187,27 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'], n_pcs=n_pcs_to_use, random_state=cli_args.seed)
     sc.tl.leiden(adata, resolution=optimal_params['resolution'], random_state=cli_args.seed)
     sc.tl.umap(adata, random_state=cli_args.seed)
-    
-    # ==============================================================================
-    # --- *** CRASH FIX: Safe Silhouette Calculation *** ---
-    # ==============================================================================
-    silhouette_avg = 0.0
-    try:
-        n_clusters = adata.obs['leiden'].nunique()
-        n_cells = adata.n_obs
-        # Silhouette requires: 2 <= n_labels <= n_samples - 1
-        if 1 < n_clusters < n_cells:
-            silhouette_avg = silhouette_score(adata.obsm['X_pca'][:, :n_pcs_to_use], adata.obs['leiden'])
-            print(f"       -> Average Silhouette Score for Leiden clustering: {silhouette_avg:.3f}")
-        else:
-            print(f"       -> [WARNING] Silhouette score skipped. Clusters ({n_clusters}) must be > 1 and < Cells ({n_cells}).")
-            silhouette_avg = 0.0
-    except Exception as e:
-        print(f"       -> [WARNING] Silhouette calculation failed safely: {e}")
-        silhouette_avg = 0.0
-    # ==============================================================================
-
+    silhouette_avg = silhouette_score(adata.obsm['X_pca'][:, :n_pcs_to_use], adata.obs['leiden'])
+    print(f"       -> Average Silhouette Score for Leiden clustering: {silhouette_avg:.3f}")
     sc.pl.umap(adata, color='leiden', legend_fontweight='bold', legend_loc='on data', title=f'Leiden Clusters ({adata.obs["leiden"].nunique()} clusters)\nSilhouette: {silhouette_avg:.3f}', palette=sc.pl.palettes.godsnot_102, save=f"_{cli_args.final_run_prefix}_umap_leiden.png", show=False, size=10); plt.close()
+
     print("\n--- Step 5: CellTypist Annotation and CAS Calculation ---")
     model_ct = models.Model.load(cli_args.model_path)
     print("[INFO] Annotating cells using the full log-normalized transcriptome (from adata.raw)...")
     predictions = celltypist.annotate(adata.raw.to_adata(), model=model_ct, majority_voting=False)
     adata.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels'].astype('category')
-    if 'conf_score' in predictions.predicted_labels.columns: adata.obs['ctpt_confidence'] = predictions.predicted_labels['conf_score']
 
+    # Robustly extract the confidence score directly from the probability matrix
+    adata.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+
+    # Existing UMAP for cell types
     sc.pl.umap(adata, color='ctpt_individual_prediction', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, title=f'Per-Cell CellTypist Annotation ({adata.obs["ctpt_individual_prediction"].nunique()} types)', show=False, size=10)
     _bold_right_margin_legend(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_per_cell_celltypist.png")); plt.close()
+
+    # NEW: Plot for per-cell ctpt_confidence
+    sc.pl.umap(adata, color='ctpt_confidence', cmap='viridis', title='Per-Cell Annotation Confidence Score', show=False, size=10)
+    plt.savefig(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_per_cell_confidence.png"), dpi=cli_args.fig_dpi, bbox_inches='tight')
+    plt.close()
 
     cluster2label = adata.obs.groupby('leiden')['ctpt_individual_prediction'].agg(lambda x: x.value_counts().idxmax()).to_dict()
     adata.obs['ctpt_consensus_prediction'] = adata.obs['leiden'].map(cluster2label).astype('category')
@@ -937,9 +1259,6 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
 
     print("\n--- Step 6: Marker Gene Analysis and MCS Calculation ---")
     marker_groupby_key = 'ctpt_consensus_prediction'; top_genes_df, mcs_df = None, None
-    if marker_groupby_key in adata.obs.columns:
-        adata.obs[marker_groupby_key] = adata.obs[marker_groupby_key].cat.remove_unused_categories()
-        print(f"       -> Cleaned '{marker_groupby_key}': {adata.obs[marker_groupby_key].nunique()} active categories")
     valid_labels = adata.obs[marker_groupby_key].value_counts()[lambda x: x > 1].index.tolist()
     if len(valid_labels) < 2: print(f"[WARNING] Skipping marker gene analysis: Fewer than 2 consensus groups with >1 cell.")
     else:
@@ -950,29 +1269,33 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
         filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
         top_genes_df = pd.concat(filtered_rows, ignore_index=True)
 
-        # [MODIFICATION START: Wrap DotPlot in Try/Except]
-        try:
-            print(f"       -> Attempting to generate marker gene dotplot...")
+        # Build gene dict and category order only from groups that exist in BOTH marker results AND adata
+        genes_dict = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+        marker_groups = list(genes_dict.keys())
+        adata_categories = adata.obs[marker_groupby_key].cat.categories.tolist()
+        
+        # Filter to only categories present in both
+        valid_categories = [cat for cat in marker_groups if cat in adata_categories]
+        
+        if valid_categories:
+            filtered_genes_dict = {k: v for k, v in genes_dict.items() if k in valid_categories}
             with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-                # Safety check for categories existence
-                valid_cats = set(adata.obs[marker_groupby_key].unique())
-                cats_to_plot = [c for c in top_genes_df['group'].unique().tolist() if c in valid_cats]
-                
-                if cats_to_plot:
-                    sc.pl.dotplot(adata, 
-                                  var_names=top_genes_df.groupby('group')['names'].apply(list).to_dict(), 
-                                  groupby=marker_groupby_key, 
-                                  categories_order=cats_to_plot, 
-                                  use_raw=True, 
-                                  save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", 
-                                  show=False)
+                try:
+                    sc.pl.dotplot(
+                        adata, 
+                        var_names=filtered_genes_dict, 
+                        groupby=marker_groupby_key, 
+                        categories_order=valid_categories, 
+                        use_raw=True, 
+                        save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", 
+                        show=False
+                    )
                     plt.close()
-                else:
-                    print("       -> [SKIP] No valid categories overlap for dotplot.")
-        except Exception as e:
-            print(f"       -> [WARNING] Dotplot generation failed. Error: {e}")
-            print("       -> Pipeline continuing without this plot...")
-        # [MODIFICATION END]
+                except Exception as e:
+                    print(f"[WARNING] Could not generate dotplot. Reason: {e}")
+                    plt.close()
+        else:
+            print("[WARNING] No valid categories for dotplot. Skipping.")
 
         mcs_df = extract_fraction_data_and_calculate_mcs(adata, output_dir, cli_args.final_run_prefix, marker_groupby_key, top_genes_df, cli_args)
         if mcs_df is not None and top_genes_df is not None:
@@ -980,69 +1303,196 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
             pd.merge(mcs_df, top_genes_agg, on='Cell_Type')[['Cell_Type', 'MCS', f'Top_{cli_args.n_top_genes}_Markers']].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_mcs_and_top_markers.csv"), index=False); print(f"       -> Saved combined MCS and Top Markers.")
 
     print("\n--- Step 7: Optional Manual-Style Annotation & Scoring ---")
-    if cli_args.cellmarker_db and os.path.exists(cli_args.cellmarker_db):
+    if cli_args.reference_marker_db and os.path.exists(cli_args.reference_marker_db):
         try:
-            print(f"       -> Annotating using marker DB: {cli_args.cellmarker_db}")
-            
-            sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon', use_raw=True, key_added='wilcoxon_leiden')
-            leiden_markers_df = sc.get.rank_genes_groups_df(adata, key='wilcoxon_leiden', group=None)
+            print(f"       -> Annotating using marker DB: {cli_args.reference_marker_db}")
 
-            header = pd.read_csv(cli_args.cellmarker_db, nrows=0).columns.tolist()
-            type_col, gene_col = ('cell_name', 'Symbol') if 'cell_name' in header and 'Symbol' in header else (('Cell Type', 'Cell Marker') if 'Cell Type' in header and 'Cell Marker' in header else (None, None))
-            if not type_col: raise ValueError("Marker DB must contain ('cell_name', 'Symbol') or ('Cell Type', 'Cell Marker') columns.")
-            print(f"       -> Auto-detected format: TYPE='{type_col}', GENE='{gene_col}'")
+            # ---- Load + parse the marker DB (schema auto-detect) ----
+            header = pd.read_csv(cli_args.reference_marker_db, nrows=0).columns.tolist()
+            type_col = cli_args.f1_db_celltype_col if cli_args.f1_db_celltype_col in header else None
+            gene_col = cli_args.f1_db_gene_col if cli_args.f1_db_gene_col in header else None
+            if type_col is None or gene_col is None:
+                if 'cell_name' in header and 'Symbol' in header:
+                    type_col, gene_col = 'cell_name', 'Symbol'
+                elif 'Cell Type' in header and 'Cell Marker' in header:
+                    type_col, gene_col = 'Cell Type', 'Cell Marker'
+                elif 'cell_type' in header and 'marker_genes' in header:
+                    type_col, gene_col = 'cell_type', 'marker_genes'
+                elif 'cell_type' in header and 'gene' in header:
+                    type_col, gene_col = 'cell_type', 'gene'
+                else:
+                    raise ValueError(
+                        "Marker DB must contain one of these schemas: "
+                        "('cell_name', 'Symbol'), ('Cell Type', 'Cell Marker'), "
+                        "('cell_type', 'marker_genes'), or ('cell_type', 'gene')."
+                    )
+            print(f"       -> Marker DB schema: TYPE='{type_col}', GENE='{gene_col}'")
 
-            db_df = pd.read_csv(cli_args.cellmarker_db)
+            db_df = pd.read_csv(cli_args.reference_marker_db)
+            if cli_args.marker_prior_species:
+                species_col = next((c for c in db_df.columns if c.lower() == 'species'), None)
+                if species_col:
+                    db_df = db_df[db_df[species_col].astype(str).str.contains(cli_args.marker_prior_species, case=False, na=False)]
+            if cli_args.marker_prior_organ:
+                organ_col = next((c for c in db_df.columns if c.lower() in ['organ', 'tissue', 'tissue_class', 'tissue_type']), None)
+                if organ_col:
+                    db_df = db_df[db_df[organ_col].astype(str).str.contains(cli_args.marker_prior_organ, case=False, na=False)]
+
             db_markers_dict = defaultdict(set)
             for _, row in db_df.iterrows():
-                if pd.notna(row.get(gene_col)) and pd.notna(row.get(type_col)):
-                    db_markers_dict[row[type_col]].update({m.strip().upper() for m in str(row[gene_col]).split(',')})
+                ct = row.get(type_col)
+                genes = row.get(gene_col)
+                if pd.notna(ct) and pd.notna(genes):
+                    gene_list = re.split(r'[;,]', str(genes))
+                    db_markers_dict[str(ct)].update({m.strip().upper() for m in gene_list if m.strip()})
             print(f"       -> Aggregated markers for {len(db_markers_dict)} unique cell types.")
 
+            scoring_groupby_key = cli_args.f1_groupby_key
+            if scoring_groupby_key not in adata.obs.columns:
+                raise ValueError(f"Requested F1 groupby key '{scoring_groupby_key}' not found in adata.obs.")
+
+            # Rank genes on the cell-annotated clusters, not Leiden, when requested
+            sc.tl.rank_genes_groups(
+                adata,
+                scoring_groupby_key,
+                method='wilcoxon',
+                use_raw=True,
+                key_added=f'wilcoxon_{scoring_groupby_key}'
+            )
+            ranked_markers_df = sc.get.rank_genes_groups_df(adata, key=f'wilcoxon_{scoring_groupby_key}', group=None)
+
+            # Build marker assignments using the annotated cluster groups
             cluster_annotations = {}
-            for cluster in adata.obs['leiden'].cat.categories:
-                cluster_genes = set(leiden_markers_df[leiden_markers_df['group'] == cluster].head(cli_args.n_top_genes)['names'].str.upper())
-                scores = {cell_type: len(cluster_genes.intersection(db_genes)) / (len(cluster_genes.union(db_genes)) or 1) for cell_type, db_genes in db_markers_dict.items()}
-                best_cell_type = max(scores, key=scores.get) if scores else None
-                cluster_annotations[cluster] = best_cell_type if best_cell_type and scores[best_cell_type] > 0 else f"Unknown_{cluster}"
+            cluster_top3 = {}   # NEW: store top-3 marker-based matches per cluster
+            f1_results = []     # NEW: store comprehensive F1 metrics
+
+            print("       -> Calculating Top-3 F1 / precision / recall scores for manual annotation...")
+            for cluster in adata.obs[scoring_groupby_key].astype('category').cat.categories:
+                cluster_genes = set(
+                    ranked_markers_df[ranked_markers_df['group'] == cluster]
+                    .head(cli_args.n_top_genes)['names']
+                    .astype(str).str.upper().tolist()
+                )
+
+                # Score ALL DB cell types, then keep top-3 by F1
+                all_matches = []
+                for cell_type, db_genes in db_markers_dict.items():
+                    db_genes_upper = {g.upper() for g in db_genes}
+                    tp = len(cluster_genes.intersection(db_genes_upper))
+                    pred_count = len(cluster_genes)
+                    ref_count = len(db_genes_upper)
+
+                    precision = tp / pred_count if pred_count else 0.0
+                    recall = tp / ref_count if ref_count else 0.0
+                    f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+                    jaccard = tp / len(cluster_genes.union(db_genes_upper)) if len(cluster_genes.union(db_genes_upper)) else 0.0
+                    
+                    all_matches.append({
+                        'Assigned_Cell_Type': cell_type,
+                        'Precision (%)': precision * 100,
+                        'Recall (%)': recall * 100,
+                        'F1_Score (%)': f1 * 100,
+                        'Jaccard (%)': jaccard * 100,
+                        'True_Positive_Count': tp,
+                        'Predicted_Marker_Count': pred_count,
+                        'Reference_Marker_Count': ref_count
+                    })
+
+                # Sort matches prioritizing F1 Score, then Jaccard, then True Positives
+                all_matches.sort(key=lambda x: (x['F1_Score (%)'], x['Jaccard (%)'], x['True_Positive_Count']), reverse=True)
+
+                top3 = [(m['Assigned_Cell_Type'], m['F1_Score (%)']/100.0) for m in all_matches[:3] if m['F1_Score (%)'] > 0]
+                cluster_top3[str(cluster)] = top3
+
+                best_cell_type = top3[0][0] if top3 else None
+                best_f1 = top3[0][1] if top3 else -1.0
+                cluster_annotations[cluster] = best_cell_type if best_cell_type and best_f1 > 0 else f"Unknown_{cluster}"
+
+                # --- Extract Top 3 Matches for CSV ---
+                row_data = {'Cluster_ID': cluster}
+                
+                # Top 1 Match
+                if len(all_matches) > 0 and all_matches[0]['True_Positive_Count'] > 0:
+                    row_data.update(all_matches[0])
+                else:
+                    row_data.update({'Assigned_Cell_Type': f"Unknown_{cluster}", 'Precision (%)': 0, 'Recall (%)': 0, 'F1_Score (%)': 0, 'Jaccard (%)': 0, 'True_Positive_Count': 0, 'Predicted_Marker_Count': len(cluster_genes), 'Reference_Marker_Count': 0})
+
+                # Top 2 Match
+                if len(all_matches) > 1 and all_matches[1]['True_Positive_Count'] > 0:
+                    for k, v in all_matches[1].items():
+                        new_key = k.replace(' (%)', '_2 (%)') if ' (%)' in k else f"{k}_2"
+                        row_data[new_key] = v
+                else:
+                    for k in ['Assigned_Cell_Type', 'Precision (%)', 'Recall (%)', 'F1_Score (%)', 'Jaccard (%)', 'True_Positive_Count', 'Predicted_Marker_Count', 'Reference_Marker_Count']:
+                        new_key = k.replace(' (%)', '_2 (%)') if ' (%)' in k else f"{k}_2"
+                        row_data[new_key] = 'None' if k == 'Assigned_Cell_Type' else 0
+
+                # Top 3 Match
+                if len(all_matches) > 2 and all_matches[2]['True_Positive_Count'] > 0:
+                    for k, v in all_matches[2].items():
+                        new_key = k.replace(' (%)', '_3 (%)') if ' (%)' in k else f"{k}_3"
+                        row_data[new_key] = v
+                else:
+                    for k in ['Assigned_Cell_Type', 'Precision (%)', 'Recall (%)', 'F1_Score (%)', 'Jaccard (%)', 'True_Positive_Count', 'Predicted_Marker_Count', 'Reference_Marker_Count']:
+                        new_key = k.replace(' (%)', '_3 (%)') if ' (%)' in k else f"{k}_3"
+                        row_data[new_key] = 'None' if k == 'Assigned_Cell_Type' else 0
+
+                f1_results.append(row_data)
 
             adata.obs['manual_annotation'] = adata.obs['leiden'].map(cluster_annotations).astype('category')
             pd.DataFrame.from_dict(cluster_annotations, orient='index', columns=['AssignedType']).to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_leiden_to_manual_annotation.csv"))
             sc.pl.umap(adata, color='manual_annotation', title='Manual Cluster Annotation', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, size=10, show=False)
             _bold_right_margin_legend(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_manual_annotation.png")); plt.close()
 
-            print("       -> Calculating Marker Capture Score for manual annotation...")
-            score_results = []
-            leiden_degs_structured = adata.uns['wilcoxon_leiden']['names']
-            for cluster_id, assigned_label in cluster_annotations.items():
-                if pd.isna(assigned_label) or assigned_label.startswith("Unknown"): continue
-                reference_genes = db_markers_dict.get(assigned_label, set())
-                if not reference_genes: continue
-                
-                cluster_degs_for_capture = {g.upper() for g in leiden_degs_structured[cluster_id][:cli_args.n_degs_for_capture]}
-                captured_genes = cluster_degs_for_capture.intersection(reference_genes)
-                score = (len(captured_genes) / len(reference_genes)) * 100
-                
-                score_results.append({
-                    "Cluster_ID": cluster_id, "Assigned_Cell_Type": assigned_label, "Marker_Capture_Score (%)": score,
-                    "Captured_Genes_Count": len(captured_genes), "Total_Reference_Genes": len(reference_genes),
-                    "Captured_Genes_List": ", ".join(sorted(list(captured_genes)))
-                })
-            
-            if score_results:
-                capture_df = pd.DataFrame(score_results).sort_values(by="Marker_Capture_Score (%)", ascending=False)
-                capture_df.to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_manual_annotation_marker_capture_scores.csv"), index=False)
-                print(f"       -> Saved Marker Capture Scores.")
+            if f1_results:
+                f1_df = pd.DataFrame(f1_results).sort_values(by="F1_Score (%)", ascending=False)
+                f1_df.to_csv(
+                    os.path.join(output_dir, f"{cli_args.final_run_prefix}_manual_annotation_f1_scores.csv"),
+                    index=False
+                )
+                print(f"       -> Saved manual annotation F1 scores.")
 
         except Exception as e:
             print(f"[ERROR] Manual annotation/scoring failed. Reason: {e}")
     else:
-        print("[INFO] Cell marker DB not provided or not found. Skipping manual-style annotation.")
+        print("[INFO] Reference marker DB not provided or not found. Skipping manual-style annotation.")
 
+    
     print("\n--- Step 8: Exporting All Results ---")
-    cols_to_save = [col for col in ['leiden', 'ctpt_individual_prediction', 'ctpt_confidence', 'ctpt_consensus_prediction', 'manual_annotation'] if col in adata.obs.columns]
-    adata.obs[cols_to_save].to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_all_annotations.csv"))
-    print(f"       -> All cell annotations saved."); adata.write(os.path.join(output_dir, f"{cli_args.final_run_prefix}_final_processed.h5ad")); print(f"       -> Final AnnData object saved.")
+    cols_to_save = [
+        col for col in [
+            'leiden',
+            'ctpt_individual_prediction',
+            'ctpt_confidence',
+            'ctpt_consensus_prediction',
+            'manual_annotation'
+        ] if col in adata.obs.columns
+    ]
+    all_ann_path = os.path.join(output_dir, f"{cli_args.final_run_prefix}_all_annotations.csv")
+    adata.obs[cols_to_save].to_csv(all_ann_path)
+    print(f"       -> All cell annotations saved to: {all_ann_path}")
+
+    h5ad_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_final_processed.h5ad")
+    adata.write(h5ad_out)
+    print(f"       -> Final AnnData object saved to: {h5ad_out}")
+
+    # --- NEW: per-cell top-3 marker-based annotation CSV ---
+    if 'cluster_top3' in locals():
+        _write_top3_marker_annotation_csv(
+            adata=adata,
+            cluster_top3=cluster_top3,
+            groupby_key=cli_args.f1_groupby_key,
+            output_dir=output_dir,
+            final_run_prefix=cli_args.final_run_prefix
+        )
+
+    # If F1 was used, save a compact F1-ready summary CSV even when annotation step is skipped
+    if cli_args.use_f1 and cli_args.reference_marker_db and os.path.exists(cli_args.reference_marker_db):
+        f1_summary_cols = [c for c in ['manual_annotation', 'ctpt_consensus_prediction', 'leiden'] if c in adata.obs.columns]
+        f1_summary = adata.obs[f1_summary_cols].copy()
+        f1_summary_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_f1_annotation_summary.csv")
+        f1_summary.to_csv(f1_summary_out)
+        print(f"       -> Saved F1 annotation summary to: {f1_summary_out}")
 
     print("\n--- Step 9: Verifying Metrics Against Optimization Run ---")
     total_matching = (adata.obs['ctpt_individual_prediction'].astype(str) == adata.obs['ctpt_consensus_prediction'].astype(str)).sum()
@@ -1061,7 +1511,7 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     print("\n" + "="*50 + f"\n--- Final Verification Summary (Single-Sample) ---\nOptimization Target from Stage 1: {target_map.get(cli_args.target, 'N/A')}\nRandom Seed Used: {cli_args.seed}\n\n--- Optimal Parameters Used ---\nBest n_hvg: {optimal_params['n_hvg']}\nBest n_pcs: {n_pcs_to_use}\nBest n_neighbors: {optimal_params['n_neighbors']}\nBest resolution: {optimal_params['resolution']:.3f}\n")
     if cli_args.target == 'simple_cas': print(f"Highest_simple_mean_cas_pct: {simple_cas:.2f}\nCorresponding_weighted_mean_cas_pct: {weighted_cas:.2f}\nCorresponding_mean_mcs_pct: {mean_mcs * 100:.2f}\nCorresponding_silhouette_score: {silhouette_avg:.3f}\n")
     elif cli_args.target == 'weighted_cas': print(f"Highest_weighted_mean_cas_pct: {weighted_cas:.2f}\nCorresponding_simple_mean_cas_pct: {simple_cas:.2f}\nCorresponding_mean_mcs_pct: {mean_mcs * 100:.2f}\nCorresponding_silhouette_score: {silhouette_avg:.3f}\n")
-    elif cli_args.target in ['mcs', 'balanced']: print(f"Target Score ({cli_args.target}): {mean_mcs * 100 if cli_args.target=='mcs' else 'N/A'}\nCorresponding_weighted_mean_cas_pct: {weighted_cas:.2f}\nCorresponding_simple_mean_cas_pct: {simple_cas:.2f}\nCorresponding_mean_mcs_pct: {mean_mcs * 100:.2f}\nCorresponding_silhouette_score: {silhouette_avg:.3f}\n")
+    elif cli_args.target in ['mcs', 'balanced']: print(f"Target Base Score ({cli_args.target}): {mean_mcs * 100 if cli_args.target=='mcs' else 'N/A'}\nCorresponding_weighted_mean_cas_pct: {weighted_cas:.2f}\nCorresponding_simple_mean_cas_pct: {simple_cas:.2f}\nCorresponding_mean_mcs_pct: {mean_mcs * 100:.2f}\nCorresponding_silhouette_score: {silhouette_avg:.3f}\n")
     print(f"Final_n_individual_labels: {adata.obs['ctpt_individual_prediction'].nunique()}\nFinal_n_consensus_labels: {adata.obs['ctpt_consensus_prediction'].nunique()}\n" + "="*50)
     
     return adata, cas_path_for_refinement
@@ -1073,7 +1523,7 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     """
     print("--- Initializing Stage 2: Two-Sample Integration Pipeline with Optimal Parameters ---")
 
-    random.seed(cli_args.seed); np.random.seed(cli_args.seed); sc.settings.njobs = 1
+    random.seed(cli_args.seed); np.random.seed(cli_args.seed); sc.settings.njobs = cli_args.threads
     print(f"[INFO] Global random seed set to: {cli_args.seed} for reproducibility.")
 
     CONDITION_OF_INTEREST, REFERENCE_CONDITION = 'Treated', 'WT'
@@ -1130,7 +1580,7 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     print(f"       -> Final selection: {adata.n_vars} highly variable genes for downstream analysis.")
     sc.pp.scale(adata, max_value=10)
 
-    print("\n--- Step 5: PCA and Batch Correction with Harmony ---")
+    print(f"\n--- Step 5: PCA and Batch Correction with {cli_args.integration_method.upper()} ---")
     # --- BUG FIX START ---
     # Robustly cap the number of PCs by both cells and genes, crucial for refinement runs.
     n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_obs - 1, adata.n_vars - 1)
@@ -1139,40 +1589,60 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     print(f"[INFO] Computing {n_pcs_to_compute} PCs, using top {n_pcs_to_use} for downstream.")
     sc.tl.pca(adata, svd_solver='arpack', n_comps=n_pcs_to_compute, random_state=cli_args.seed)
 
-    try:
-        import harmonypy as hm
-        print("harmonypy is installed. Performing batch correction.")
-        sc.external.pp.harmony_integrate(adata, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=cli_args.seed)
-        pca_rep_key = 'X_pca_harmony'
-    except ImportError:
-        print("[WARNING] harmonypy not found. Skipping Harmony integration."); pca_rep_key = 'X_pca'
+    pca_rep_key = 'X_pca'
+    
+    if cli_args.integration_method == 'harmony':
+        try:
+            import harmonypy as hm
+            print("Performing Harmony batch correction.")
+            sc.external.pp.harmony_integrate(adata, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=cli_args.seed)
+            pca_rep_key = 'X_pca_harmony'
+        except ImportError:
+            print("[WARNING] harmonypy not found. Falling back to uncorrected PCA.")
+            
+    elif cli_args.integration_method == 'scanorama':
+        try:
+            import scanorama
+            print("Performing Scanorama batch correction.")
+            adata = make_batches_contiguous(adata, batch_key='sample')
+            sc.external.pp.scanorama_integrate(
+                adata, key='sample', basis='X_pca', adjusted_basis='X_scanorama'
+            )
+            pca_rep_key = 'X_scanorama'
+        except ImportError:
+            print("[WARNING] scanorama not found. Falling back to uncorrected PCA.")
 
     print("\n--- Step 6: Neighborhood, Clustering, and UMAP on Integrated Data ---")
-    sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'], n_pcs=n_pcs_to_use, use_rep=pca_rep_key, random_state=cli_args.seed)
+    
+    if cli_args.integration_method == 'bbknn':
+        try:
+            import bbknn
+            print("Performing BBKNN batch-corrected neighborhood graph generation.")
+            neighbors_within = max(3, optimal_params['n_neighbors'] // adata.obs['sample'].nunique())
+            bbknn.bbknn(adata, batch_key='sample', neighbors_within_batch=neighbors_within, n_pcs=n_pcs_to_use)
+            pca_rep_key = 'X_pca' # Silhouette will be calculated on original PCA as BBKNN only fixes the graph
+        except ImportError:
+            print("[WARNING] bbknn not found. Falling back to standard uncorrected neighbors.")
+            sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'], n_pcs=n_pcs_to_use, use_rep=pca_rep_key, random_state=cli_args.seed)
+    else:
+        sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'], n_pcs=n_pcs_to_use, use_rep=pca_rep_key, random_state=cli_args.seed)
+
     sc.tl.leiden(adata, resolution=optimal_params['resolution'], random_state=cli_args.seed)
     sc.tl.umap(adata, random_state=cli_args.seed)
-    sc.pl.umap(adata, color='sample', title='UMAP by Sample', save=f"_{cli_args.final_run_prefix}_umap_sample.png", show=False, size=10); plt.close()
+    sc.pl.umap(adata, color='sample', title=f'UMAP by Sample ({cli_args.integration_method})', save=f"_{cli_args.final_run_prefix}_umap_sample.png", show=False, size=10); plt.close()
 
-    # ==============================================================================
-    # --- *** CRASH FIX: Safe Silhouette Calculation *** ---
-    # ==============================================================================
     silhouette_avg = 0.0
     try:
-        n_clusters = adata.obs['leiden'].nunique()
-        n_cells = adata.n_obs
-        # Silhouette requires: 2 <= n_labels <= n_samples - 1
-        if 1 < n_clusters < n_cells:
+        if adata.obs['leiden'].nunique() > 1:
             silhouette_avg = silhouette_score(adata.obsm[pca_rep_key][:, :n_pcs_to_use], adata.obs['leiden'])
             print(f"       -> Average Silhouette Score for Leiden clustering (on '{pca_rep_key}'): {silhouette_avg:.3f}")
         else:
-            print(f"       -> [WARNING] Silhouette score skipped. Clusters ({n_clusters}) must be > 1 and < Cells ({n_cells}).")
-            silhouette_avg = 0.0
+            print("       -> Silhouette score not computed (only 1 cluster).")
     except Exception as e:
         print(f"       -> [WARNING] Could not compute silhouette score: {e}")
-        silhouette_avg = 0.0
-    # ==============================================================================
 
     sc.pl.umap(adata, color='leiden', legend_loc='on data', legend_fontweight='bold', title=f'Leiden Clusters (res={optimal_params["resolution"]})\nSilhouette: {silhouette_avg:.3f}', palette=sc.pl.palettes.godsnot_102, save=f"_{cli_args.final_run_prefix}_umap_leiden.png", show=False, size=10); plt.close()
+
 
     print("\n--- Step 7: Cell Type Annotation with CellTypist ---")
     top_genes_df = None
@@ -1183,15 +1653,20 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         print("[INFO] Annotating cells using the full log-normalized transcriptome (from adata.raw)...")
         predictions = celltypist.annotate(adata.raw.to_adata(), model=model_ct, majority_voting=False)
         adata.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels']
-        
+        # Robustly extract the confidence score directly from the probability matrix
+        adata.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+
         # START: ADDED PLOT FOR PER-CELL ANNOTATION
         sc.pl.umap(adata, color='ctpt_individual_prediction', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, title=f'Per-Cell CellTypist Annotation ({adata.obs["ctpt_individual_prediction"].nunique()} types)', show=False, size=10)
         _bold_right_margin_legend(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_per_cell_celltypist.png")); plt.close()
-        # END: ADDED PLOT
+        
+        # NEW: Plot for per-cell ctpt_confidence
+        sc.pl.umap(adata, color='ctpt_confidence', cmap='viridis', title='Per-Cell Annotation Confidence Score', show=False, size=10)
+        plt.savefig(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_per_cell_confidence.png"), dpi=cli_args.fig_dpi, bbox_inches='tight')
+        plt.close()
 
         adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs.groupby('leiden')['ctpt_individual_prediction'].transform(lambda x: x.value_counts().idxmax()).astype('category')
-        adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs[FINAL_ANNOTATION_COLUMN].cat.remove_unused_categories()
-        print(f"       -> Cleaned '{FINAL_ANNOTATION_COLUMN}': {adata.obs[FINAL_ANNOTATION_COLUMN].nunique()} active categories")
+        
         leiden_purity_results = []
         leiden_groups = adata.obs.groupby('leiden')
         for leiden_id, group in leiden_groups:
@@ -1239,98 +1714,295 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
             print(f"       -> Saved greyed-out UMAP to: {greyed_umap_path}")
 
         marker_key = f"wilcoxon_{FINAL_ANNOTATION_COLUMN}"
+        sc.tl.rank_genes_groups(adata, FINAL_ANNOTATION_COLUMN, method='wilcoxon', use_raw=True, key_added=marker_key)
+        marker_df = sc.get.rank_genes_groups_df(adata, key=marker_key, group=None)
+        is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
+        filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
+        top_genes_df = pd.concat(filtered_rows, ignore_index=True)
 
-        # [NEW SAFETY CHECK START]
-        # Ensure we have at least 2 groups with data before ranking genes
-        unique_groups = adata.obs[FINAL_ANNOTATION_COLUMN].dropna().unique()
-        if len(unique_groups) < 2:
-            print(f"       -> [SKIP] Skipping marker analysis/dotplot. Only {len(unique_groups)} cell type(s) present in this subset.")
+        # Build gene dict and category order only from groups that exist in BOTH marker results AND adata
+        genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
+        marker_groups = list(genes_to_plot.keys())
+        adata_categories = adata.obs[FINAL_ANNOTATION_COLUMN].cat.categories.tolist()
+        
+        # Filter to only categories present in both
+        valid_categories = [cat for cat in marker_groups if cat in adata_categories]
+        
+        if valid_categories:
+            filtered_genes_dict = {k: v for k, v in genes_to_plot.items() if k in valid_categories}
+            with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+                try:
+                    sc.pl.dotplot(
+                        adata, 
+                        var_names=filtered_genes_dict, 
+                        groupby=FINAL_ANNOTATION_COLUMN, 
+                        categories_order=valid_categories, 
+                        use_raw=True, 
+                        save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", 
+                        show=False
+                    )
+                    plt.close()
+                except Exception as e:
+                    print(f"[WARNING] Could not generate dotplot. Reason: {e}")
+                    plt.close()
         else:
-            # [EXISTING CODE MOVED INSIDE ELSE BLOCK]
-            sc.tl.rank_genes_groups(adata, FINAL_ANNOTATION_COLUMN, method='wilcoxon', use_raw=True, key_added=marker_key)
-            marker_df = sc.get.rank_genes_groups_df(adata, key=marker_key, group=None)
-            is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
-            filtered_rows = [sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes) for _, sub in marker_df.groupby('group', sort=False)]
-            top_genes_df = pd.concat(filtered_rows, ignore_index=True)
-
-            # [MODIFICATION START: Ultra-Safe Try/Except Block]
-            try:
-                print(f"       -> Attempting to generate marker gene dotplot...")
-                with plt.rc_context({'font.size': 18, 'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
-                    genes_to_plot = top_genes_df.groupby('group')['names'].apply(list).to_dict()
-                    
-                    # Explicitly verify categories exist in .obs before plotting
-                    valid_cats_in_obs = set(adata.obs[FINAL_ANNOTATION_COLUMN].unique())
-                    safe_categories_order = [cat for cat in list(genes_to_plot.keys()) if cat in valid_cats_in_obs]
-                    
-                    if safe_categories_order:
-                        sc.pl.dotplot(adata, var_names=genes_to_plot, groupby=FINAL_ANNOTATION_COLUMN, 
-                                      categories_order=safe_categories_order, 
-                                      use_raw=True, save=f"_{cli_args.final_run_prefix}_markers_celltypist_dotplot.png", show=False)
-                        plt.close()
-                    else:
-                         print("       -> [SKIP] No valid categories found for dotplot ordering.")
-            except Exception as e:
-                print(f"       -> [WARNING] Dotplot generation failed. Error: {e}")
-                print("       -> Pipeline continuing without this plot...")
-            # [MODIFICATION END]
+            print("[WARNING] No valid categories for dotplot. Skipping.")
             
-            extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
-        # [NEW SAFETY CHECK END]
+        extract_fraction_data_for_dotplot(adata, output_dir, cli_args.final_run_prefix, FINAL_ANNOTATION_COLUMN, top_genes_df)
     else:
         print("[INFO] CellTypist not run. Using Leiden clusters for downstream analysis.")
         adata.obs[FINAL_ANNOTATION_COLUMN] = adata.obs['leiden'].astype('category')
 
     print("\n--- Step 8: Find Marker Genes for raw Leiden clusters ---")
-    if 'leiden' in adata.obs.columns:
-        adata.obs['leiden'] = adata.obs['leiden'].cat.remove_unused_categories()
-        print(f"       -> Cleaned 'leiden': {adata.obs['leiden'].nunique()} active categories")
     sc.tl.rank_genes_groups(adata, 'leiden', method='wilcoxon', use_raw=True, key_added='wilcoxon_leiden')
     sc.pl.rank_genes_groups(adata, n_genes=20, key='wilcoxon_leiden', sharey=False, save=f"_{cli_args.final_run_prefix}_markers_leiden.png", show=False); plt.close()
 
-    print("\n--- Step 9: Manual Annotation ---")
-    if cli_args.cellmarker_db and os.path.exists(cli_args.cellmarker_db):
+    print("\n--- Step 9: Manual Annotation + F1 Scoring Outputs ---")
+    if cli_args.reference_marker_db and os.path.exists(cli_args.reference_marker_db):
         try:
-            print(f"       -> Annotating using marker DB: {cli_args.cellmarker_db}")
-            header = pd.read_csv(cli_args.cellmarker_db, nrows=0).columns.tolist()
-            type_col, gene_col = ('cell_name', 'Symbol') if 'cell_name' in header and 'Symbol' in header else (('Cell Type', 'Cell Marker') if 'Cell Type' in header and 'Cell Marker' in header else (None, None))
-            if not type_col: raise ValueError("Marker DB must contain ('cell_name', 'Symbol') or ('Cell Type', 'Cell Marker') columns.")
-            print(f"       -> Auto-detected format: TYPE='{type_col}', GENE='{gene_col}'")
-            db_df = pd.read_csv(cli_args.cellmarker_db)
+            print(f"       -> Annotating using marker DB: {cli_args.reference_marker_db}")
+
+            # ------------------------------------------------------------
+            # 9.1 Load/parse marker DB
+            # ------------------------------------------------------------
+            header = pd.read_csv(cli_args.reference_marker_db, nrows=0).columns.tolist()
+
+            type_col = cli_args.f1_db_celltype_col if cli_args.f1_db_celltype_col in header else None
+            gene_col = cli_args.f1_db_gene_col if cli_args.f1_db_gene_col in header else None
+
+            if type_col is None or gene_col is None:
+                if 'cell_name' in header and 'Symbol' in header:
+                    type_col, gene_col = 'cell_name', 'Symbol'
+                elif 'Cell Type' in header and 'Cell Marker' in header:
+                    type_col, gene_col = 'Cell Type', 'Cell Marker'
+                elif 'cell_type' in header and 'marker_genes' in header:
+                    type_col, gene_col = 'cell_type', 'marker_genes'
+                elif 'cell_type' in header and 'gene' in header:
+                    type_col, gene_col = 'cell_type', 'gene'
+                else:
+                    raise ValueError(
+                        "Marker DB must contain one of these schemas: "
+                        "('cell_name', 'Symbol'), ('Cell Type', 'Cell Marker'), "
+                        "('cell_type', 'marker_genes'), or ('cell_type', 'gene')."
+                    )
+
+            print(f"       -> Marker DB schema: TYPE='{type_col}', GENE='{gene_col}'")
+            db_df = pd.read_csv(cli_args.reference_marker_db)
+            if cli_args.marker_prior_species:
+                species_col = next((c for c in db_df.columns if c.lower() in ['species']), None)
+                if species_col:
+                    db_df = db_df[db_df[species_col].astype(str).str.contains(cli_args.marker_prior_species, case=False, na=False)]
+            
+            if cli_args.marker_prior_organ:
+                organ_col = next((c for c in db_df.columns if c.lower() in ['organ', 'tissue', 'tissue_class', 'tissue_type']), None)
+                if organ_col:
+                    db_df = db_df[db_df[organ_col].astype(str).str.contains(cli_args.marker_prior_organ, case=False, na=False)]
+                    
             db_markers_dict = defaultdict(set)
             for _, row in db_df.iterrows():
-                if pd.notna(row.get(gene_col)) and pd.notna(row.get(type_col)):
-                    db_markers_dict[row[type_col]].update({m.strip().upper() for m in str(row[gene_col]).split(',')})
+                ct = row.get(type_col)
+                genes = row.get(gene_col)
+                if pd.notna(ct) and pd.notna(genes):
+                    gene_list = re.split(r'[;,]', str(genes))
+                    db_markers_dict[str(ct)].update({m.strip().upper() for m in gene_list if m.strip()})
+
             print(f"       -> Aggregated markers for {len(db_markers_dict)} unique cell types.")
-            leiden_markers_df = sc.get.rank_genes_groups_df(adata, key='wilcoxon_leiden', group=None)
+
+            # ------------------------------------------------------------
+            # 9.2 Define the grouping used for F1 scoring
+            # ------------------------------------------------------------
+            scoring_groupby_key = cli_args.f1_groupby_key
+            if scoring_groupby_key not in adata.obs.columns:
+                raise ValueError(f"Requested F1 groupby key '{scoring_groupby_key}' not found in adata.obs.")
+
+            # ------------------------------------------------------------
+            # 9.3 Rank genes for the chosen grouping
+            # ------------------------------------------------------------
+            marker_key_f1 = f"wilcoxon_{scoring_groupby_key}"
+            sc.tl.rank_genes_groups(
+                adata,
+                scoring_groupby_key,
+                method='wilcoxon',
+                use_raw=True,
+                key_added=marker_key_f1
+            )
+            ranked_markers_df = sc.get.rank_genes_groups_df(adata, key=marker_key_f1, group=None)
+
+            # Keep only top N non-mito genes per group
+            is_mito = lambda g: bool(re.match(MITO_REGEX_PATTERN, str(g)))
+            filtered_rows = []
+            for grp, sub in ranked_markers_df.groupby('group', sort=False):
+                filtered_rows.append(sub[~sub['names'].map(is_mito)].head(cli_args.n_top_genes))
+
+            top_genes_df_f1 = pd.concat(filtered_rows, ignore_index=True) if filtered_rows else pd.DataFrame()
+
+            # Save the top-gene list used for F1
+            if top_genes_df_f1 is not None and not top_genes_df_f1.empty:
+                top_genes_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_f1_top_genes_{scoring_groupby_key}.csv")
+                top_genes_df_f1.to_csv(top_genes_out, index=False)
+                print(f"       -> Saved F1 top-gene table to: {top_genes_out}")
+
+            # ------------------------------------------------------------
+            # 9.4 Compute F1 / Precision / Recall against DB
+            # ------------------------------------------------------------
+            f1_results = []
             cluster_annotations = {}
-            for cluster in adata.obs['leiden'].cat.categories:
-                cluster_genes = set(leiden_markers_df[leiden_markers_df['group'] == cluster].head(cli_args.n_top_genes)['names'].str.upper())
-                scores = {cell_type: len(cluster_genes.intersection(db_genes)) / (len(cluster_genes.union(db_genes)) or 1) for cell_type, db_genes in db_markers_dict.items()}
-                best_cell_type = max(scores, key=scores.get) if scores else None
-                cluster_annotations[cluster] = best_cell_type if best_cell_type and scores[best_cell_type] > 0 else f"Unknown_{cluster}"
-            adata.obs['manual_annotation'] = adata.obs['leiden'].map(cluster_annotations).astype('category')
-            pd.DataFrame.from_dict(cluster_annotations, orient='index', columns=['AssignedType']).to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_leiden_to_manual_annotation.csv"))
-            sc.pl.umap(adata, color='manual_annotation', title='Manual Cluster Annotation', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, size=10, show=False)
-            fig_path = os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_manual_annotation.png"); _bold_right_margin_legend(fig_path); plt.close()
-            
-            print("       -> Calculating Marker Capture Score for manual annotation...")
-            score_results = []
-            leiden_degs_structured = adata.uns['wilcoxon_leiden']['names']
-            for cluster_id, assigned_label in cluster_annotations.items():
-                if pd.isna(assigned_label) or assigned_label.startswith("Unknown"): continue
-                reference_genes = db_markers_dict.get(assigned_label, set())
-                if not reference_genes: continue
-                cluster_degs_for_capture = {g.upper() for g in leiden_degs_structured[cluster_id][:cli_args.n_degs_for_capture]}
-                captured_genes = cluster_degs_for_capture.intersection(reference_genes)
-                score = (len(captured_genes) / len(reference_genes)) * 100
-                score_results.append({"Cluster_ID": cluster_id, "Assigned_Cell_Type": assigned_label, "Marker_Capture_Score (%)": score, "Captured_Genes_Count": len(captured_genes), "Total_Reference_Genes": len(reference_genes), "Captured_Genes_List": ", ".join(sorted(list(captured_genes)))})
-            if score_results:
-                capture_df = pd.DataFrame(score_results).sort_values(by="Marker_Capture_Score (%)", ascending=False)
-                capture_df.to_csv(os.path.join(output_dir, f"{cli_args.final_run_prefix}_manual_annotation_marker_capture_scores.csv"), index=False)
-                print(f"       -> Saved Marker Capture Scores.")
-        except Exception as e: print(f"[ERROR] Manual annotation failed. Reason: {e}")
-    else: print("[INFO] Cell marker DB not provided or not found. Skipping manual annotation.")
+            cluster_top3 = {}   # NEW: store top-3 marker-based matches per cluster
+
+            group_order = list(top_genes_df_f1['group'].unique()) if not top_genes_df_f1.empty else []
+            for group_name in group_order:
+                predicted_genes = set(
+                    top_genes_df_f1[top_genes_df_f1['group'] == group_name]['names']
+                    .astype(str).str.upper().tolist()
+                )
+
+                # Score ALL DB cell types, then keep top-3 by F1
+                all_matches = []
+                for cell_type, db_genes in db_markers_dict.items():
+                    ref_genes = {g.upper() for g in db_genes}
+                    tp = len(predicted_genes.intersection(ref_genes))
+                    pred_count = len(predicted_genes)
+                    ref_count = len(ref_genes)
+                    
+                    precision = tp / pred_count if pred_count else 0.0
+                    recall = tp / ref_count if ref_count else 0.0
+                    f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+                    jaccard = tp / len(predicted_genes.union(ref_genes)) if len(predicted_genes.union(ref_genes)) else 0.0
+                    
+                    all_matches.append({
+                        'Assigned_Cell_Type': cell_type,
+                        'Precision (%)': precision * 100,
+                        'Recall (%)': recall * 100,
+                        'F1_Score (%)': f1 * 100,
+                        'Jaccard (%)': jaccard * 100,
+                        'True_Positive_Count': tp,
+                        'Predicted_Marker_Count': pred_count,
+                        'Reference_Marker_Count': ref_count
+                    })
+
+                all_matches.sort(key=lambda x: (x['F1_Score (%)'], x['Jaccard (%)'], x['True_Positive_Count']), reverse=True)
+                
+                top3_full = [m for m in all_matches[:3] if m['F1_Score (%)'] > 0]
+                cluster_top3[str(group_name)] = [(m['Assigned_Cell_Type'], m['F1_Score (%)']/100.0) for m in top3_full]
+
+                if top3_full:
+                    best_cell_type = top3_full[0]['Assigned_Cell_Type']
+                else:
+                    best_cell_type = f"Unknown_{group_name}"
+
+                cluster_annotations[group_name] = best_cell_type
+
+                # --- Extract Top 3 Matches for CSV ---
+                row_data = {"Cluster_ID": group_name}
+                
+                # Top 1 Match
+                if len(all_matches) > 0 and all_matches[0]['True_Positive_Count'] > 0:
+                    row_data.update(all_matches[0])
+                else:
+                    row_data.update({'Assigned_Cell_Type': f"Unknown_{group_name}", 'Precision (%)': 0, 'Recall (%)': 0, 'F1_Score (%)': 0, 'Jaccard (%)': 0, 'True_Positive_Count': 0, 'Predicted_Marker_Count': len(predicted_genes), 'Reference_Marker_Count': 0})
+
+                # Top 2 Match
+                if len(all_matches) > 1 and all_matches[1]['True_Positive_Count'] > 0:
+                    for k, v in all_matches[1].items():
+                        new_key = k.replace(' (%)', '_2 (%)') if ' (%)' in k else f"{k}_2"
+                        row_data[new_key] = v
+                else:
+                    for k in ['Assigned_Cell_Type', 'Precision (%)', 'Recall (%)', 'F1_Score (%)', 'Jaccard (%)', 'True_Positive_Count', 'Predicted_Marker_Count', 'Reference_Marker_Count']:
+                        new_key = k.replace(' (%)', '_2 (%)') if ' (%)' in k else f"{k}_2"
+                        row_data[new_key] = 'None' if k == 'Assigned_Cell_Type' else 0
+
+                # Top 3 Match
+                if len(all_matches) > 2 and all_matches[2]['True_Positive_Count'] > 0:
+                    for k, v in all_matches[2].items():
+                        new_key = k.replace(' (%)', '_3 (%)') if ' (%)' in k else f"{k}_3"
+                        row_data[new_key] = v
+                else:
+                    for k in ['Assigned_Cell_Type', 'Precision (%)', 'Recall (%)', 'F1_Score (%)', 'Jaccard (%)', 'True_Positive_Count', 'Predicted_Marker_Count', 'Reference_Marker_Count']:
+                        new_key = k.replace(' (%)', '_3 (%)') if ' (%)' in k else f"{k}_3"
+                        row_data[new_key] = 'None' if k == 'Assigned_Cell_Type' else 0
+
+                f1_results.append(row_data)
+
+            # ------------------------------------------------------------
+            # 9.5 Save annotation map + F1 table
+            # ------------------------------------------------------------
+            adata.obs['manual_annotation'] = adata.obs[scoring_groupby_key].map(cluster_annotations).astype('category')
+
+            map_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_f1_{scoring_groupby_key}_to_manual_annotation.csv")
+            pd.DataFrame.from_dict(cluster_annotations, orient='index', columns=['AssignedType']).to_csv(map_out)
+            print(f"       -> Saved F1 annotation map to: {map_out}")
+
+            f1_df = pd.DataFrame(f1_results).sort_values(by="F1_Score (%)", ascending=False)
+            f1_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_manual_annotation_f1_scores_{scoring_groupby_key}.csv")
+            f1_df.to_csv(f1_out, index=False)
+            print(f"       -> Saved manual annotation F1 scores to: {f1_out}")
+
+            # ------------------------------------------------------------
+            # 9.6 Save a marker-based UMAP for the chosen F1 grouping
+            # ------------------------------------------------------------
+            umap_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_f1_manual_annotation_{scoring_groupby_key}.png")
+            sc.pl.umap(
+                adata,
+                color='manual_annotation',
+                title=f'F1 Manual Annotation ({scoring_groupby_key})',
+                palette=sc.pl.palettes.godsnot_102,
+                legend_loc='right margin',
+                legend_fontsize=8,
+                size=10,
+                show=False
+            )
+            _bold_right_margin_legend(umap_out)
+            plt.close()
+            print(f"       -> Saved F1 manual annotation UMAP to: {umap_out}")
+
+            # ------------------------------------------------------------
+            # 9.7 Also keep the marker-capture output if requested
+            # ------------------------------------------------------------
+            if cli_args.marker_score_metric in ['capture', 'jaccard', 'f1']:
+                print("       -> Calculating Marker Capture Score for manual annotation...")
+                score_results = []
+                leiden_degs_structured = adata.uns['wilcoxon_leiden']['names']
+
+                for cluster_id, assigned_label in cluster_annotations.items():
+                    if pd.isna(assigned_label) or str(assigned_label).startswith("Unknown"):
+                        continue
+                    reference_genes = db_markers_dict.get(assigned_label, set())
+                    if not reference_genes:
+                        continue
+
+                    cluster_degs_for_capture = {g.upper() for g in leiden_degs_structured[cluster_id][:cli_args.n_degs_for_capture]}
+                    captured_genes = cluster_degs_for_capture.intersection(reference_genes)
+
+                    tp = len(captured_genes)
+                    precision = tp / len(cluster_degs_for_capture) if len(cluster_degs_for_capture) else 0.0
+                    recall = tp / len(reference_genes) if len(reference_genes) else 0.0
+                    f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) > 0 else 0.0
+                    jaccard = tp / len(cluster_degs_for_capture.union(reference_genes)) if len(cluster_degs_for_capture.union(reference_genes)) else 0.0
+                    capture_score = (len(captured_genes) / len(reference_genes)) * 100 if len(reference_genes) else 0.0
+
+                    score_results.append({
+                        "Cluster_ID": cluster_id,
+                        "Assigned_Cell_Type": assigned_label,
+                        "Marker_Capture_Score (%)": capture_score,
+                        "Precision (%)": precision * 100,
+                        "Recall (%)": recall * 100,
+                        "F1_Score (%)": f1 * 100,
+                        "Jaccard (%)": jaccard * 100,
+                        "Captured_Genes_Count": len(captured_genes),
+                        "Total_Reference_Genes": len(reference_genes),
+                        "Captured_Genes_List": ", ".join(sorted(list(captured_genes)))
+                    })
+
+                if score_results:
+                    capture_df = pd.DataFrame(score_results).sort_values(by="F1_Score (%)", ascending=False)
+                    capture_out = os.path.join(output_dir, f"{cli_args.final_run_prefix}_manual_annotation_marker_scores_{scoring_groupby_key}.csv")
+                    capture_df.to_csv(capture_out, index=False)
+                    print(f"       -> Saved manual annotation marker score table to: {capture_out}")
+
+        except Exception as e:
+            print(f"[ERROR] Manual annotation/scoring failed. Reason: {e}")
+    else:
+        print("[INFO] Reference marker DB not provided or not found. Skipping manual annotation.")
 
     print("\n--- Step 10: Compositional Analysis ---")
     composition_counts = pd.crosstab(adata.obs[FINAL_ANNOTATION_COLUMN], adata.obs['sample'])
@@ -1386,11 +2058,27 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     adata.write(os.path.join(output_dir, f"{cli_args.final_run_prefix}_final_processed.h5ad"))
     print(f"       -> Final annotated AnnData object saved.")
 
+    # --- NEW: per-cell top-3 marker-based annotation CSV ---
+    if 'cluster_top3' in locals():
+        _write_top3_marker_annotation_csv(
+            adata=adata,
+            cluster_top3=cluster_top3,
+            groupby_key=cli_args.f1_groupby_key,
+            output_dir=output_dir,
+            final_run_prefix=cli_args.final_run_prefix
+        )
+
     print("\n" + "="*50 + f"\n--- Final Parameters Summary (Multi-Sample) ---\nRandom Seed Used: {cli_args.seed}\n\n--- Optimal Parameters Used ---\nBest n_hvg: {optimal_params['n_hvg']}\nBest n_pcs: {n_pcs_to_use}\nBest n_neighbors: {optimal_params['n_neighbors']}\nBest resolution: {optimal_params['resolution']:.3f}\n")
     print(f"Final_n_leiden_clusters: {adata.obs['leiden'].nunique()}")
     print(f"Final_silhouette_score: {silhouette_avg:.3f}")
     if FINAL_ANNOTATION_COLUMN in adata.obs.columns: print(f"Final_n_consensus_labels: {adata.obs[FINAL_ANNOTATION_COLUMN].nunique()}")
     print("="*50 + "\n\n--- MULTI-SAMPLE ANALYSIS PIPELINE COMPLETE ---")
+    
+    # Optional: Save a master CSV for multi-sample (just like single-sample)
+    cols_to_save = [c for c in adata.obs.columns if c in ['sample', 'leiden', 'ctpt_individual_prediction', 'ctpt_confidence', 'ctpt_consensus_prediction', 'manual_annotation']]
+    all_ann_path = os.path.join(output_dir, f"{cli_args.final_run_prefix}_all_annotations.csv")
+    adata.obs[cols_to_save].to_csv(all_ann_path)
+    print(f"       -> All cell annotations (with confidence) saved to: {all_ann_path}")
     
     return adata, cas_path_for_refinement
 
@@ -1400,9 +2088,6 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
 # ==============================================================================
 # ==============================================================================
 
-# =========================================================================================
-# === NEW HELPER FUNCTION for cumulative UMAP plotting during refinement ===
-# =========================================================================================
 def _generate_cumulative_refinement_umap(adata_full, failing_cell_indices, threshold, output_path, title, legend_fontsize=8):
     """
     (Refinement Helper) Generates a UMAP plot showing the CUMULATIVE progress of refinement.
@@ -1602,27 +2287,12 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
         
         args.final_run_prefix = original_final_run_prefix # Restore for next loop
 
-        # Check if the refinement produced too many clusters (Over-clustering check)
-        # If clusters > 1/5th of the cells, discard this level and stop.
-        
-        current_n_clusters = adata_refinement_processed.obs['leiden'].nunique()
-        current_n_cells = adata_refinement_processed.n_obs
-        ratio_threshold = current_n_cells / 5.0
-
-        if current_n_clusters > ratio_threshold:
-            print(f"\n[STOP] Refinement stopped at Depth {depth} due to over-clustering.")
-            print(f"       Reason: Cluster count ({current_n_clusters}) is higher than 1/5th of processing cells ({current_n_cells}).")
-            print(f"       Threshold was: > {ratio_threshold:.2f}")
-            print(f"       Results from this depth will NOT be merged into the final object.")
-            break
-        # ==============================================================================
-
         # --- Step 5: Update master annotation in the main adata_s2 object ---
         all_refinement_cas_paths.append(cas_csv_path_refinement)
         
         refinement_annotations = adata_refinement_processed.obs['ctpt_consensus_prediction']
         
-        # Ensure new categories from this refinement are added to the master annotation column
+        # Ensure new categories from this refinement are added to the master list
         current_categories = adata_s2.obs['combined_annotation'].cat.categories.tolist()
         new_labels = refinement_annotations.unique()
         new_categories_to_add = [label for label in new_labels if label not in current_categories]
@@ -1633,8 +2303,6 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
         # Now, perform the assignment of new labels
         adata_s2.obs.loc[refinement_annotations.index, 'combined_annotation'] = refinement_annotations.astype(str)
         adata_s2.obs['combined_annotation'] = adata_s2.obs['combined_annotation'].astype('category') # Recategorize
-        adata_s2.obs['combined_annotation'] = adata_s2.obs['combined_annotation'].cat.remove_unused_categories()
-        print(f"--- [Depth {depth}] Updated {len(refinement_annotations)} cell annotations in the main object. Active categories: {adata_s2.obs['combined_annotation'].nunique()} ---")
         print(f"--- [Depth {depth}] Updated {len(refinement_annotations)} cell annotations in the main object. ---")
         
         # --- Step 6: Identify cells that ARE STILL FAILING for the cumulative plot ---
@@ -1723,6 +2391,71 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
     adata_s2.obs[cols_to_save].to_csv(final_csv_path)
     print(f"✅ Success! Saved final annotations with refinement column to: {final_csv_path}")
 
+    # --- NEW: combined refinement top-3 marker annotation CSV ---
+    # Walk the stage-2 refinement sub-directories and merge their per-cell top-3 CSVs
+    try:
+        refinement_top3_files = []
+        for depth in range(1, args.refinement_depth + 1):
+            candidate = os.path.join(
+                stage2_output_dir,
+                f"refinement_depth_{depth}",
+                f"{args.final_run_prefix}_refinement_depth_{depth}_annotation_with_top3_markers.csv"
+            )
+            if os.path.exists(candidate):
+                df = pd.read_csv(candidate, index_col=0)
+                df['source_level'] = f'refinement_depth_{depth}'
+                refinement_top3_files.append(df)
+
+        # Also include the initial Stage-2 top-3 file
+        initial_top3 = os.path.join(
+            stage2_output_dir,
+            f"{args.final_run_prefix}_annotation_with_top3_markers.csv"
+        )
+        if os.path.exists(initial_top3):
+            df0 = pd.read_csv(initial_top3, index_col=0)
+            df0['source_level'] = 'initial'
+            refinement_top3_files.insert(0, df0)
+
+        if refinement_top3_files:
+            combined_top3 = pd.concat(refinement_top3_files, axis=0)
+            
+            # Keep unique cluster IDs for mapping
+            combined_top3_unique = combined_top3.drop_duplicates(subset=['Cluster_ID'], keep='first')
+            
+            combined_path = os.path.join(
+                stage2_output_dir,
+                f"{args.final_run_prefix}_annotation_with_top3_markers_combined.csv"
+            )
+            combined_top3.to_csv(combined_path)
+            print(f"✅ Success! Saved combined top-3 marker annotations to: {combined_path}")
+
+            # =========================================================================
+            # --- ADDED FEATURE: Final Marker-Driven UMAP ---
+            # =========================================================================
+            print("--- Generating final combined UMAP with Marker-Driven (F1) Annotations ---")
+            
+            # Map the data-driven combined annotations to the top marker-driven match
+            marker_mapping = dict(zip(combined_top3_unique['Cluster_ID'].astype(str), combined_top3_unique['Marker_Match_1'].astype(str)))
+            
+            # Apply mapping to create a new column. Replace empty/nan with 'Unknown'
+            adata_s2.obs['combined_marker_annotation'] = adata_s2.obs['combined_annotation'].astype(str).map(marker_mapping)
+            adata_s2.obs['combined_marker_annotation'] = adata_s2.obs['combined_marker_annotation'].replace(['', 'nan', 'NaN', 'None'], 'Unknown').fillna('Unknown')
+            adata_s2.obs['combined_marker_annotation'] = adata_s2.obs['combined_marker_annotation'].astype('category')
+
+            with plt.rc_context({'font.weight': 'bold', 'axes.labelweight': 'bold', 'axes.titleweight': 'bold'}):
+                sc.pl.umap(adata_s2, color='combined_marker_annotation', palette=sc.pl.palettes.godsnot_102, 
+                        legend_loc='right margin', legend_fontsize=8, 
+                        title='Final Marker-Driven Annotation (All Refined Levels)', 
+                        show=False, size=10)
+
+            combined_marker_umap_path = os.path.join(stage2_output_dir, f"{args.final_run_prefix}_umap_combined_marker_annotation_final.png")
+            _bold_right_margin_legend(combined_marker_umap_path); plt.close()
+            print(f"✅ Success! Saved final combined marker-driven UMAP to: {combined_marker_umap_path}")
+            # =========================================================================
+
+    except Exception as e:
+        print(f"[WARNING] Could not build combined top-3 marker annotation CSV or Marker UMAP. Reason: {e}")
+
 # ==============================================================================
 # ==============================================================================
 # --- *** PIPELINE ORCHESTRATION *** ---
@@ -1753,7 +2486,7 @@ def run_stage_one_optimization(args, adata_input=None):
             adata.var_names_make_unique()
             adata_merged = adata
         elif args.multi_sample:
-            print("--- Running in MULTI-SAMPLE (Harmony Integration) Mode ---")
+            print(f"--- Running in MULTI-SAMPLE ({args.integration_method.capitalize()} Integration) Mode ---")
             wt_dir, treated_dir = args.multi_sample
             adatas = {'WT': sc.read_10x_mtx(wt_dir, var_names='gene_symbols', cache=True), 'Treated': sc.read_10x_mtx(treated_dir, var_names='gene_symbols', cache=True)}
             for sample_id, adata_sample in adatas.items():
@@ -1774,7 +2507,14 @@ def run_stage_one_optimization(args, adata_input=None):
         sc.pp.filter_cells(adata_merged, max_genes=args.max_genes)
         adata_merged = adata_merged[adata_merged.obs.pct_counts_mt < args.max_pct_mt, :]
         sc.pp.filter_genes(adata_merged, min_cells=args.min_cells)
-    
+
+    if args.subsample_size and adata_merged.n_obs > args.subsample_size:
+        print(f"\n[INFO] Scalability mode enabled: Subsampling atlas from {adata_merged.n_obs} down to {args.subsample_size} cells for rapid BO parameter discovery.")
+        sc.pp.subsample(adata_merged, n_obs=args.subsample_size, random_state=args.seed)
+
+        if 'sample' in adata_merged.obs.columns:
+            adata_merged = make_batches_contiguous(adata_merged, batch_key='sample')
+        
     print(f"Data for this BO run: {adata_merged.n_obs} cells, {adata_merged.n_vars} genes")
     sc.pp.normalize_total(adata_merged, target_sum=1e4); sc.pp.log1p(adata_merged); adata_merged.raw = adata_merged.copy()
     adata_base = adata_merged.copy(); model = models.Model.load(args.model_path)
@@ -1851,6 +2591,7 @@ def run_stage_one_optimization(args, adata_input=None):
 
 def main(parsed_args):
     """Main orchestrator for the two-stage pipeline."""
+    sc.settings.njobs = parsed_args.threads
     adata_s2, cas_csv_path_s2 = None, None
 
     # --- STAGE 1 ---
@@ -1905,13 +2646,18 @@ if __name__ == '__main__':
     mode_group = stage1_group.add_mutually_exclusive_group(required=True)
     mode_group.add_argument('--data_dir', type=str, help='Path to 10x Genomics data for single-sample analysis.')
     mode_group.add_argument('--multi_sample', nargs=2, metavar=('WT_DIR', 'TREATED_DIR'), help='Two paths for WT/Control and Treated/Perturbed 10x data for multi-sample integration.')
+    stage1_group.add_argument('--integration_method', type=str, default='harmony',
+                              choices=['harmony', 'scanorama', 'bbknn'],
+                              help="Batch correction method to use when running in --multi_sample mode. (Default: harmony)")
     stage1_group.add_argument('--output_dir', type=str, required=True, help='Path for all output files.')
     stage1_group.add_argument('--model_path', type=str, required=True, help='Path to CellTypist model (.pkl).')
     stage1_group.add_argument('--output_prefix', type=str, default='bayesian_opt', help='Base prefix for Stage 1 output files.')
-
+    stage1_group.add_argument('--threads', type=int, default=16, help='Number of threads/CPUs to use for parallel processing.')
     opt_group = parser.add_argument_group('Stage 1: Optimization Parameters')
     opt_group.add_argument('--seed', type=int, default=42, help='Global random seed for reproducibility.')
     opt_group.add_argument('--n_calls', type=int, default=50, help='Number of trials for EACH of the three optimization strategies.')
+    opt_group.add_argument('--subsample_size', type=int, default=None, 
+                           help="(Optional) Randomly subsample the dataset to this number of cells for Stage 1 optimization to drastically reduce runtime on large atlases. Stage 2 will still run on the full dataset.")
     opt_group.add_argument(
         '--model_type',
         type=str,
@@ -1950,16 +2696,49 @@ if __name__ == '__main__':
     stage2_group.add_argument('--fig_dpi', default=500, type=int, help='Resolution (DPI) for saved figures in Stage 2.')
     stage2_group.add_argument('--n_pcs_compute', type=int, default=105, help="Number of principal components to COMPUTE in Stage 1 and 2.")
     stage2_group.add_argument('--n_top_genes', type=int, default=5, help="Number of top marker genes to show in plots/tables in Stage 1 and 2.")
-    stage2_group.add_argument('--cellmarker_db', type=str, default=None, help="(Optional) Path to a cell marker database (.csv) for manual annotation in Stage 2.")
+    
+    # ------------------
+    # MODIFIED FLAG NAME
+    # ------------------
+    stage2_group.add_argument('--reference_marker_db', type=str, default=None, help="(Optional) Path to a combined reference marker database (.csv, e.g., from CellMarker & PanglaoDB) for manual annotation and F1 scoring.")
+    stage2_group.add_argument('--marker_prior_species', type=str, default='Human', help="Species filter for marker DB (e.g., 'Human' or 'Mouse').")
+    stage2_group.add_argument('--marker_prior_organ', type=str, default='Blood', help="Organ/tissue filter for marker DB (e.g., 'Blood', 'Peripheral Blood').")
     stage2_group.add_argument('--n_degs_for_capture', type=int, default=5, help="Number of top DEGs per cluster to use for the Marker Capture Score calculation in Stage 2.")
     stage2_group.add_argument('--cas_refine_threshold', type=float, default=None, help="(Optional) CAS percentage threshold (0-100). If a cluster's CAS is below this, its cells are pooled for a second, refined optimization run.")
+    stage2_group.add_argument('--f1_db_celltype_col', type=str, default=None,
+                              help="(Optional) Column name in the marker DB CSV containing cell type names for F1 scoring. Auto-detected if not provided.")
+    stage2_group.add_argument('--f1_db_gene_col', type=str, default=None,
+                              help="(Optional) Column name in the marker DB CSV containing marker genes for F1 scoring. Auto-detected if not provided.")
+    stage2_group.add_argument('--f1_groupby_key', type=str, default='ctpt_consensus_prediction',
+                              choices=['ctpt_consensus_prediction', 'manual_annotation'],
+                              help="Grouping key used to compute F1. Default uses cell-annotated clusters (ctpt_consensus_prediction).")
+    stage2_group.add_argument('--marker_score_metric', type=str, default='f1',
+                              choices=['f1', 'jaccard', 'capture'],
+                              help="Marker scoring metric for cell-type annotation. Default is F1.")
     stage2_group.add_argument('--refinement_depth', type=int, default=1, help="(Optional) Maximum number of times to repeat the refinement process on failing cells. Default is 1.")
     stage2_group.add_argument('--min_cells_refinement', type=int, default=100, help="(Optional) Minimum number of failing cells required to trigger a refinement loop. Default is 100.")
-
+    stage2_group.add_argument(
+        '--use_f1',
+        action='store_true',
+        help="Include marker-based F1 in Stage 1 optimization score."
+    )
+    stage2_group.add_argument(
+        '--mps_bonus_weight',
+        type=float,
+        default=0.2,
+        help=("Additive bonus weight for the Marker Prior Score (F1). "
+              "Final Score = Base Score + (mps_bonus_weight * F1). "
+              "Default 0.2 = max 20%% bonus. Set to 0 to disable.")
+    )
+    stage2_group.add_argument(
+        '--use_confidence',
+        action='store_true',
+        help="Include the mean CellTypist annotation confidence score in the geometric mean calculation for the optimization target."
+    )
     parsed_args = parser.parse_args()
 
-    if parsed_args.multi_sample and "harmony" not in parsed_args.output_prefix:
-        parsed_args.output_prefix += "_harmony"
+    if parsed_args.multi_sample and parsed_args.integration_method not in parsed_args.output_prefix:
+        parsed_args.output_prefix += f"_{parsed_args.integration_method}"
     
     # Call the main orchestrator function
     main(parsed_args)
