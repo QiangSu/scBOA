@@ -18,110 +18,6 @@
 
 ---
 
-## End-to-End Reproducibility Tutorial (Human PBMC)
-
-To ensure complete transparency and reproducibility, this tutorial provides a step-by-step guide to recreating the exact Human PBMC analysis presented in the scBOA manuscript. By following these steps, users can verify the pipeline’s performance from raw reads to final visualizations using publicly available 10x Genomics data.
-
-### Step 1: Data Acquisition and Read Alignment
-We utilize the publicly available **10k Human PBMC dataset** (10x Genomics). The reference genome is derived from the standard `refdata-gex-GRCh38-2024-A` package. Processed reads were aligned using Cell Ranger (v9.0.1) to generate the initial cell-gene matrix. 
-
-*If you already have your own Cell Ranger output, you can skip to Step 2.*
-
-```bash
-cellranger count \
-  --id=pbmc_10k_v3_output \
-  --sample=pbmc_10k_v3 \
-  --fastqs=./scRNA_seq_data_public/pbmc_10k_v3_fastqs/cellranger_output \
-  --transcriptome=./tools/refdata-gex-GRCh38-2024-A \
-  --localcores=40 \
-  --localmem=200 \
-  --expect-cells=12000 \
-  --create-bam=true
-```
-
-### Step 2: Runnable scBOA Execution
-Using the output from Cell Ranger, execute the complete scBOA pipeline using the following single command. This command incorporates the identical parameters used in our manuscript, including Bayesian Optimization (50 calls), multi-stage refinement (depth 3), and integration of marker gene F1-scoring.
-
-(Ensure you have downloaded the Healthy_COVID19_PBMC.pkl model and have the combined_markers_summary.csv file from the references/ folder).
-
-```bash
-python ./scBOA.py \
-  --data_dir ./pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
-  --output_dir ./10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/ \
-  --model_path ./models/Healthy_COVID19_PBMC.pkl \
-  --output_prefix 10kPBMC \
-  --seed 42 \
-  --n_calls 50 \
-  --target all \
-  --model_type biological \
-  --marker_gene_model non-mitochondrial \
-  --hvg_min_mean 0.0125 \
-  --hvg_max_mean 3.0 \
-  --hvg_min_disp 0.3 \
-  --reference_marker_db ./references/combined_markers_summary.csv \
-  --marker_prior_species Human \
-  --marker_prior_organ Blood \
-  --f1_db_celltype_col cell_type \
-  --f1_db_gene_col marker_genes \
-  --cas_aggregation_method leiden \
-  --cas_refine_threshold 50 \
-  --min_cells_refinement 50 \
-  --refinement_depth 3 \
-  --threads 90 \
-  --use_f1 \
-  --n_top_genes 50 \
-  --f1_groupby_key ctpt_consensus_prediction \
-  --mps_bonus_weight 0 \
-  --use_confidence
-```
-
-### Step 3: Interpretable, Ready-to-Use Outputs
-scBOA is designed to automatically generate a highly organized directory tree. Running the command above yields exactly 8 directories and 145 files, consisting entirely of lightweight .png visualizations and .csv summary tables. 
-
-To provide immediate proof of reproducibility, we have uploaded this exact output directory (10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/) directly to our GitHub repository. 
-
-Users can browse this folder on GitHub to instantly view the iterative refinement UMAPs, marker concordance scores, and parameter convergence plots. The high-level structure of this output is organized as follows:
-
-```
-10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/
-├── stage_1_bayesian_optimization/
-│   ├── 10kPBMC_biological_balanced_optimizer_convergence.png
-│   ├── 10kPBMC_biological_balanced_yield_scores_report.csv
-│   ├── refinement_depth_1/   # (Corresponding BO plots for iteration 1)
-│   ├── refinement_depth_2/   # (Corresponding BO plots for iteration 2)
-│   └── refinement_depth_3/   # (Corresponding BO plots for iteration 3)
-└── stage_2_final_analysis/
-    ├── sc_analysis_repro_cell_type_journey_summary.csv
-    ├── sc_analysis_repro_f1_annotation_summary.csv
-    ├── sc_analysis_repro_umap_combined_annotation_final.png
-    ├── refinement_depth_1/   # (Final analysis UMAPs & F1 scores for iteration 1)
-    ├── refinement_depth_2/   # (Final analysis UMAPs & F1 scores for iteration 2)
-    └── refinement_depth_3/   # (Final analysis UMAPs & F1 scores for iteration 3)
-```
-
-## Repository Structure
-
-```
-scBOA/
-├── .github/workflows/
-│   └── run_test.yml         # GitHub Action for automated testing
-├── example_data/
-│   ├── barcodes.tsv.gz      # Example Cell Ranger output
-│   ├── features.tsv.gz      # Example Cell Ranger output
-│   └── matrix.mtx.gz        # Example Cell Ranger output
-├── test_assets/
-│   └── Healthy_COVID19_PBMC.pkl  # Pre-trained CellTypist model for testing/examples
-├── .gitignore               # Specifies files for Git to ignore
-├── LICENSE                  # Project license (e.g., MIT)
-├── README.md                # This documentation file
-├── references/              # This marker gene driven cell type annotation
-├── requirements.txt         # Exact Python dependencies for reproducibility
-└── scBOA.py                 # The main executable Python script
-
-```
-
----
-
 ## Step-by-Step Workflow
 
 ### 1. Prerequisites
@@ -429,6 +325,110 @@ The script generates a structured output directory. Below is an example structur
 -   `*_cell_type_journey_summary.csv`: A wide-format table showing how the cell count and CAS score for each cell type change across refinement stages.
 -   `*_umap_low_confidence_greyed.png`: A UMAP plot from the initial run where cells belonging to clusters that failed the CAS threshold are colored grey.
 -   `refinement_depth_1/*_umap_cumulative_result.png`: A UMAP plot showing the state of the data *after* a refinement level, with newly-annotated cells colored and any still-failing cells shown in grey.
+
+---
+
+## End-to-End Reproducibility Tutorial (Human PBMC)
+
+To ensure complete transparency and reproducibility, this tutorial provides a step-by-step guide to recreating the exact Human PBMC analysis presented in the scBOA manuscript. By following these steps, users can verify the pipeline’s performance from raw reads to final visualizations using publicly available 10x Genomics data.
+
+### Step 1: Data Acquisition and Read Alignment
+We utilize the publicly available **10k Human PBMC dataset** (10x Genomics). The reference genome is derived from the standard `refdata-gex-GRCh38-2024-A` package. Processed reads were aligned using Cell Ranger (v9.0.1) to generate the initial cell-gene matrix. 
+
+*If you already have your own Cell Ranger output, you can skip to Step 2.*
+
+```bash
+cellranger count \
+  --id=pbmc_10k_v3_output \
+  --sample=pbmc_10k_v3 \
+  --fastqs=./scRNA_seq_data_public/pbmc_10k_v3_fastqs/cellranger_output \
+  --transcriptome=./tools/refdata-gex-GRCh38-2024-A \
+  --localcores=40 \
+  --localmem=200 \
+  --expect-cells=12000 \
+  --create-bam=true
+```
+
+### Step 2: Runnable scBOA Execution
+Using the output from Cell Ranger, execute the complete scBOA pipeline using the following single command. This command incorporates the identical parameters used in our manuscript, including Bayesian Optimization (50 calls), multi-stage refinement (depth 3), and integration of marker gene F1-scoring.
+
+(Ensure you have downloaded the Healthy_COVID19_PBMC.pkl model and have the combined_markers_summary.csv file from the references/ folder).
+
+```bash
+python ./scBOA.py \
+  --data_dir ./pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
+  --output_dir ./10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/ \
+  --model_path ./models/Healthy_COVID19_PBMC.pkl \
+  --output_prefix 10kPBMC \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --marker_gene_model non-mitochondrial \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --reference_marker_db ./references/combined_markers_summary.csv \
+  --marker_prior_species Human \
+  --marker_prior_organ Blood \
+  --f1_db_celltype_col cell_type \
+  --f1_db_gene_col marker_genes \
+  --cas_aggregation_method leiden \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 \
+  --threads 90 \
+  --use_f1 \
+  --n_top_genes 50 \
+  --f1_groupby_key ctpt_consensus_prediction \
+  --mps_bonus_weight 0 \
+  --use_confidence
+```
+
+### Step 3: Interpretable, Ready-to-Use Outputs
+scBOA is designed to automatically generate a highly organized directory tree. Running the command above yields exactly 8 directories and 145 files, consisting entirely of lightweight .png visualizations and .csv summary tables. 
+
+To provide immediate proof of reproducibility, we have uploaded this exact output directory (10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/) directly to our GitHub repository. 
+
+Users can browse this folder on GitHub to instantly view the iterative refinement UMAPs, marker concordance scores, and parameter convergence plots. The high-level structure of this output is organized as follows:
+
+```
+10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/
+├── stage_1_bayesian_optimization/
+│   ├── 10kPBMC_biological_balanced_optimizer_convergence.png
+│   ├── 10kPBMC_biological_balanced_yield_scores_report.csv
+│   ├── refinement_depth_1/   # (Corresponding BO plots for iteration 1)
+│   ├── refinement_depth_2/   # (Corresponding BO plots for iteration 2)
+│   └── refinement_depth_3/   # (Corresponding BO plots for iteration 3)
+└── stage_2_final_analysis/
+    ├── sc_analysis_repro_cell_type_journey_summary.csv
+    ├── sc_analysis_repro_f1_annotation_summary.csv
+    ├── sc_analysis_repro_umap_combined_annotation_final.png
+    ├── refinement_depth_1/   # (Final analysis UMAPs & F1 scores for iteration 1)
+    ├── refinement_depth_2/   # (Final analysis UMAPs & F1 scores for iteration 2)
+    └── refinement_depth_3/   # (Final analysis UMAPs & F1 scores for iteration 3)
+```
+
+## Repository Structure
+
+```
+scBOA/
+├── .github/workflows/
+│   └── run_test.yml         # GitHub Action for automated testing
+├── example_data/
+│   ├── barcodes.tsv.gz      # Example Cell Ranger output
+│   ├── features.tsv.gz      # Example Cell Ranger output
+│   └── matrix.mtx.gz        # Example Cell Ranger output
+├── test_assets/
+│   └── Healthy_COVID19_PBMC.pkl  # Pre-trained CellTypist model for testing/examples
+├── .gitignore               # Specifies files for Git to ignore
+├── LICENSE                  # Project license (e.g., MIT)
+├── README.md                # This documentation file
+├── references/              # This marker gene driven cell type annotation
+├── requirements.txt         # Exact Python dependencies for reproducibility
+└── scBOA.py                 # The main executable Python script
+
+```
 
 ---
 
