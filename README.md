@@ -33,6 +33,7 @@ scBOA/
 ├── .gitignore               # Specifies files for Git to ignore
 ├── LICENSE                  # Project license (e.g., MIT)
 ├── README.md                # This documentation file
+├── references/              # This marker gene driven cell type annotation
 ├── requirements.txt         # Exact Python dependencies for reproducibility
 └── scBOA.py                 # The main executable Python script
 
@@ -134,6 +135,39 @@ python scBOA.py \
   --refinement_depth 3 
 ```
 
+Single-sample multi-function refinement analysis
+
+```bash
+python scBOA.py \
+  --data_dir /path/to/your/cellranger_output/ \
+  --output_dir ./my_analysis_output/ \
+  --model_path ./reference/Healthy_COVID19_PBMC.pkl \
+  --output_prefix sample \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --marker_gene_model non-mitochondrial \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --reference_marker_db ./references/combined_markers_summary.csv \
+  --marker_prior_species Human \
+  --marker_prior_organ Blood \
+  --use_f1 \
+  --f1_db_celltype_col cell_type \
+  --f1_db_gene_col marker_genes \
+  --f1_groupby_key ctpt_consensus_prediction \
+  --n_top_genes 50 \
+  --cas_aggregation_method leiden \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 \
+  --mps_bonus_weight 0 \
+  --use_confidence \
+  --threads 16
+```
+
 Multiple-sample refinement analysis:
 
 ```bash
@@ -154,6 +188,42 @@ python ./scBOA/scBOA.py \
   --min_cells_refinement 50 \
   --refinement_depth 3 
 ```
+
+Multiple-sample multi-function subsampling refinement analysis:
+
+```bash
+python ./scBOA/scBOA.py \
+  --multi_sample ./WT_CellRanger/ ./treated_CellRanger/ \
+  --output_dir ./my_analysis_output/ \
+  --model_path ./reference/Mouse_Whole_Brain.pkl \
+  --output_prefix WTTR \
+  --integration_method harmony \
+  --subsample_size 10000 \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --marker_gene_model non-mitochondrial \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --reference_marker_db ./references/combined_markers_summary.csv \
+  --marker_prior_species Mouse \
+  --marker_prior_organ Brain \
+  --use_f1 \
+  --f1_db_celltype_col cell_type \
+  --f1_db_gene_col marker_genes \
+  --f1_groupby_key ctpt_consensus_prediction \
+  --n_top_genes 50 \
+  --cas_aggregation_method leiden \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 \
+  --mps_bonus_weight 0 \
+  --use_confidence \
+  --threads 16
+```
+
 ---
 
 ## Command-Line Arguments Explained
@@ -165,8 +235,10 @@ python ./scBOA/scBOA.py \
 | `--data_dir <path>` | Path to 10x Genomics data. | **(Single-Sample Mode)** Provide the path to the directory containing `matrix.mtx.gz`, etc. |
 | `--multi_sample <path1> <path2>` | Two paths for WT and Treated 10x data. | **(Multi-Sample Mode)** Provide two paths, first for control/WT, second for treated/perturbed. This mode enables Harmony integration. |
 | `--output_dir <path>` | Path for all output files. | The main directory where all results, plots, and logs will be saved. Subdirectories for each stage will be created here. |
+| `--integration_method <str>` | Batch correction method. | Default: harmony. Choices: harmony, scanorama, bbknn. Used only when running in --multi_sample mode. |
 | `--model_path <path>` | Path to CellTypist model (`.pkl`). | **Required.** The pre-trained model used for cell type annotation. |
 | `--output_prefix <str>` | Base prefix for Stage 1 output files. | Default: `bayesian_opt`. Used for naming optimization reports and plots. |
+| `--threads <int>` | Number of CPU threads. | Default: 16. Number of threads used for parallel processing (Scanpy njobs). |
 
 #### `Stage 1: Optimization Parameters`
 
@@ -174,6 +246,7 @@ python ./scBOA/scBOA.py \
 | :--- | :--- | :--- |
 | `--seed <int>` | Global random seed for reproducibility. | Default: `42`. Ensures that results are identical if run with the same data and parameters. |
 | `--n_calls <int>` | Number of trials for EACH optimization strategy. | Default: `50`. The script runs three strategies (Explore, Exploit, BO-EI), so `50` means a total of 150 optimization steps. |
+| `--subsample_size <int>` | (Scalability) Max cells for Stage 1. | (Optional) Subsamples large datasets (e.g., 10000) for rapid BO parameter discovery. Stage 2 will automatically apply the optimal parameters to the full dataset. |
 | `--model_type <choice>` | Optimization objective function type. | `biological`: Balances annotation agreement (CAS) and marker specificity (MCS). <br> `structural` (default): Adds cluster separation (Silhouette Score) to the biological metrics for more robust clusters. <br> `silhouette`: Optimizes solely for the best Silhouette Score. |
 | `--marker_gene_model <choice>` | Genes to use for MCS calculation. | `all`: All genes are considered. <br> `non-mitochondrial` (default): Excludes mitochondrial genes, which often act as non-specific markers of cell stress. |
 | `--target <choice>` | Optimization target metric. | `all` (default): Runs a single, balanced optimization (equivalent to `--model_type`). <br> `weighted_cas`, `simple_cas`, `mcs`: Runs optimization targeting only that specific metric. |
@@ -204,8 +277,18 @@ python ./scBOA/scBOA.py \
 | `--fig_dpi <int>` | Resolution (DPI) for saved figures. | Default: `500`. |
 | `--n_pcs_compute <int>` | Number of principal components to compute. | Default: `105`. A higher number allows for a wider search space for the optimal `n_pcs`. |
 | `--n_top_genes <int>` | Number of top marker genes to show. | Default: `5`. Affects dot plots, heatmaps, and marker gene tables. |
-| `--cellmarker_db <path>` | Path to a cell marker database (.csv). | **(Optional)** If provided, performs a "manual-style" annotation based on cluster marker genes and calculates a Marker Capture Score. |
-| `--n_degs_for_capture <int>` | DEGs per cluster for Marker Capture Score. | Default: `50`. Number of top differentially expressed genes used to match against the marker DB. |
+| `--reference_marker_db <path>` | Path to marker DB (.csv). | (Optional) Path to reference database (e.g., PanglaoDB/CellMarker) used for F1 scoring and manual-style annotation. |
+| `--marker_prior_species <str>` | Species filter for Marker. | Default: Human. Filters the database to only use markers for this species. |
+| `--marker_prior_organ <str>` | Organ filter for Marker. | Default: Blood. Filters the database to only use markers for this tissue type. |
+| `--use_f1` | Enable F1 Additive Bonus. | Flag. If provided, calculates F1 similarity against the reference_marker_db and includes it in Stage 1 optimization. |
+| `--mps_bonus_weight <float>` | Weight for the F1 Additive Bonus. | Default: 0.2. Adds a max 20% bonus to the objective score based on F1 performance. |
+| `--use_confidence` | Enable Confidence Factor. | Flag. Includes the average CellTypist prediction confidence into the geometric mean calculation of the BO objective function. |
+| `--f1_db_celltype_col <str>` | Cell type column name. | (Optional) Column name in the Marker containing cell types (auto-detected if blank). |
+| `--f1_db_gene_col <str>` | Gene column name. | (Optional) Column name in the Marker DB containing gene lists (auto-detected if blank). |
+| `---f1_groupby_key <str>` | Annotation key for F1 scoring. | Default: ctpt_consensus_prediction. Grouping level used when extracting markers to compare against the DB. |
+| `--marker_score_metric <choice>` | Metric for manual annotation. | Default: f1. Choices: f1, jaccard, capture. |
+| `--n_degs_for_capture <int>` | DEGs for Marker Capture Score. | Default: 5. Top DEGs used to match against the DB if evaluating capture scores. |
+| `--n_degs_for_capture <int>` | DEGs for Marker Capture Score. | Default: 5. Top DEGs used to match against the DB if evaluating capture scores. |
 | `--cas_refine_threshold <float>`| CAS threshold to trigger refinement. | **(Optional)** If a cluster's CAS score is below this value (e.g., `90`), its cells are pooled for a new round of optimization and analysis. |
 | `--refinement_depth <int>` | Maximum number of refinement iterations. | Default: `1`. If refinement is triggered, this controls how many times the process can repeat on the subsequently failing cells. |
 | `--min_cells_refinement <int>` | Min cells required to trigger refinement. | Default: `100`. Prevents the pipeline from attempting refinement if the pool of low-quality cells is too small for valid statistical analysis. |
