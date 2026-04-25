@@ -3,21 +3,28 @@ anndata
 h5py
 numpy<2.0.0
 pandas
-scanpy
+scanpy>=1.9.0
 
 # Machine learning and optimization
 joblib
 scikit-learn
 scikit-misc
-scikit-optimize
+scikit-optimize>=0.10.2
 
 # Single-cell specific tools
-celltypist
-harmonypy
+celltypist>=1.5.0
+leidenalg
+python-igraph
 umap-learn
+
+# Multi-sample Integration tools
+harmonypy>=0.0.10
+scanorama>=1.7.4
+bbknn>=1.6.0
 
 # Plotting and utilities
 matplotlib
 seaborn
 session-info
 tqdm
+openpyxl
