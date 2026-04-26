@@ -355,7 +355,8 @@ Using the output from Cell Ranger, execute the complete scBOA pipeline using the
 
 You can execute this via Local Python or Docker.
 
-Option A: Execution via Local Python
+#### Option A: Execution via Local Python
+
 (Assuming you are inside the cloned scBOA repository)
 
 ```bash
@@ -388,7 +389,8 @@ python ./scBOA.py \
   --mps_bonus_weight 0 \
   --use_confidence
 ```
-Option B: Execution via Docker (Zero-Installation)
+#### Option B: Execution via Docker (Zero-Installation)
+
 (Assuming your terminal is currently in the scBOA folder containing your data and models)
 Notice the -v $(pwd):/data flag. This links your current folder to Docker. Therefore, all file paths in the command must begin with /data/.
 
