@@ -351,8 +351,12 @@ cellranger count \
 
 ### Step 2: Runnable scBOA Execution
 Using the output from Cell Ranger, execute the complete scBOA pipeline using the following single command. This command incorporates the identical parameters used in our manuscript, including Bayesian Optimization (50 calls), multi-stage refinement (depth 3), and integration of marker gene F1-scoring.
-
 (Ensure you have downloaded the Healthy_COVID19_PBMC.pkl model and have the combined_markers_summary.csv file from the references/ folder).
+
+You can execute this via Local Python or Docker.
+
+Option A: Execution via Local Python
+(Assuming you are inside the cloned scBOA repository)
 
 ```bash
 python ./scBOA.py \
@@ -369,6 +373,40 @@ python ./scBOA.py \
   --hvg_max_mean 3.0 \
   --hvg_min_disp 0.3 \
   --reference_marker_db ./references/combined_markers_summary.csv \
+  --marker_prior_species Human \
+  --marker_prior_organ Blood \
+  --f1_db_celltype_col cell_type \
+  --f1_db_gene_col marker_genes \
+  --cas_aggregation_method leiden \
+  --cas_refine_threshold 50 \
+  --min_cells_refinement 50 \
+  --refinement_depth 3 \
+  --threads 90 \
+  --use_f1 \
+  --n_top_genes 50 \
+  --f1_groupby_key ctpt_consensus_prediction \
+  --mps_bonus_weight 0 \
+  --use_confidence
+```
+Option B: Execution via Docker (Zero-Installation)
+(Assuming your terminal is currently in the scBOA folder containing your data and models)
+Notice the -v $(pwd):/data flag. This links your current folder to Docker. Therefore, all file paths in the command must begin with /data/.
+
+```bash
+docker run --rm -v $(pwd):/data qiangsu/scboa:latest scboa \
+  --data_dir /data/pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
+  --output_dir /data/10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/ \
+  --model_path /data/models/Healthy_COVID19_PBMC.pkl \
+  --output_prefix 10kPBMC \
+  --seed 42 \
+  --n_calls 50 \
+  --target all \
+  --model_type biological \
+  --marker_gene_model non-mitochondrial \
+  --hvg_min_mean 0.0125 \
+  --hvg_max_mean 3.0 \
+  --hvg_min_disp 0.3 \
+  --reference_marker_db /data/references/combined_markers_summary.csv \
   --marker_prior_species Human \
   --marker_prior_organ Blood \
   --f1_db_celltype_col cell_type \
