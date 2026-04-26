@@ -8,6 +8,27 @@
 
 **scBOA** is an integrated, two-stage computational pipeline for single-cell RNA sequencing (scRNA-seq) analysis. It automates the discovery of optimal processing parameters using Bayesian Optimization (Stage 1) and then applies these parameters to a comprehensive downstream analysis workflow (Stage 2). The pipeline also features an optional multi-level refinement process (Stage 3/4) to iteratively re-analyze and improve annotations for low-confidence cell clusters.
 
+## Repository Structure
+
+```
+scBOA/
+├── .github/workflows/
+│   └── run_test.yml         # GitHub Action for automated testing
+├── example_data/
+│   ├── barcodes.tsv.gz      # Example Cell Ranger output
+│   ├── features.tsv.gz      # Example Cell Ranger output
+│   └── matrix.mtx.gz        # Example Cell Ranger output
+├── test_assets/
+│   └── Healthy_COVID19_PBMC.pkl  # Pre-trained CellTypist model for testing/examples
+├── .gitignore               # Specifies files for Git to ignore
+├── LICENSE                  # Project license (e.g., MIT)
+├── README.md                # This documentation file
+├── references/              # This marker gene driven cell type annotation
+├── requirements.txt         # Exact Python dependencies for reproducibility
+└── scBOA.py                 # The main executable Python script
+
+```
+
 ## Key Features
 
 -   **Automated Parameter Tuning**: Uses Bayesian Optimization to find the best parameters (`n_highly_variable_genes`, `n_pcs`, `n_neighbors`, `resolution`) for clustering and cell type annotation.
@@ -447,27 +468,6 @@ Users can browse this folder on GitHub to instantly view the iterative refinemen
     ├── refinement_depth_1/   # (Final analysis UMAPs & F1 scores for iteration 1)
     ├── refinement_depth_2/   # (Final analysis UMAPs & F1 scores for iteration 2)
     └── refinement_depth_3/   # (Final analysis UMAPs & F1 scores for iteration 3)
-```
-
-## Repository Structure
-
-```
-scBOA/
-├── .github/workflows/
-│   └── run_test.yml         # GitHub Action for automated testing
-├── example_data/
-│   ├── barcodes.tsv.gz      # Example Cell Ranger output
-│   ├── features.tsv.gz      # Example Cell Ranger output
-│   └── matrix.mtx.gz        # Example Cell Ranger output
-├── test_assets/
-│   └── Healthy_COVID19_PBMC.pkl  # Pre-trained CellTypist model for testing/examples
-├── .gitignore               # Specifies files for Git to ignore
-├── LICENSE                  # Project license (e.g., MIT)
-├── README.md                # This documentation file
-├── references/              # This marker gene driven cell type annotation
-├── requirements.txt         # Exact Python dependencies for reproducibility
-└── scBOA.py                 # The main executable Python script
-
 ```
 
 ---
