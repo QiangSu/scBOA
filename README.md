@@ -417,7 +417,7 @@ Notice the -v $(pwd):/data flag. This links your current folder to Docker. There
 
 ```bash
 docker run --rm \
-  -v /home/data/qs:/home/data/qs \
+  -v /path/to/your/data \
   -v $(pwd):/workspace \
   -w /workspace \
   sha256:9739ca1d2a25af0e2aa885aac32dad774fe3ebd1a074a4e9e97764af6b1763cc \
