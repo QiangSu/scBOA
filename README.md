@@ -416,10 +416,15 @@ python ./scBOA.py \
 Notice the -v $(pwd):/data flag. This links your current folder to Docker. Therefore, all file paths in the command must begin with /data/.
 
 ```bash
-docker run --rm -v $(pwd):/data qiangsu/scboa:latest scboa \
-  --data_dir /data/pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
-  --output_dir /data/10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/ \
-  --model_path /data/models/Healthy_COVID19_PBMC.pkl \
+docker run --rm \
+  -v /home/data/qs:/home/data/qs \
+  -v $(pwd):/workspace \
+  -w /workspace \
+  sha256:9739ca1d2a25af0e2aa885aac32dad774fe3ebd1a074a4e9e97764af6b1763cc \
+  /app/scBOA.py \
+  --data_dir /home/data/scRNA_seq_data_public/pbmc_10k_v3_fastqs/cellranger_output/pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
+  --output_dir ./10kPBMC_BOCR_biological_docker_output1/ \
+  --model_path /home/data/.celltypist/data/models/Healthy_COVID19_PBMC.pkl \
   --output_prefix 10kPBMC \
   --seed 42 \
   --n_calls 50 \
@@ -429,7 +434,7 @@ docker run --rm -v $(pwd):/data qiangsu/scboa:latest scboa \
   --hvg_min_mean 0.0125 \
   --hvg_max_mean 3.0 \
   --hvg_min_disp 0.3 \
-  --reference_marker_db /data/references/combined_markers_summary.csv \
+  --reference_marker_db /home/data/references/combined_markers_summary.csv \
   --marker_prior_species Human \
   --marker_prior_organ Blood \
   --f1_db_celltype_col cell_type \
