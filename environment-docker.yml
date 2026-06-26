@@ -1,0 +1,42 @@
+name: scboa
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+
+  # Core scientific stack
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - scikit-optimize
+  - statsmodels
+  - joblib
+  - tqdm
+
+  # Single-cell analysis
+  - scanpy
+  - anndata
+  - h5py
+  - zarr
+  - umap-learn
+  - leidenalg
+  - python-igraph
+
+  # Plotting
+  - matplotlib
+  - seaborn
+
+  # Optimization / annotation / QC
+  - optuna
+  - harmonypy
+  - celltypist
+  - scrublet
+  - python-annoy
+
+  # Optional integration backends used by scBOA
+  - scanorama
+  - bbknn
