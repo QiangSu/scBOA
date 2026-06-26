@@ -84,7 +84,7 @@ search_space = [
     Integer(200, 20000, name='n_hvg'),
     Integer(10, 100, name='n_pcs'),
     Integer(10, 50, name='n_neighbors'),
-    Real(0.2, 2.0, name='resolution')
+    Real(0.5, 2.0, name='resolution')
 ]
 
 # --- Global variables for Stage 1 ---
@@ -102,6 +102,108 @@ def make_batches_contiguous(adata, batch_key='sample'):
         return adata
     order = np.argsort(adata.obs[batch_key].astype(str).values, kind='stable')
     return adata[order].copy()
+
+def compute_soft_cas_from_probability_matrix(probability_matrix, clusters, consensus_labels=None):
+    """
+    Compute soft annotation concordance scores using the full CellTypist probability matrix.
+
+    Two related metrics are returned:
+
+    1. soft_cas_dot_pct:
+       For each Leiden cluster, compute the mean CellTypist probability distribution Q_c(t).
+       For each cell i in cluster c, compute dot(P_i, Q_c).
+       This measures agreement between the cell-level probability vector and the
+       cluster-level soft identity distribution.
+
+       soft_cas_dot = mean_i sum_t P_i(t) * Q_cluster(i)(t)
+
+    2. soft_cas_consensus_pct:
+       If consensus_labels are provided, compute the probability assigned by each cell
+       to its cluster consensus label.
+
+       soft_cas_consensus = mean_i P_i(consensus_label_cluster(i))
+
+    Parameters
+    ----------
+    probability_matrix : pandas.DataFrame or array-like
+        CellTypist probability matrix. Rows are cells; columns are cell types.
+    clusters : pandas.Series or array-like
+        Cluster ID for each cell, usually adata.obs['leiden'].
+    consensus_labels : pandas.Series or array-like, optional
+        Consensus label for each cell, usually adata.obs['ctpt_consensus_prediction'].
+
+    Returns
+    -------
+    dict
+        {
+            'soft_cas_dot_pct': float,
+            'soft_cas_consensus_pct': float
+        }
+    """
+    if probability_matrix is None:
+        return {
+            "soft_cas_dot_pct": 0.0,
+            "soft_cas_consensus_pct": 0.0
+        }
+
+    # Convert probability matrix to DataFrame if needed
+    if isinstance(probability_matrix, pd.DataFrame):
+        prob_df = probability_matrix.copy()
+    else:
+        prob_df = pd.DataFrame(probability_matrix)
+
+    clusters = pd.Series(clusters, index=prob_df.index if len(prob_df.index) == len(clusters) else None).astype(str)
+
+    if len(prob_df) != len(clusters):
+        raise ValueError(
+            f"Probability matrix has {len(prob_df)} rows but clusters has {len(clusters)} entries."
+        )
+
+    # Ensure row order consistency
+    clusters.index = prob_df.index
+
+    # ------------------------------------------------------------
+    # Metric 1: fully soft dot-product soft-CAS
+    # ------------------------------------------------------------
+    # Q_c(t): mean probability distribution for each cluster
+    cluster_soft_profiles = prob_df.groupby(clusters).mean()
+
+    # For each cell, retrieve the soft profile of its cluster
+    q_for_each_cell = cluster_soft_profiles.loc[clusters.values].to_numpy()
+    p_for_each_cell = prob_df.to_numpy()
+
+    # dot(P_i, Q_cluster(i))
+    dot_scores = np.sum(p_for_each_cell * q_for_each_cell, axis=1)
+    soft_cas_dot_pct = float(np.mean(dot_scores) * 100.0) if len(dot_scores) > 0 else 0.0
+
+    # ------------------------------------------------------------
+    # Metric 2: probability assigned to hard consensus label
+    # ------------------------------------------------------------
+    soft_cas_consensus_pct = 0.0
+    if consensus_labels is not None:
+        consensus_labels = pd.Series(
+            consensus_labels,
+            index=prob_df.index if len(prob_df.index) == len(consensus_labels) else None
+        ).astype(str)
+        consensus_labels.index = prob_df.index
+
+        consensus_probs = []
+        for cell_id, label in consensus_labels.items():
+            if label in prob_df.columns:
+                consensus_probs.append(prob_df.loc[cell_id, label])
+            else:
+                # If label not in probability columns, ignore it.
+                # This can happen if label naming was modified downstream.
+                consensus_probs.append(np.nan)
+
+        consensus_probs = pd.Series(consensus_probs).dropna()
+        if len(consensus_probs) > 0:
+            soft_cas_consensus_pct = float(consensus_probs.mean() * 100.0)
+
+    return {
+        "soft_cas_dot_pct": soft_cas_dot_pct,
+        "soft_cas_consensus_pct": soft_cas_consensus_pct
+    }
 
 # ==============================================================================
 # ==============================================================================
@@ -129,8 +231,11 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
     predictions = celltypist.annotate(adata_for_annot, model=model, majority_voting=False)
     adata_proc.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels']
 
-    # --- ADDED: Extract confidence and calculate mean for optimization ---
-    adata_proc.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+    # Keep CellTypist probability matrix for optional soft-CAS
+    ctpt_probability_matrix = predictions.probability_matrix.copy()
+
+    # Extract confidence and calculate mean for optimization
+    adata_proc.obs['ctpt_confidence'] = ctpt_probability_matrix.max(axis=1).values
     mean_confidence = adata_proc.obs['ctpt_confidence'].mean() * 100
 
     is_two_step_hvg = all(p is not None for p in [ARGS.hvg_min_mean, ARGS.hvg_max_mean, ARGS.hvg_min_disp])
@@ -216,6 +321,30 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
     total_cells = len(adata_proc.obs)
     total_matching = (adata_proc.obs['ctpt_individual_prediction'] == adata_proc.obs['ctpt_consensus_prediction']).sum()
     weighted_mean_cas = (total_matching / total_cells) * 100 if total_cells > 0 else 0.0
+    # ------------------------------------------------------------
+    # Optional soft-CAS metrics based on CellTypist probability matrix
+    # ------------------------------------------------------------
+    soft_cas_dot_pct = 0.0
+    soft_cas_consensus_pct = 0.0
+
+    if getattr(ARGS, 'compute_soft_cas', False) or getattr(ARGS, 'use_soft_cas', False):
+        try:
+            soft_scores = compute_soft_cas_from_probability_matrix(
+                probability_matrix=ctpt_probability_matrix,
+                clusters=adata_proc.obs['leiden'],
+                consensus_labels=adata_proc.obs['ctpt_consensus_prediction']
+            )
+            soft_cas_dot_pct = soft_scores["soft_cas_dot_pct"]
+            soft_cas_consensus_pct = soft_scores["soft_cas_consensus_pct"]
+
+            print(
+                f"     [Soft-CAS] dot-product={soft_cas_dot_pct:.2f}% | "
+                f"consensus-prob={soft_cas_consensus_pct:.2f}%"
+            )
+        except Exception as e:
+            print(f"     [WARNING] Could not calculate soft-CAS. Error: {e}")
+            soft_cas_dot_pct = 0.0
+            soft_cas_consensus_pct = 0.0
 
     simple_mean_cas = 0.0
     if ARGS.cas_aggregation_method == 'leiden':
@@ -354,8 +483,11 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
         'n_consensus_labels': adata_proc.obs['ctpt_consensus_prediction'].nunique(),
         'weighted_mean_cas': weighted_mean_cas,
         'simple_mean_cas': simple_mean_cas,
+        'soft_cas_dot_pct': soft_cas_dot_pct,
+        'soft_cas_consensus_pct': soft_cas_consensus_pct,
         'mean_mcs': mean_mcs,
         'mean_f1': mean_f1,
+        'mean_confidence': mean_confidence,
         'silhouette_score_original': silhouette_avg,
         'silhouette_score_rescaled': rescaled_silhouette
     })
@@ -374,24 +506,64 @@ def objective_function(n_hvg, n_pcs, n_neighbors, resolution):
         base_score = mean_mcs
     elif CURRENT_OPTIMIZATION_TARGET == 'balanced':
         epsilon = 1e-6
-        # --- NEW: Include confidence in geometric mean if flag is set ---
-        conf_factor = (mean_confidence / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) else 1.0
-        
+
+        # Optional confidence factor.
+        conf_factor = (
+            (mean_confidence / 100 + epsilon)
+            if getattr(ARGS, 'use_confidence', False)
+            else 1.0
+        )
+
+        # Optional soft-CAS factor.
+        # If --use_soft_cas is False, this is neutral and does not affect the score.
+        soft_cas_factor = (
+            (soft_cas_dot_pct / 100 + epsilon)
+            if getattr(ARGS, 'use_soft_cas', False)
+            else 1.0
+        )
+
         if ARGS.model_type == 'structural':
-            power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
+            # Base structural objective:
+            # weighted CAS, simple CAS, MCS, silhouette.
+            # Optional factors:
+            # confidence, soft-CAS.
+            n_factors = 4
+            if getattr(ARGS, 'use_confidence', False):
+                n_factors += 1
+            if getattr(ARGS, 'use_soft_cas', False):
+                n_factors += 1
+
+            power = 1.0 / n_factors
+
             base_score = (((weighted_mean_cas / 100 + epsilon) *
                            (simple_mean_cas / 100 + epsilon) *
                            (mean_mcs / 100 + epsilon) *
-                           (rescaled_silhouette + epsilon) * 
-                           conf_factor) ** power) * 100
+                           (rescaled_silhouette + epsilon) *
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
+
         elif ARGS.model_type == 'silhouette':
+            # Keep silhouette-only mode unchanged.
             base_score = silhouette_avg
+
         else:  # 'biological'
-            power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
+            # Base biological objective:
+            # weighted CAS, simple CAS, MCS.
+            # Optional factors:
+            # confidence, soft-CAS.
+            n_factors = 3
+            if getattr(ARGS, 'use_confidence', False):
+                n_factors += 1
+            if getattr(ARGS, 'use_soft_cas', False):
+                n_factors += 1
+
+            power = 1.0 / n_factors
+
             base_score = (((weighted_mean_cas / 100 + epsilon) *
                            (simple_mean_cas / 100 + epsilon) *
-                           (mean_mcs / 100 + epsilon) * 
-                           conf_factor) ** power) * 100
+                           (mean_mcs / 100 + epsilon) *
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
     else:
         raise ValueError(f"Invalid optimization target: '{CURRENT_OPTIMIZATION_TARGET}'")
 
@@ -424,8 +596,11 @@ def evaluate_final_metrics(params_dict):
     predictions = celltypist.annotate(adata_for_annot, model=model, majority_voting=False)
     adata_final.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels']
 
-    # --- ADDED: Extract confidence and calculate mean ---
-    adata_final.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+    # Keep CellTypist probability matrix for optional soft-CAS
+    ctpt_probability_matrix = predictions.probability_matrix.copy()
+
+    # Extract confidence and calculate mean
+    adata_final.obs['ctpt_confidence'] = ctpt_probability_matrix.max(axis=1).values
     mean_confidence = adata_final.obs['ctpt_confidence'].mean() * 100
 
     is_two_step_hvg = all(p is not None for p in [ARGS.hvg_min_mean, ARGS.hvg_max_mean, ARGS.hvg_min_disp])
@@ -489,7 +664,37 @@ def evaluate_final_metrics(params_dict):
 
     cluster2label = adata_final.obs.groupby('leiden')['ctpt_individual_prediction'].agg(lambda x: x.value_counts().idxmax())
     adata_final.obs['ctpt_consensus_prediction'] = adata_final.obs['leiden'].map(cluster2label)
-    total_cells, total_matching = len(adata_final.obs), (adata_final.obs['ctpt_individual_prediction'] == adata_final.obs['ctpt_consensus_prediction']).sum()
+
+    # ------------------------------------------------------------
+    # Optional soft-CAS metrics based on CellTypist probability matrix
+    # ------------------------------------------------------------
+    soft_cas_dot_pct = 0.0
+    soft_cas_consensus_pct = 0.0
+
+    if getattr(ARGS, 'compute_soft_cas', False) or getattr(ARGS, 'use_soft_cas', False):
+        try:
+            soft_scores = compute_soft_cas_from_probability_matrix(
+                probability_matrix=ctpt_probability_matrix,
+                clusters=adata_final.obs['leiden'],
+                consensus_labels=adata_final.obs['ctpt_consensus_prediction']
+            )
+            soft_cas_dot_pct = soft_scores["soft_cas_dot_pct"]
+            soft_cas_consensus_pct = soft_scores["soft_cas_consensus_pct"]
+
+            print(
+                f"     [Final Soft-CAS] dot-product={soft_cas_dot_pct:.2f}% | "
+                f"consensus-prob={soft_cas_consensus_pct:.2f}%"
+            )
+
+        except Exception as e:
+            print(f"     [WARNING] Final soft-CAS calculation failed. Error: {e}")
+            soft_cas_dot_pct = 0.0
+            soft_cas_consensus_pct = 0.0
+
+    total_cells, total_matching = len(adata_final.obs), (
+        adata_final.obs['ctpt_individual_prediction'] ==
+        adata_final.obs['ctpt_consensus_prediction']
+    ).sum()
     weighted_cas = (total_matching / total_cells) * 100 if total_cells > 0 else 0.0
 
     simple_cas = 0.0
@@ -524,23 +729,67 @@ def evaluate_final_metrics(params_dict):
         mean_mcs = 0.0
 
     epsilon = 1e-6
-    # --- NEW: Include confidence in geometric mean if flag is set ---
-    conf_factor = (mean_confidence / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) else 1.0
+
+    # Optional confidence factor
+    conf_factor = (
+        (mean_confidence / 100 + epsilon)
+        if getattr(ARGS, 'use_confidence', False)
+        else 1.0
+    )
+
+    # Optional soft-CAS factor.
+    # If --use_soft_cas is False, this remains neutral.
+    soft_cas_factor = (
+        (soft_cas_dot_pct / 100 + epsilon)
+        if getattr(ARGS, 'use_soft_cas', False)
+        else 1.0
+    )
     
     if ARGS.model_type == 'structural':
-        power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
-        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * (rescaled_silhouette + epsilon) * conf_factor) ** power) * 100
+        n_factors = 4
+        if getattr(ARGS, 'use_confidence', False):
+            n_factors += 1
+        if getattr(ARGS, 'use_soft_cas', False):
+            n_factors += 1
+
+        power = 1.0 / n_factors
+
+        balanced_score = (((weighted_cas / 100 + epsilon) *
+                           (simple_cas / 100 + epsilon) *
+                           (mean_mcs / 100 + epsilon) *
+                           (rescaled_silhouette + epsilon) *
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
+
     elif ARGS.model_type == 'silhouette':
         balanced_score = silhouette_avg
-    else: # 'biological' model
-        power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
-        balanced_score = (((weighted_cas / 100 + epsilon) * (simple_cas / 100 + epsilon) * (mean_mcs / 100 + epsilon) * conf_factor) ** power) * 100
+
+    else:  # 'biological' model
+        n_factors = 3
+        if getattr(ARGS, 'use_confidence', False):
+            n_factors += 1
+        if getattr(ARGS, 'use_soft_cas', False):
+            n_factors += 1
+
+        power = 1.0 / n_factors
+
+        balanced_score = (((weighted_cas / 100 + epsilon) *
+                           (simple_cas / 100 + epsilon) *
+                           (mean_mcs / 100 + epsilon) *
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
 
     return {
-        "weighted_mean_cas": weighted_cas, "simple_mean_cas": simple_cas, "mean_mcs": mean_mcs,
-        "mean_confidence": mean_confidence, # <-- ADDED
-        "silhouette_score_original": silhouette_avg, "rescaled_silhouette_score": rescaled_silhouette,
-        "balanced_score": balanced_score, "n_individual_labels": adata_final.obs['ctpt_individual_prediction'].nunique(),
+        "weighted_mean_cas": weighted_cas,
+        "simple_mean_cas": simple_cas,
+        "soft_cas_dot_pct": soft_cas_dot_pct,
+        "soft_cas_consensus_pct": soft_cas_consensus_pct,
+        "mean_mcs": mean_mcs,
+        "mean_confidence": mean_confidence,
+        "silhouette_score_original": silhouette_avg,
+        "rescaled_silhouette_score": rescaled_silhouette,
+        "balanced_score": balanced_score,
+        "n_individual_labels": adata_final.obs['ctpt_individual_prediction'].nunique(),
         "n_consensus_labels": adata_final.obs['ctpt_consensus_prediction'].nunique()
     }, adata_final
 
@@ -563,6 +812,8 @@ def print_final_report(target_name, params, metrics, winning_strategy):
     print(
         f"  - Corresponding Weighted Mean CAS: {metrics['weighted_mean_cas']:.2f}%\n"
         f"  - Corresponding Simple Mean CAS: {metrics['simple_mean_cas']:.2f}%\n"
+        f"  - Corresponding Soft-CAS dot-product: {metrics.get('soft_cas_dot_pct', 0.0):.2f}%\n"
+        f"  - Corresponding Soft-CAS consensus probability: {metrics.get('soft_cas_consensus_pct', 0.0):.2f}%\n"
         f"  - Corresponding Mean MCS: {metrics['mean_mcs']:.2f}%\n"
         f"  - Corresponding Mean F1: {metrics.get('mean_f1', 0.0):.2f}%\n"
         f"  - Corresponding Mean Confidence: {metrics.get('mean_confidence', 0.0):.2f}%\n"
@@ -592,6 +843,8 @@ def save_results_to_file(output_path, target_name, params, metrics, winning_stra
         f.write(
             f"Corresponding_weighted_mean_cas_pct: {metrics['weighted_mean_cas']:.2f}\n"
             f"Corresponding_simple_mean_cas_pct: {metrics['simple_mean_cas']:.2f}\n"
+            f"Corresponding_soft_cas_dot_pct: {metrics.get('soft_cas_dot_pct', 0.0):.2f}\n"
+            f"Corresponding_soft_cas_consensus_pct: {metrics.get('soft_cas_consensus_pct', 0.0):.2f}\n"
             f"Corresponding_mean_mcs_pct: {metrics['mean_mcs']:.2f}\n"
             f"Corresponding_mean_f1_pct: {metrics.get('mean_f1', 0.0):.2f}\n"
             f"Corresponding_mean_confidence_pct: {metrics.get('mean_confidence', 0.0):.2f}\n"
@@ -618,6 +871,8 @@ def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
                 'n_consensus_labels',
                 'weighted_mean_cas',
                 'simple_mean_cas',
+                'soft_cas_dot_pct',
+                'soft_cas_consensus_pct',
                 'mean_mcs',
                 'mean_f1',
                 'mean_confidence',
@@ -631,27 +886,64 @@ def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
     final_df = pd.concat(all_dfs, ignore_index=True)
     epsilon = 1e-6
 
-    required_cols = ['weighted_mean_cas', 'simple_mean_cas', 'mean_mcs', 'silhouette_score_rescaled', 'silhouette_score_original']
+    required_cols = [
+        'weighted_mean_cas',
+        'simple_mean_cas',
+        'mean_mcs',
+        'silhouette_score_rescaled',
+        'silhouette_score_original'
+    ]
+
     if all(col in final_df.columns for col in required_cols):
         # 1. Calculate Base Metric
-        # --- NEW: Safely add confidence factor ---
-        conf_factor = (final_df['mean_confidence'].fillna(0) / 100 + epsilon) if getattr(ARGS, 'use_confidence', False) and 'mean_confidence' in final_df.columns else 1.0
+
+        # Optional confidence factor
+        conf_factor = (
+            (final_df['mean_confidence'].fillna(0) / 100 + epsilon)
+            if getattr(ARGS, 'use_confidence', False) and 'mean_confidence' in final_df.columns
+            else 1.0
+        )
+
+        # Optional soft-CAS factor
+        soft_cas_factor = (
+            (final_df['soft_cas_dot_pct'].fillna(0) / 100 + epsilon)
+            if getattr(ARGS, 'use_soft_cas', False) and 'soft_cas_dot_pct' in final_df.columns
+            else 1.0
+        )
         
         if ARGS.model_type == 'structural':
-            power = 1/5.0 if getattr(ARGS, 'use_confidence', False) else 1/4.0
+            n_factors = 4
+            if getattr(ARGS, 'use_confidence', False):
+                n_factors += 1
+            if getattr(ARGS, 'use_soft_cas', False):
+                n_factors += 1
+
+            power = 1.0 / n_factors
+
             base_gmean = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
                            (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
                            (final_df['mean_mcs'].fillna(0) / 100 + epsilon) *
                            (final_df['silhouette_score_rescaled'].fillna(0) + epsilon) *
-                           conf_factor) ** power) * 100
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
+
         elif ARGS.model_type == 'silhouette':
             base_gmean = final_df['silhouette_score_original']
-        else: # 'biological' model
-            power = 1/4.0 if getattr(ARGS, 'use_confidence', False) else 1/3.0
+
+        else:  # 'biological' model
+            n_factors = 3
+            if getattr(ARGS, 'use_confidence', False):
+                n_factors += 1
+            if getattr(ARGS, 'use_soft_cas', False):
+                n_factors += 1
+
+            power = 1.0 / n_factors
+
             base_gmean = (((final_df['weighted_mean_cas'].fillna(0) / 100 + epsilon) *
                            (final_df['simple_mean_cas'].fillna(0) / 100 + epsilon) *
                            (final_df['mean_mcs'].fillna(0) / 100 + epsilon) *
-                           conf_factor) ** power) * 100
+                           conf_factor *
+                           soft_cas_factor) ** power) * 100
         
         # 2. Add Bonus if F1 is used
         if ARGS.use_f1 and 'mean_f1' in final_df.columns:
@@ -673,6 +965,8 @@ def generate_yield_csv(results_dict, target_metric, output_dir, output_prefix):
         'balanced_score_gmean',
         'weighted_mean_cas',
         'simple_mean_cas',
+        'soft_cas_dot_pct',
+        'soft_cas_consensus_pct',
         'mean_mcs',
         'mean_f1',
         'mean_confidence',
@@ -697,7 +991,13 @@ def plot_optimizer_paths_tsne(results, target_metric, output_dir, output_prefix,
     fig, ax = plt.subplots(figsize=(12, 10)); ax.grid(False)
     cluster_labels = KMeans(n_clusters=5, random_state=RANDOM_SEED, n_init='auto').fit_predict(all_tsne_coords)
     ax.scatter(all_tsne_coords[:, 0], all_tsne_coords[:, 1], c=cluster_labels, cmap='tab10', alpha=0.2, s=80, zorder=1)
-    colors = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2"}
+    colors = {
+        'Exploit': '#d62728',
+        'BO-EI': "#fcbe06",
+        'Explore': "#9015d2",
+        'Optuna_TPE': '#1f77b4',
+        'Random': '#7f7f7f'
+    }
     for name, result in results.items():
         if name in colors:
             path_coords = np.array([tsne_coords_map[tuple(p)] for p in result.x_iters[:n_points_to_show]])
@@ -723,7 +1023,13 @@ def plot_optimizer_paths_umap(results, target_metric, output_dir, output_prefix,
     plt.style.use('seaborn-v0_8-white'); fig, ax = plt.subplots(figsize=(12, 10)); ax.grid(False)
     cluster_labels = KMeans(n_clusters=5, random_state=RANDOM_SEED, n_init='auto').fit_predict(all_umap_coords)
     ax.scatter(all_umap_coords[:, 0], all_umap_coords[:, 1], c=cluster_labels, cmap='tab10', alpha=0.2, s=80, zorder=1)
-    colors = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2"}
+    colors = {
+        'Exploit': '#d62728',
+        'BO-EI': "#fcbe06",
+        'Explore': "#9015d2",
+        'Optuna_TPE': '#1f77b4',
+        'Random': '#7f7f7f'
+    }
 
     for name, result in results.items():
         if name in colors:
@@ -743,7 +1049,7 @@ def plot_optimizer_convergence(results, target_metric, output_dir, output_prefix
     """(Stage 1) Generates a convergence plot with publication-quality styling."""
     print("\n--- Generating convergence plot with publication-quality style ---")
     plt.style.use('seaborn-v0_8-white'); fig, ax = plt.subplots(figsize=(22, 10)); ax.grid(False)
-    colors, font_size, max_x = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2"}, 28, 0
+    colors, font_size, max_x = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2", 'Optuna_TPE': '#1f77b4'}, 28, 0
     for name, result in results.items():
         if name in colors:
             best_so_far = np.maximum.accumulate(-np.array(result.func_vals))
@@ -761,7 +1067,7 @@ def plot_exact_scores_per_trial(results, target_metric, output_dir, output_prefi
     """(Stage 1) Generates a plot of the exact score for each trial with publication-quality styling."""
     print("\n--- Generating per-trial exact score plot with publication-quality style ---")
     plt.style.use('seaborn-v0_8-white'); fig, ax = plt.subplots(figsize=(22, 10)); ax.grid(False)
-    colors, font_size, max_x = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2"}, 28, 0
+    colors, font_size, max_x = {'Exploit': '#d62728', 'BO-EI': "#fcbe06", 'Explore': "#9015d2", 'Optuna_TPE': '#1f77b4'}, 28, 0
     for name, result in results.items():
         if name in colors:
             exact_scores = -np.array(result.func_vals)
@@ -1176,10 +1482,8 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     sc.pp.scale(adata, max_value=10)
 
     print("\n--- Step 4: Dimensionality Reduction and Clustering (using optimal params) ---")
-    # --- BUG FIX START ---
     # Robustly cap the number of PCs by both cells and genes, crucial for refinement runs.
     n_pcs_to_compute = min(cli_args.n_pcs_compute, adata.n_obs - 1, adata.n_vars - 1)
-    # --- BUG FIX END ---
     n_pcs_to_use = min(optimal_params['n_pcs'], n_pcs_to_compute)
     sc.tl.pca(adata, svd_solver='arpack', n_comps=n_pcs_to_compute, random_state=cli_args.seed)
     sc.pl.pca_variance_ratio(adata, log=True, n_pcs=n_pcs_to_compute, save=f"_{cli_args.final_run_prefix}_pca_variance.png", show=False); plt.close()
@@ -1196,9 +1500,10 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     print("[INFO] Annotating cells using the full log-normalized transcriptome (from adata.raw)...")
     predictions = celltypist.annotate(adata.raw.to_adata(), model=model_ct, majority_voting=False)
     adata.obs['ctpt_individual_prediction'] = predictions.predicted_labels['predicted_labels'].astype('category')
-
+    # Keep CellTypist probability matrix for optional soft-CAS
+    ctpt_probability_matrix = predictions.probability_matrix.copy()
     # Robustly extract the confidence score directly from the probability matrix
-    adata.obs['ctpt_confidence'] = predictions.probability_matrix.max(axis=1).values
+    adata.obs['ctpt_confidence'] = ctpt_probability_matrix.max(axis=1).values
 
     # Existing UMAP for cell types
     sc.pl.umap(adata, color='ctpt_individual_prediction', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, title=f'Per-Cell CellTypist Annotation ({adata.obs["ctpt_individual_prediction"].nunique()} types)', show=False, size=10)
@@ -1209,8 +1514,134 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     plt.savefig(os.path.join(output_dir, f"{cli_args.final_run_prefix}_umap_per_cell_confidence.png"), dpi=cli_args.fig_dpi, bbox_inches='tight')
     plt.close()
 
+    if getattr(cli_args, 'min_confidence', None) is not None:
+        thr = float(cli_args.min_confidence)
+        print(f"\n--- [Confidence Filter] Applying min_confidence = {thr:.3f} ---")
+
+        # (a) Save ORIGINAL (pre-filter) per-cell annotation CSV
+        orig_csv = os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_original_annotations_preFilter.csv"
+        )
+        adata.obs[['ctpt_individual_prediction', 'ctpt_confidence']].to_csv(orig_csv)
+        print(f"       -> Saved ORIGINAL annotation CSV: {orig_csv}")
+
+        # (b) Save ORIGINAL UMAP (all cells) — already plotted above, but make an
+        #     explicit copy with a clear suffix so users can compare side-by-side
+        sc.pl.umap(adata, color='ctpt_individual_prediction',
+                   palette=sc.pl.palettes.godsnot_102,
+                   legend_loc='right margin', legend_fontsize=8,
+                   title=f'ORIGINAL (all cells, n={adata.n_obs})',
+                   show=False, size=10)
+        _bold_right_margin_legend(os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_umap_original_preFilter.png"
+        )); plt.close()
+
+        # (c) Mark + filter
+        n_before = adata.n_obs
+        keep_mask = adata.obs['ctpt_confidence'].values >= thr
+        n_pass = int(keep_mask.sum())
+        n_drop = n_before - n_pass
+        print(f"       -> Cells before: {n_before} | passed: {n_pass} | dropped: {n_drop} "
+              f"({100.0 * n_drop / max(1, n_before):.2f}%)")
+
+        if n_pass < 50:
+            print(f"[WARNING] Only {n_pass} cells pass the confidence filter; "
+                  f"downstream steps may be unstable. Consider lowering --min_confidence.")
+
+        adata = adata[keep_mask, :].copy()
+
+        # Keep probability matrix aligned with filtered AnnData
+        ctpt_probability_matrix = ctpt_probability_matrix.loc[adata.obs_names].copy()
+
+        # Rebuild neighbors / UMAP / leiden on the filtered subset so downstream
+        # plots and CAS scoring reflect the passed cells only.
+        n_pcs_to_use = min(optimal_params['n_pcs'], adata.obsm['X_pca'].shape[1])
+        sc.pp.neighbors(adata, n_neighbors=optimal_params['n_neighbors'],
+                        n_pcs=n_pcs_to_use, random_state=cli_args.seed)
+        sc.tl.leiden(adata, resolution=optimal_params['resolution'],
+                     random_state=cli_args.seed)
+        sc.tl.umap(adata, random_state=cli_args.seed)
+
+        # (d) Save PASSED (post-filter) per-cell annotation CSV
+        pass_csv = os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_passed_annotations_postFilter.csv"
+        )
+        adata.obs[['ctpt_individual_prediction', 'ctpt_confidence']].to_csv(pass_csv)
+        print(f"       -> Saved PASSED annotation CSV: {pass_csv}")
+
+        # (e) Save PASSED UMAP
+        sc.pl.umap(adata, color='ctpt_individual_prediction',
+                   palette=sc.pl.palettes.godsnot_102,
+                   legend_loc='right margin', legend_fontsize=8,
+                   title=f'PASSED (confidence ≥ {thr:.2f}, n={adata.n_obs})',
+                   show=False, size=10)
+        _bold_right_margin_legend(os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_umap_passed_postFilter.png"
+        )); plt.close()
+
+        # Confidence UMAP on passed cells
+        sc.pl.umap(adata, color='ctpt_confidence', cmap='viridis',
+                   title=f'PASSED Confidence (≥ {thr:.2f})',
+                   show=False, size=10)
+        plt.savefig(os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_umap_passed_confidence.png"
+        ), dpi=cli_args.fig_dpi, bbox_inches='tight'); plt.close()
+
+        print("--- [Confidence Filter] Done. Downstream steps use PASSED cells only. ---\n")
+
     cluster2label = adata.obs.groupby('leiden')['ctpt_individual_prediction'].agg(lambda x: x.value_counts().idxmax()).to_dict()
     adata.obs['ctpt_consensus_prediction'] = adata.obs['leiden'].map(cluster2label).astype('category')
+
+    # ------------------------------------------------------------
+    # Optional soft-CAS sensitivity analysis
+    # ------------------------------------------------------------
+    soft_cas_dot_pct = 0.0
+    soft_cas_consensus_pct = 0.0
+
+    if getattr(cli_args, 'compute_soft_cas', False) or getattr(cli_args, 'use_soft_cas', False):
+        try:
+            soft_scores = compute_soft_cas_from_probability_matrix(
+                probability_matrix=ctpt_probability_matrix,
+                clusters=adata.obs['leiden'],
+                consensus_labels=adata.obs['ctpt_consensus_prediction']
+            )
+
+            soft_cas_dot_pct = soft_scores["soft_cas_dot_pct"]
+            soft_cas_consensus_pct = soft_scores["soft_cas_consensus_pct"]
+
+            soft_cas_df = pd.DataFrame([{
+                "soft_cas_dot_pct": soft_cas_dot_pct,
+                "soft_cas_consensus_pct": soft_cas_consensus_pct,
+                "n_cells": adata.n_obs,
+                "n_leiden_clusters": adata.obs['leiden'].nunique(),
+                "n_consensus_labels": adata.obs['ctpt_consensus_prediction'].nunique()
+            }])
+
+            soft_cas_out = os.path.join(
+                output_dir,
+                f"{cli_args.final_run_prefix}_soft_cas_summary.csv"
+            )
+            soft_cas_df.to_csv(soft_cas_out, index=False)
+
+            adata.uns["soft_cas_dot_pct"] = soft_cas_dot_pct
+            adata.uns["soft_cas_consensus_pct"] = soft_cas_consensus_pct
+
+            print(
+                f"       -> Soft-CAS dot-product: {soft_cas_dot_pct:.2f}% | "
+                f"Soft-CAS consensus probability: {soft_cas_consensus_pct:.2f}%"
+            )
+            print(f"       -> Saved soft-CAS summary to: {soft_cas_out}")
+
+        except Exception as e:
+            print(f"[WARNING] Could not calculate Stage 2 soft-CAS. Reason: {e}")
+            soft_cas_dot_pct = 0.0
+            soft_cas_consensus_pct = 0.0
+
     sc.pl.umap(adata, color='ctpt_consensus_prediction', palette=sc.pl.palettes.godsnot_102, legend_loc='right margin', legend_fontsize=8, title=f'Cluster-Consensus CellTypist Annotation ({adata.obs["ctpt_consensus_prediction"].nunique()} types)', show=False, size=10)
     _bold_right_margin_legend(os.path.join(output_dir, f"{cli_args.final_run_prefix}_cluster_celltypist_umap.png")); plt.close()
     
@@ -1534,35 +1965,56 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
     sc.settings.figdir = output_dir
     print(f"[INFO] Scanpy version: {sc.__version__}\n[INFO] Outputting to subdirectory: {os.path.abspath(output_dir)}")
 
+    # ==========================================================================
+    # --- Step 1: Loading Data ---
+    # ==========================================================================
     if adata_input is not None:
-        print("\n--- Step 1 & 2: Using Provided AnnData for Analysis ---")
+        print("\n--- Step 1: Using Provided AnnData for Analysis (refinement run) ---")
         adata = adata_input.copy()
         if "counts" not in adata.layers:
             adata.layers["counts"] = adata.X.copy()
         if 'sample' not in adata.obs.columns:
-            raise ValueError("Input AnnData for multi-sample refinement must contain a 'sample' column in .obs")
+            raise ValueError(
+                "Input AnnData for multi-sample refinement must contain a 'sample' "
+                "column in adata.obs, but none was found."
+            )
     elif wt_path is not None and treated_path is not None:
-        SAMPLE_INFO = {'WT': {'path': wt_path}, 'Treated': {'path': treated_path}}
-        print("\n--- Step 1 & 2: Loading and Concatenating Datasets ---")
-        adatas = {sid: sc.read_10x_mtx(info['path'], var_names='gene_symbols', cache=True) for sid, info in SAMPLE_INFO.items()}
-        for sid, adata_sample in adatas.items():
-            adata_sample.var_names_make_unique(); adata_sample.obs['sample'] = sid
-        adata = anndata.AnnData.concatenate(*adatas.values(), batch_key='sample', batch_categories=list(adatas.keys()))
+        print("\n--- Step 1: Loading WT and Treated 10x data ---")
+        adatas = {
+            'WT': sc.read_10x_mtx(wt_path, var_names='gene_symbols', cache=True),
+            'Treated': sc.read_10x_mtx(treated_path, var_names='gene_symbols', cache=True),
+        }
+        for sample_id, adata_sample in adatas.items():
+            adata_sample.var_names_make_unique()
+            adata_sample.obs['sample'] = sample_id
+        adata = anndata.AnnData.concatenate(
+            *adatas.values(), batch_key='sample', batch_categories=list(adatas.keys())
+        )
+        adata.layers["counts"] = adata.X.copy()
+        print(f"       -> Combined data: {adata.n_obs} cells x {adata.n_vars} genes")
     else:
-        raise ValueError("Must provide ('wt_path', 'treated_path') or 'adata_input' to run_stage_two_final_analysis_multi_sample.")
+        raise ValueError(
+            "Must provide either 'adata_input' OR both 'wt_path' and 'treated_path' "
+            "to run_stage_two_final_analysis_multi_sample."
+        )
 
-    print("\n--- Step 3: Quality Control ---")
-    adata.var['mt'] = adata.var_names.str.contains(MITO_REGEX_PATTERN, regex=True)
-    print(f"       -> Identified {adata.var['mt'].sum()} mitochondrial genes using robust regex.")
-    sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], inplace=True, percent_top=None, log1p=False)
-
+    # ==========================================================================
+    # --- Step 2: Quality Control and Filtering ---
+    # ==========================================================================
+    print("\n--- Step 2: Quality Control and Filtering ---")
+    if 'mt' not in adata.var.columns:
+        adata.var['mt'] = adata.var_names.str.contains(MITO_REGEX_PATTERN, regex=True)
+    sc.pp.calculate_qc_metrics(adata, qc_vars=['mt'], percent_top=None, log1p=False, inplace=True)
     sc.pp.filter_cells(adata, min_genes=cli_args.min_genes)
     sc.pp.filter_cells(adata, max_genes=cli_args.max_genes)
     adata = adata[adata.obs.pct_counts_mt < cli_args.max_pct_mt, :]
     sc.pp.filter_genes(adata, min_cells=cli_args.min_cells)
     print(f"       -> Filtered dims: {adata.n_obs} cells, {adata.n_vars} genes")
 
-    print("\n--- Step 4: Normalization, HVG selection, Scaling ---")
+    # ==========================================================================
+    # --- Step 3: Normalization, HVG, Scaling ---
+    # ==========================================================================
+    print("\n--- Step 3: Normalization, HVG, Scaling ---")
     sc.pp.normalize_total(adata, target_sum=1e4); sc.pp.log1p(adata); adata.raw = adata.copy()
 
     if all(p is not None for p in [cli_args.hvg_min_mean, cli_args.hvg_max_mean, cli_args.hvg_min_disp]):
@@ -1595,7 +2047,7 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         try:
             import harmonypy as hm
             print("Performing Harmony batch correction.")
-            sc.external.pp.harmony_integrate(adata, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', random_state=cli_args.seed)
+            sc.external.pp.harmony_integrate(adata, key='sample', basis='X_pca', adjusted_basis='X_pca_harmony', max_iter_harmony=40, random_state=cli_args.seed)
             pca_rep_key = 'X_pca_harmony'
         except ImportError:
             print("[WARNING] harmonypy not found. Falling back to uncorrected PCA.")
@@ -2458,8 +2910,492 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
 
 # ==============================================================================
 # ==============================================================================
-# --- *** PIPELINE ORCHESTRATION *** ---
+# --- *** STAGE 3: MULTI-SAMPLE INTEGRATION PIPELINE *** ---
 # ==============================================================================
+# ==============================================================================
+
+def _load_marker_db_dict(args):
+    """Parse marker DB CSV with schema auto-detect → {cell_type: set(GENES_UPPER)}."""
+    if not args.reference_marker_db or not os.path.exists(args.reference_marker_db):
+        return {}
+    header = pd.read_csv(args.reference_marker_db, nrows=0).columns.tolist()
+    type_col = args.f1_db_celltype_col if args.f1_db_celltype_col in header else None
+    gene_col = args.f1_db_gene_col if args.f1_db_gene_col in header else None
+    if type_col is None or gene_col is None:
+        for tc, gc in [('cell_name', 'Symbol'), ('Cell Type', 'Cell Marker'),
+                       ('cell_type', 'marker_genes'), ('cell_type', 'gene')]:
+            if tc in header and gc in header:
+                type_col, gene_col = tc, gc; break
+    db_df = pd.read_csv(args.reference_marker_db)
+    if getattr(args, 'marker_prior_species', None):
+        c = next((c for c in db_df.columns if c.lower() == 'species'), None)
+        if c: db_df = db_df[db_df[c].astype(str).str.contains(args.marker_prior_species, case=False, na=False)]
+    if getattr(args, 'marker_prior_organ', None):
+        c = next((c for c in db_df.columns if c.lower() in ['organ','tissue','tissue_class','tissue_type']), None)
+        if c: db_df = db_df[db_df[c].astype(str).str.contains(args.marker_prior_organ, case=False, na=False)]
+    out = defaultdict(set)
+    for _, row in db_df.iterrows():
+        ct, genes = row.get(type_col), row.get(gene_col)
+        if pd.notna(ct) and pd.notna(genes):
+            out[str(ct)].update({m.strip().upper() for m in re.split(r'[;,]', str(genes)) if m.strip()})
+    return out
+
+def merge_samples_with_metadata(sample_results_dict):
+    """Inner-join merge of all per-sample Stage-2 AnnData objects on common genes."""
+    print("\n--- [Stage 3] Merging per-sample AnnData objects on common genes (inner join) ---")
+    adatas = []
+    for sname, info in sample_results_dict.items():
+        a = info['adata']
+        a = a.raw.to_adata() if a.raw is not None else a.copy()
+        a.obs_names = [f"{bc}_{sname}" for bc in a.obs_names]
+        a.obs['batch'] = sname
+        for col in ['ctpt_individual_prediction', 'ctpt_confidence', 'combined_annotation']:
+            if col in info['adata'].obs.columns:
+                a.obs[col] = info['adata'].obs[col].values
+        adatas.append(a)
+    merged = anndata.concat(adatas, join='inner', merge='same', label=None)
+    print(f"       -> Merged: {merged.n_obs} cells × {merged.n_vars} common genes (from {len(adatas)} samples).")
+    return merged
+
+def build_integration_feature_space(sample_results_dict, merged, args):
+    """Compute HVG list + per-gene weights according to --integration_hvg_strategy."""
+    strategy = getattr(args, 'integration_hvg_strategy', 'sample_specific_union')
+    print(f"--- [Stage 3] Building feature space with strategy: {strategy} ---")
+
+    if strategy in ('fixed_global', 'batch_consensus'):
+        return None, None
+
+    gene_counts = defaultdict(int)
+    for sname, info in sample_results_dict.items():
+        a = info['adata']
+        if 'highly_variable' in a.var.columns:
+            hvgs = a.var_names[a.var.highly_variable].tolist()
+        else:
+            tmp = a.raw.to_adata() if a.raw is not None else a.copy()
+            sc.pp.normalize_total(tmp, target_sum=1e4); sc.pp.log1p(tmp)
+            sc.pp.highly_variable_genes(tmp, n_top_genes=args.integration_fixed_n_hvg, flavor='seurat')
+            hvgs = tmp.var_names[tmp.var.highly_variable].tolist()
+        for g in hvgs:
+            gene_counts[g] += 1
+
+    common = set(merged.var_names)
+    n_samples = len(sample_results_dict)
+    effective_rec = min(getattr(args, 'min_hvg_sample_recurrence', 1), n_samples)
+
+    filtered = {g: c for g, c in gene_counts.items() if c >= effective_rec and g in common}
+
+    if not filtered:
+        print("[WARN] No genes passed recurrence filter; falling back to top HVGs on merged object.")
+        tmp = _stage3_normalize(merged)
+        sc.pp.highly_variable_genes(tmp, n_top_genes=args.integration_fixed_n_hvg, flavor='seurat')
+        filtered = {g: 1 for g in tmp.var_names[tmp.var.highly_variable] if g in common}
+ 
+    selected_genes = sorted(filtered.keys())
+    
+    max_rec = max(filtered.values()) if filtered else 1
+    if strategy == 'sample_specific_weighted':
+        weights = np.array([1.0 + (filtered[g] / max_rec) for g in selected_genes], dtype=float)
+    else:
+        weights = np.ones(len(selected_genes), dtype=float)
+
+    print(f"       -> Selected {len(selected_genes)} genes (recurrence ≥ {effective_rec}).")
+    return selected_genes, weights
+
+def _stage3_normalize(adata):
+    a = adata.copy()
+    a.layers['counts'] = a.X.copy()
+    sc.pp.normalize_total(a, target_sum=1e4); sc.pp.log1p(a)
+    return a
+
+# ==============================================================================
+# --- HIERARCHICAL BAYESIAN OPTIMIZATION HELPERS FOR STAGE 3 ---
+# ==============================================================================
+
+def calculate_stage3_cas(adata, cluster_col, label_col):
+    cas_list = []
+    for cl, group in adata.obs.groupby(cluster_col):
+        if len(group) > 0 and not group[label_col].isna().all():
+            cas_list.append((group[label_col].value_counts().max() / len(group)) * 100)
+    return np.mean(cas_list) if cas_list else 0.0
+
+def calculate_stage3_mps(adata, cluster_col, label_col):
+    from sklearn.metrics import adjusted_rand_score
+    mask = adata.obs[[cluster_col, label_col]].notna().all(axis=1)
+    if mask.sum() == 0: return 0.0
+    ari = adjusted_rand_score(adata.obs.loc[mask, label_col].astype(str), 
+                              adata.obs.loc[mask, cluster_col].astype(str))
+    return max(0, ari * 100)
+
+def stage3_objective(trial, adata, args, annotation_col='ctpt_individual_prediction'):
+    # 1. Optuna suggests parameters
+    max_pcs = adata.obsm['X_pca_harmony_global'].shape[1]
+    n_pcs = trial.suggest_int('n_pcs', 10, max(10, max_pcs))
+    n_neighbors = trial.suggest_int('n_neighbors', 10, 30)
+    resolution = trial.suggest_float('resolution', 0.5, 2.0)
+    
+    # 2. Slice Harmony PCs
+    X_harmony_sliced = adata.obsm['X_pca_harmony_global'][:, :n_pcs]
+    adata.obsm['X_harmony_temp'] = X_harmony_sliced
+    
+    # 3. Build graph & cluster
+    sc.pp.neighbors(adata, n_neighbors=n_neighbors, use_rep='X_harmony_temp', key_added='temp_neighbors')
+    sc.tl.leiden(adata, resolution=resolution, neighbors_key='temp_neighbors', key_added='temp_leiden')
+    
+    # 4. Calculate Base Scores (CAS & MPS)
+    cas_score = calculate_stage3_cas(adata, cluster_col='temp_leiden', label_col=annotation_col)
+    mps_score = calculate_stage3_mps(adata, cluster_col='temp_leiden', label_col=annotation_col)
+    
+    # 5. Calculate Silhouette Score to prevent over-clustering
+    labels = adata.obs['temp_leiden'].values
+    unique_labels = np.unique(labels)
+    
+    if len(unique_labels) > 1:
+        # sample_size=10000 ensures it calculates instantly without bogging down the loop!
+        raw_sil = silhouette_score(X_harmony_sliced, labels, sample_size=min(10000, adata.n_obs))
+    else:
+        raw_sil = -1.0 # Massively penalize if it just lumps everything into 1 giant cluster
+        
+    # Normalize Silhouette from [-1, 1] to [0, 1]
+    norm_sil = (raw_sil + 1.0) / 2.0
+    
+    # 6. Final Combined Score
+    mps_weight = getattr(args, 'mps_bonus_weight', 0.2)
+    sil_weight = 0.2  # You can adjust how strongly you want to enforce Silhouette
+    
+    final_score = cas_score + (mps_weight * mps_score) + (sil_weight * norm_sil)
+    
+    return final_score
+
+def assign_majority_vote(adata, cluster_col, ref_col, new_col='stage3_global_annotation'):
+    mapping = {}
+    for cluster_id in adata.obs[cluster_col].unique():
+        cells_in_cluster = adata.obs[adata.obs[cluster_col] == cluster_id]
+        if not cells_in_cluster.empty and not cells_in_cluster[ref_col].isna().all():
+            majority_label = cells_in_cluster[ref_col].mode()[0]
+            mapping[cluster_id] = majority_label
+        else:
+            mapping[cluster_id] = f"Unknown_{cluster_id}"
+        
+    adata.obs[new_col] = adata.obs[cluster_col].map(mapping).astype('category')
+    print(f"       -> Empirical Majority Voting complete. Labels stored in '{new_col}'.")
+
+# ==============================================================================
+
+def run_stage_three_integration(sample_results_dict, args, output_dir):
+    """Stage 3: Original Integration + NEW Hierarchical Bayesian Optimization."""
+    import optuna
+    os.makedirs(output_dir, exist_ok=True)
+    prefix = f"{args.final_run_prefix}_stage3"
+    sc.settings.figdir = output_dir
+
+    # ---- Step 1: Merge ----
+    merged = merge_samples_with_metadata(sample_results_dict)
+    merged.write(os.path.join(output_dir, f"{prefix}_merged_premerge.h5ad"))
+
+    # ---- Step 2: Feature Space ----
+    selected_genes, gene_weights = build_integration_feature_space(sample_results_dict, merged, args)
+
+    # ---- Step 3: PRE-integration anchor (uncorrected) ----
+    print("--- [Stage 3] Building PRE-integration anchor (uncorrected PCA) ---")
+    pre = _stage3_normalize(merged)
+    sc.pp.highly_variable_genes(pre, n_top_genes=args.integration_fixed_n_hvg, flavor='seurat')
+    pre = pre[:, pre.var.highly_variable].copy()
+    sc.pp.scale(pre, max_value=10)
+    sc.tl.pca(pre, n_comps=args.integration_n_pcs, random_state=args.seed)
+    sc.pp.neighbors(pre, n_neighbors=args.integration_n_neighbors, n_pcs=args.integration_n_pcs, random_state=args.seed)
+    sc.tl.umap(pre, random_state=args.seed)
+    
+    for color, tag in [('batch', 'batch'), ('ctpt_individual_prediction', 'celltypes')]:
+        if color in pre.obs.columns:
+            sc.pl.umap(pre, color=color, show=False, size=10, legend_loc='right margin', legend_fontsize=7,
+                       palette=sc.pl.palettes.godsnot_102, title=f'PRE: {tag}')
+            _bold_right_margin_legend(os.path.join(output_dir, f"{prefix}_PRE_{tag}_umap.png"))
+            plt.close()
+
+    # ---- Setup POST Integration Data ----
+    print("--- [Stage 3] Normalizing merged data + computing base PCA ---")
+    post = _stage3_normalize(merged)
+    if getattr(args, 'integration_hvg_strategy', 'sample_specific_union') == 'fixed_global':
+        sc.pp.highly_variable_genes(post, n_top_genes=args.integration_fixed_n_hvg, flavor='seurat')
+        post = post[:, post.var.highly_variable].copy()
+    elif getattr(args, 'integration_hvg_strategy', 'sample_specific_union') == 'batch_consensus':
+        sc.pp.highly_variable_genes(post, n_top_genes=args.integration_fixed_n_hvg, flavor='seurat', batch_key='batch')
+        post = post[:, post.var.highly_variable].copy()
+    else:
+        keep = [g for g in selected_genes if g in post.var_names]
+        post = post[:, keep].copy()
+
+    sc.pp.scale(post, max_value=10)
+
+    if getattr(args, 'integration_hvg_strategy', 'sample_specific_union') == 'sample_specific_weighted' and gene_weights is not None:
+        keep_idx = [post.var_names.get_loc(g) for g in selected_genes if g in post.var_names]
+        w = gene_weights[:len(keep_idx)]
+        post.X = post.X * w[np.newaxis, :]
+
+    sc.tl.pca(post, n_comps=min(100, post.n_vars-1, post.n_obs-1), random_state=args.seed)
+
+    # ====================================================================================
+    # --- Step 4a: ORIGINAL STANDARD INTEGRATION (Heuristic) ---
+    # ====================================================================================
+    print("--- [Stage 3] Running ORIGINAL Standard Integration (Heuristics) ---")
+    X_pca_orig = post.obsm['X_pca'][:, :args.integration_n_pcs]
+    try:
+        import harmonypy as hm
+        sc.external.pp.harmony_integrate(post, key='batch', basis='X_pca', adjusted_basis='X_pca_harmony_orig', random_state=args.seed)
+        use_rep_orig = 'X_pca_harmony_orig'
+    except Exception as e:
+        print(f"[WARNING] Original Harmony failed ({e}); falling back to uncorrected PCA.")
+        post.obsm['X_pca_harmony_orig'] = X_pca_orig
+        use_rep_orig = 'X_pca_harmony_orig'
+
+    sc.pp.neighbors(post, use_rep=use_rep_orig, n_neighbors=args.integration_n_neighbors, key_added='neighbors_orig', random_state=args.seed)
+    sc.tl.umap(post, neighbors_key='neighbors_orig', random_state=args.seed)
+    post.obsm['X_umap_orig'] = post.obsm['X_umap'].copy()
+
+    for color, tag in [('batch', 'batch'), ('ctpt_individual_prediction', 'celltypes')]:
+        if color in post.obs.columns:
+            sc.pl.umap(post, color=color, show=False, size=10, legend_loc='right margin', legend_fontsize=7,
+                       palette=sc.pl.palettes.godsnot_102, title=f'ORIGINAL POST: {tag}')
+            _bold_right_margin_legend(os.path.join(output_dir, f"{prefix}_ORIGINAL_POST_{tag}_umap.png"))
+            plt.close()
+
+    # ====================================================================================
+    # --- Step 4b: NEW HIERARCHICAL BAYESIAN OPTIMIZATION INTEGRATION ---
+    # ====================================================================================
+    print("\n--- [Stage 3] Running NEW Global Hierarchical Bayesian Optimization (Optuna) ---")
+    optuna.logging.set_verbosity(optuna.logging.WARNING)
+    ref_col = 'combined_annotation' if 'combined_annotation' in post.obs.columns else 'ctpt_individual_prediction'
+
+    # --- NEW: Run Harmony ONCE outside the loop ---
+    print("       -> Pre-computing Harmony space for rapid Optuna search...")
+    max_pcs_for_harmony = min(50, post.obsm['X_pca'].shape[1])
+    try:
+        import harmonypy as hm
+        ho = hm.run_harmony(post.obsm['X_pca'][:, :max_pcs_for_harmony], post.obs, 'batch')
+        post.obsm['X_pca_harmony_global'] = ho.Z_corr.T
+    except Exception as e:
+        print(f"[WARNING] Pre-computing Harmony failed ({e}); falling back to standard PCA.")
+        post.obsm['X_pca_harmony_global'] = post.obsm['X_pca'][:, :max_pcs_for_harmony]
+
+    # --- Run Optuna Trials ---
+    study_stage3 = optuna.create_study(direction='maximize', sampler=optuna.samplers.TPESampler(seed=args.seed))
+    n_trials_s3 = getattr(args, 'n_calls', 30)
+    
+    print(f"       -> Starting {n_trials_s3} lightning-fast trials...")
+    study_stage3.optimize(lambda trial: stage3_objective(trial, post, args, annotation_col=ref_col), n_trials=n_trials_s3)
+
+    best_params = study_stage3.best_params
+    print(f"       🏆 Best Stage 3 Score (CAS + ARI Bonus - Penalty): {study_stage3.best_value:.4f}")
+    print(f"       ⭐ Best Stage 3 Parameters: {best_params}")
+
+    # --- Apply the Best Parameters for the Final Post-Object ---
+    X_pca_opt = post.obsm['X_pca_harmony_global'][:, :best_params['n_pcs']]
+    post.obsm['X_pca_harmony_opt'] = X_pca_opt
+    
+    sc.pp.neighbors(post, use_rep='X_pca_harmony_opt', n_neighbors=best_params['n_neighbors'], key_added='neighbors_opt', random_state=args.seed)
+    sc.tl.leiden(post, resolution=best_params['resolution'], neighbors_key='neighbors_opt', key_added='leiden_opt', random_state=args.seed)
+    
+    sc.tl.umap(post, neighbors_key='neighbors_opt', random_state=args.seed)
+    post.obsm['X_umap_opt'] = post.obsm['X_umap'].copy()
+
+    print("--- [Stage 3] Performing Empirical Majority Voting ---")
+    assign_majority_vote(post, cluster_col='leiden_opt', ref_col=ref_col, new_col='stage3_opt_global_annotation')
+
+    # ADDED 'leiden_opt' to the plot loop!
+    for color, tag in [('batch', 'batch'), ('stage3_opt_global_annotation', 'Global_Majority_Vote'), ('leiden_opt', 'Leiden_Clusters')]:
+        if color in post.obs.columns:
+            sc.pl.umap(post, color=color, show=False, size=10, legend_loc='right margin', legend_fontsize=7,
+                       palette=sc.pl.palettes.godsnot_102, title=f'OPT POST: {tag}')
+            _bold_right_margin_legend(os.path.join(output_dir, f"{prefix}_OPTIMIZED_POST_{tag}_umap.png"))
+            plt.close()
+
+    # ====================================================================================
+    # --- Step 5: Transfer Data Back to Merged Object ---
+    # ====================================================================================
+    merged.obsm['X_pca_harmony_orig'] = post.obsm.get('X_pca_harmony_orig', post.obsm['X_pca'][:, :args.integration_n_pcs])
+    merged.obsm['X_umap_orig'] = post.obsm['X_umap_orig']
+    
+    merged.obsm['X_pca_harmony_opt'] = post.obsm['X_pca_harmony_opt']
+    merged.obsm['X_umap_opt'] = post.obsm['X_umap_opt']
+    merged.obsm['X_umap'] = post.obsm['X_umap_opt']
+
+    for col in ['ctpt_individual_prediction', 'ctpt_confidence', 'batch', 'combined_annotation', 'leiden_opt', 'stage3_opt_global_annotation']:
+        if col in post.obs.columns:
+            merged.obs[col] = post.obs[col].values
+
+    # ====================================================================================
+    # --- Step 6: DE & Marker DB Matching (On Optimized Annotations) ---
+    # ====================================================================================
+    print("--- [Stage 3] DE per Optimized Global Annotation + Marker DB matching ---")
+    norm_for_de = _stage3_normalize(merged)
+    valid = norm_for_de.obs['stage3_opt_global_annotation'].value_counts()
+    valid_labels = valid[valid > 1].index.tolist()
+
+    db_markers = _load_marker_db_dict(args)
+    marker_assignments = {}
+    if len(valid_labels) >= 2 and db_markers:
+        sc.tl.rank_genes_groups(norm_for_de, 'stage3_opt_global_annotation', groups=valid_labels, method='wilcoxon', use_raw=False, key_added='stage3_de')
+        de_df = sc.get.rank_genes_groups_df(norm_for_de, key='stage3_de', group=None)
+        
+        import re
+        mito_pattern = getattr(args, 'mito_regex_pattern', r'^(?i)(MT-|MT\.)')
+        is_mito = lambda g: bool(re.match(mito_pattern, str(g)))
+        
+        topN = getattr(args, 'stage3_marker_topN', 50)
+        for label in valid_labels:
+            sub = de_df[de_df['group'] == label]
+            top = sub[~sub['names'].map(is_mito)].head(topN)
+            pred = {str(g).upper() for g in top['names']}
+            
+            name_hit = next((ct for ct in db_markers if ct.lower() == str(label).lower()), None)
+            best_ct, best_f1 = name_hit, 0.0
+            for ct, refs in db_markers.items():
+                refs_u = {g.upper() for g in refs}
+                tp = len(pred & refs_u)
+                p = tp / max(1, len(pred)); r = tp / max(1, len(refs_u))
+                f1 = (2*p*r/(p+r)) if (p+r) > 0 else 0.0
+                if f1 > best_f1:
+                    best_f1, best_ct = f1, ct
+            
+            # --- NEW: Calculate Total Cells, CAS, and Mean Confidence per label ---
+            group_cells = norm_for_de.obs[norm_for_de.obs['stage3_opt_global_annotation'] == label]
+            total_cells = len(group_cells)
+            
+            mean_conf = group_cells['ctpt_confidence'].mean() if 'ctpt_confidence' in group_cells.columns else 0.0
+            
+            # CAS = % of cells where the original individual prediction matches this cluster's majority vote
+            matching_cells = (group_cells['ctpt_individual_prediction'] == label).sum()
+            cas_pct = (matching_cells / total_cells) * 100 if total_cells > 0 else 0.0
+
+            marker_assignments[label] = {
+                'best_celltype': best_ct or f"Unknown_{label}", 
+                'best_f1_score': best_f1, 
+                'name_hit': name_hit,
+                'total_cells': total_cells,
+                'cas_score_pct': cas_pct,
+                'mean_confidence_pct': mean_conf * 100 if mean_conf <= 1.0 else mean_conf
+            }
+            
+    merged.obs['opt_marker_celltype'] = merged.obs['stage3_opt_global_annotation'].astype(str).map(
+        {k: v['best_celltype'] for k, v in marker_assignments.items()}
+    ).fillna('Unassigned').astype('category')
+
+    sc.pl.umap(merged, color='opt_marker_celltype', show=False, size=10, legend_loc='right margin', legend_fontsize=7,
+               palette=sc.pl.palettes.godsnot_102, title='OPT POST: marker-DB celltypes')
+    _bold_right_margin_legend(os.path.join(output_dir, f"{prefix}_OPTIMIZED_POST_markerCelltypes_umap.png"))
+    plt.close()
+
+    # ====================================================================================
+    # --- Step 7: Final Outputs ---
+    # ====================================================================================
+    # This automatically includes the new metrics (total_cells, cas_score_pct, mean_confidence_pct)
+    pd.DataFrame([{'integrated_label': k, **v} for k, v in marker_assignments.items()]).to_csv(
+        os.path.join(output_dir, f"{prefix}_OPTIMIZED_marker_celltype_mapping.csv"), index=False)
+
+    if selected_genes is not None:
+        pd.DataFrame({'gene': selected_genes}).to_csv(os.path.join(output_dir, f"{prefix}_integration_features.csv"), index=False)
+        if gene_weights is not None:
+            pd.DataFrame({'gene': selected_genes, 'weight': gene_weights}).to_csv(os.path.join(output_dir, f"{prefix}_gene_weights.csv"), index=False)
+
+    ann_cols = [c for c in ['batch', 'ctpt_individual_prediction', 'ctpt_confidence', 
+                            'stage3_opt_global_annotation', 'opt_marker_celltype', 'leiden_opt'] if c in merged.obs.columns]
+    merged.obs[ann_cols].to_csv(os.path.join(output_dir, f"{prefix}_annotations.csv"))
+    
+    merged.write(os.path.join(output_dir, f"{prefix}_COMBINED_integrated.h5ad"))
+    print(f"✅ Stage 3 Hierarchical Optimization complete. Outputs saved to: {output_dir}")
+    return merged
+# ==============================================================================
+# --- RANDOM SEARCH BASELINE FOR EQUAL-BUDGET OPTIMIZER COMPARISON ---
+# ==============================================================================
+
+class MockOptimizeResult:
+    """
+    Lightweight result object that mimics skopt.OptimizeResult enough for
+    existing scBOA plotting and CSV functions.
+    """
+    def __init__(self, x_iters, func_vals, trial_metadata, x, fun):
+        self.x_iters = x_iters
+        self.func_vals = func_vals
+        self.trial_metadata = trial_metadata
+        self.x = x
+        self.fun = fun
+
+
+def run_equal_budget_random_search(local_search_space, n_calls, seed):
+    """
+    Equal-budget random-search baseline.
+
+    Uses:
+      - same search space as scBOA
+      - same objective_function()
+      - same number of evaluations as requested
+      - same CellTypist/CAS/MCS/MPS objective calculation
+
+    Returns a MockOptimizeResult compatible with generate_yield_csv(),
+    plot_optimizer_convergence(), and plot_exact_scores_per_trial().
+    """
+    global CURRENT_STRATEGY_NAME, TRIAL_METADATA
+
+    print(f"\n--- Running Equal-Budget Random Search Baseline: {n_calls} trials ---")
+
+    rng = np.random.default_rng(seed)
+    CURRENT_STRATEGY_NAME = "Random"
+    TRIAL_METADATA.clear()
+
+    x_iters = []
+    func_vals = []
+
+    for i in range(n_calls):
+        sampled_params = []
+
+        for dim in local_search_space:
+            # Integer dimension
+            if isinstance(dim, Integer):
+                sampled_params.append(int(rng.integers(dim.low, dim.high + 1)))
+
+            # Real dimension
+            elif isinstance(dim, Real):
+                sampled_params.append(float(rng.uniform(dim.low, dim.high)))
+
+            else:
+                raise ValueError(f"Unsupported search-space dimension type: {type(dim)}")
+
+        print(
+            f"\n[Random Search] Trial {i + 1}/{n_calls}: "
+            f"n_hvg={sampled_params[0]}, "
+            f"n_pcs={sampled_params[1]}, "
+            f"n_neighbors={sampled_params[2]}, "
+            f"resolution={sampled_params[3]:.3f}"
+        )
+
+        # objective_function is decorated by @use_named_args, so it accepts a list.
+        val = objective_function(sampled_params)
+
+        x_iters.append(sampled_params)
+        func_vals.append(val)
+
+    func_vals_arr = np.array(func_vals)
+    best_idx = int(np.argmin(func_vals_arr))
+
+    result = MockOptimizeResult(
+        x_iters=x_iters,
+        func_vals=func_vals,
+        trial_metadata=list(TRIAL_METADATA),
+        x=x_iters[best_idx],
+        fun=func_vals[best_idx]
+    )
+
+    print(
+        f"\n--- Random Search Complete ---\n"
+        f"Best random-search objective score: {-result.fun:.4f}\n"
+        f"Best random-search parameters: "
+        f"n_hvg={result.x[0]}, n_pcs={result.x[1]}, "
+        f"n_neighbors={result.x[2]}, resolution={result.x[3]:.4f}"
+    )
+
+    return result
+# ==============================================================================
+# --- *** PIPELINE ORCHESTRATION *** ---
 # ==============================================================================
 
 def run_stage_one_optimization(args, adata_input=None):
@@ -2534,7 +3470,6 @@ def run_stage_one_optimization(args, adata_input=None):
                 print(f"       -> Adjusting 'n_hvg' search space to [{original_min_hvg}, {n_filtered_genes}].")
                 local_search_space[i] = Integer(original_min_hvg, n_filtered_genes, name='n_hvg'); break
     else: print("\n--- Using standard rank-based HVG selection mode. ---")
-
     param_names = ['n_hvg', 'n_pcs', 'n_neighbors', 'resolution']
     targets_to_run = ['balanced'] if args.target == 'all' else [args.target]
     best_params_for_stage2 = None
@@ -2545,15 +3480,85 @@ def run_stage_one_optimization(args, adata_input=None):
         elif args.model_type == 'silhouette': target_name_map['balanced'] = 'SILHOUETTE SCORE'
         print("\n\n" + "#"*70 + f"\n### STAGE: OPTIMIZING FOR {target_name_map[target]} ###\n" + "#"*70)
         CURRENT_OPTIMIZATION_TARGET = target
-        strategies = {"Exploit": {'acq_func': 'PI', 'xi': 0.01}, "BO-EI": {'acq_func': 'EI', 'xi': 0.01}, "Explore": {'acq_func': 'EI', 'xi': 0.1}}
         output_prefix_model = f"{args.output_prefix}_{args.model_type}"
         results, skopt_file_paths = {}, []
-        for name, params in strategies.items():
-            print(f"\n--- Running Strategy: {name} ---"); CURRENT_STRATEGY_NAME = name; TRIAL_METADATA.clear()
-            result = gp_minimize(func=objective_function, dimensions=local_search_space, n_calls=args.n_calls, random_state=RANDOM_SEED, **params)
-            result.trial_metadata = list(TRIAL_METADATA); results[name] = result
-            result_path = os.path.join(args.output_dir, f"{output_prefix_model}_{target}_{name.lower().replace('-','_')}_opt_result.skopt")
-            dump(result, result_path, store_objective=False); skopt_file_paths.append(result_path); print(f"Saved {name} optimization state to {result_path}")
+
+        # ==========================================================
+        # [OPTION A]: ALTERNATIVE OPTUNA ENGINE
+        # ==========================================================
+        if getattr(args, 'benchmark_optimizer', None) == 'random':
+            print("\n--- Running Benchmark Backend: Equal-Budget Random Search ---")
+
+            # If comparing against the full default scBOA run with 3 GP strategies,
+            # use --n_calls 90 when the BO experiment used --n_calls 30.
+            # If comparing against one GP strategy, use the same --n_calls.
+            random_result = run_equal_budget_random_search(
+                local_search_space=local_search_space,
+                n_calls=args.n_calls,
+                seed=RANDOM_SEED
+            )
+
+            results["Random"] = random_result
+
+        # ==========================================================
+        # [OPTION B]: ALTERNATIVE OPTUNA ENGINE
+        # ==========================================================
+        elif getattr(args, 'benchmark_optimizer', None) == 'optuna':
+            print(f"\n--- Running Alternative Backend: Optuna (TPE) ---")
+            CURRENT_STRATEGY_NAME = "Optuna_TPE"
+            TRIAL_METADATA.clear()
+
+            import optuna
+            optuna.logging.set_verbosity(optuna.logging.WARNING)
+
+            def optuna_objective(trial):
+                n_hvg = trial.suggest_int('n_hvg', local_search_space[0].low, local_search_space[0].high)
+                n_pcs = trial.suggest_int('n_pcs', local_search_space[1].low, local_search_space[1].high)
+                n_neighbors = trial.suggest_int('n_neighbors', local_search_space[2].low, local_search_space[2].high)
+                resolution = trial.suggest_float('resolution', local_search_space[3].low, local_search_space[3].high)
+                return objective_function([n_hvg, n_pcs, n_neighbors, resolution])
+
+            study = optuna.create_study(sampler=optuna.samplers.TPESampler(seed=RANDOM_SEED))
+            study.optimize(optuna_objective, n_trials=args.n_calls)
+
+            class MockOptimizeResult:
+                def __init__(self, x_iters, func_vals, trial_metadata, x, fun):
+                    self.x_iters = x_iters
+                    self.func_vals = func_vals
+                    self.trial_metadata = trial_metadata
+                    self.x = x
+                    self.fun = fun
+
+            x_iters, func_vals = [], []
+            for t in study.trials:
+                if t.state == optuna.trial.TrialState.COMPLETE:
+                    x_iters.append([t.params['n_hvg'], t.params['n_pcs'], t.params['n_neighbors'], t.params['resolution']])
+                    func_vals.append(t.value)
+
+            x_iters, func_vals = np.array(x_iters), np.array(func_vals)
+            best_idx = np.argmin(func_vals)
+
+            mock_res = MockOptimizeResult(
+                x_iters.tolist(),
+                func_vals,
+                list(TRIAL_METADATA),
+                x_iters[best_idx].tolist(),
+                func_vals[best_idx]
+            )
+            results["Optuna_TPE"] = mock_res
+
+        # ==========================================================
+        # [OPTION C]: DEFAULT scBOA GP ENGINE
+        # ==========================================================
+        else:
+            print("\n--- Running Default scBOA Backend: GP-BO (3 Submodels) ---")
+            strategies = {"Exploit": {'acq_func': 'PI', 'xi': 0.01}, "BO-EI": {'acq_func': 'EI', 'xi': 0.01}, "Explore": {'acq_func': 'EI', 'xi': 0.1}}
+            for name, params in strategies.items():
+                print(f"\n--- Running Strategy: {name} ---"); CURRENT_STRATEGY_NAME = name; TRIAL_METADATA.clear()
+                result = gp_minimize(func=objective_function, dimensions=local_search_space, n_calls=args.n_calls, random_state=RANDOM_SEED, **params)
+                result.trial_metadata = list(TRIAL_METADATA); results[name] = result
+                result_path = os.path.join(args.output_dir, f"{output_prefix_model}_{target}_{name.lower().replace('-','_')}_opt_result.skopt")
+                dump(result, result_path, store_objective=False); skopt_file_paths.append(result_path); print(f"Saved {name} optimization state to {result_path}")
 
         generate_yield_csv(results, target, args.output_dir, output_prefix_model)
         plot_optimizer_paths_tsne(results, target, args.output_dir, output_prefix_model, n_points_to_show=args.n_calls)
@@ -2571,6 +3576,13 @@ def run_stage_one_optimization(args, adata_input=None):
         print(f"\n--- Analysis Complete for {target_name_map[target]} ---\nOverall best score ({best_score_print:{format_str}}) was found by the '{winning_strategy_name}' strategy.")
 
         best_params_for_stage2 = dict(zip(param_names, best_result_obj.x))
+        raw_best = dict(zip(param_names, best_result_obj.x))
+        best_params_for_stage2 = {
+            'n_hvg': int(raw_best['n_hvg']),
+            'n_pcs': int(raw_best['n_pcs']),
+            'n_neighbors': int(raw_best['n_neighbors']),
+            'resolution': float(raw_best['resolution'])
+        }
         final_metrics, adata_final = evaluate_final_metrics(best_params_for_stage2)
         print_final_report(target, best_params_for_stage2, final_metrics, winning_strategy_name)
         txt_path = os.path.join(args.output_dir, f"{output_prefix_model}_{target}_FINAL_best_params.txt")
@@ -2588,12 +3600,73 @@ def run_stage_one_optimization(args, adata_input=None):
     
     return return_data
 
-
+# ==============================================================================
+# --- *** OPTIMIZER BENCHMARKING (scBOA vs Optuna) *** ---
+# ==============================================================================
 def main(parsed_args):
     """Main orchestrator for the two-stage pipeline."""
     sc.settings.njobs = parsed_args.threads
     adata_s2, cas_csv_path_s2 = None, None
 
+    # =====================================================================
+    # NEW: Stage 3 multi-sample mode (>= 2 samples via --samples NAME=PATH)
+    # =====================================================================
+    if parsed_args.samples and parsed_args.enable_stage3_integration:
+        print("="*80 + "\n### STAGE 3 PIPELINE: per-sample BO → per-sample Stage 2 → merge → Harmony ###\n" + "="*80)
+
+        # Parse NAME=PATH pairs
+        sample_map = {}
+        for entry in parsed_args.samples:
+            if '=' not in entry:
+                raise ValueError(f"--samples entry '{entry}' must be NAME=PATH")
+            name, path = entry.split('=', 1)
+            sample_map[name.strip()] = path.strip()
+        print(f"Detected {len(sample_map)} samples: {list(sample_map.keys())}")
+
+        sample_results = {}
+        original_output_dir = parsed_args.output_dir
+        original_prefix     = parsed_args.output_prefix
+        original_final_pref = parsed_args.final_run_prefix
+        original_data_dir   = parsed_args.data_dir
+        original_multi      = parsed_args.multi_sample
+
+        for sname, spath in sample_map.items():
+            print("\n" + "#"*70 + f"\n### Per-sample run: {sname} ###\n" + "#"*70)
+            # Route this sample through the single-sample path
+            parsed_args.data_dir         = spath
+            parsed_args.multi_sample     = None
+            parsed_args.output_dir       = os.path.join(original_output_dir, f"sample_{sname}")
+            parsed_args.output_prefix    = f"{original_prefix}_{sname}"
+            parsed_args.final_run_prefix = f"{original_final_pref}_{sname}"
+
+            s1_dir = os.path.join(parsed_args.output_dir, "stage_1_bayesian_optimization")
+            saved_dir = parsed_args.output_dir
+            parsed_args.output_dir = s1_dir
+            opt = run_stage_one_optimization(parsed_args, adata_input=None)
+            parsed_args.output_dir = saved_dir
+
+            s2_dir = os.path.join(parsed_args.output_dir, "stage_2_final_analysis")
+            os.makedirs(s2_dir, exist_ok=True)
+            adata_s, cas_s = run_stage_two_final_analysis(
+                cli_args=parsed_args, optimal_params=opt['params'],
+                output_dir=s2_dir, data_dir=spath
+            )
+            sample_results[sname] = {'adata': adata_s, 'params': opt['params'], 'cas_csv': cas_s}
+
+        # Restore globals
+        parsed_args.output_dir       = original_output_dir
+        parsed_args.output_prefix    = original_prefix
+        parsed_args.final_run_prefix = original_final_pref
+        parsed_args.data_dir         = original_data_dir
+        parsed_args.multi_sample     = original_multi
+
+        # ---- Stage 3: integration ----
+        s3_dir = os.path.join(parsed_args.output_dir, "stage_3_combined_integration")
+        run_stage_three_integration(sample_results, parsed_args, s3_dir)
+
+        print("\n--- Stage 3 integrated pipeline finished successfully! ---")
+        return
+    
     # --- STAGE 1 ---
     print("="*80 + "\n### STARTING STAGE 1: BAYESIAN PARAMETER OPTIMIZATION ###\n" + "="*80)
     stage1_output_dir = os.path.join(parsed_args.output_dir, "stage_1_bayesian_optimization")
@@ -2643,7 +3716,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Integrated Two-Stage Bayesian Optimization and Final Analysis Pipeline for scRNA-seq.", formatter_class=argparse.RawTextHelpFormatter)
 
     stage1_group = parser.add_argument_group('Stage 1 & 2: Main I/O and Mode')
-    mode_group = stage1_group.add_mutually_exclusive_group(required=True)
+    mode_group = stage1_group.add_mutually_exclusive_group(required=False)
     mode_group.add_argument('--data_dir', type=str, help='Path to 10x Genomics data for single-sample analysis.')
     mode_group.add_argument('--multi_sample', nargs=2, metavar=('WT_DIR', 'TREATED_DIR'), help='Two paths for WT/Control and Treated/Perturbed 10x data for multi-sample integration.')
     stage1_group.add_argument('--integration_method', type=str, default='harmony',
@@ -2668,8 +3741,29 @@ if __name__ == '__main__':
                "'silhouette': optimizes solely to maximize the silhouette score.")
     )
     opt_group.add_argument('--marker_gene_model', type=str, default='non-mitochondrial', choices=['all', 'non-mitochondrial'], help="'all': use all genes. 'non-mitochondrial' (default): exclude mitochondrial genes from MCS markers.")
-    opt_group.add_argument('--target', type=str, default='all', choices=['all', 'weighted_cas', 'simple_cas', 'mcs'], help="'all' (default): runs a single, balanced optimization. Other options optimize for that specific metric.")
-    
+    opt_group.add_argument(
+        '--target',
+        type=str,
+        default='all',
+        choices=['all', 'balanced', 'weighted_cas', 'simple_cas', 'mcs'],
+        help=(
+            "'all' (default): runs the balanced optimization. "
+            "'balanced': explicitly optimize the balanced objective. "
+            "Other options optimize for that specific metric only."
+        )
+    )
+    opt_group.add_argument(
+        '--benchmark_optimizer',
+        type=str,
+        default=None,
+        choices=['gp', 'optuna', 'random'],
+        help=(
+            "(Optional) Optimizer backend for benchmarking.\n"
+            "'gp' or None: default scBOA GP-BO backend.\n"
+            "'optuna': Optuna TPE backend.\n"
+            "'random': equal-budget random-search baseline using the same objective and search space."
+        )
+    )
     opt_group.add_argument(
         '--cas_aggregation_method',
         type=str,
@@ -2710,8 +3804,8 @@ if __name__ == '__main__':
     stage2_group.add_argument('--f1_db_gene_col', type=str, default=None,
                               help="(Optional) Column name in the marker DB CSV containing marker genes for F1 scoring. Auto-detected if not provided.")
     stage2_group.add_argument('--f1_groupby_key', type=str, default='ctpt_consensus_prediction',
-                              choices=['ctpt_consensus_prediction', 'manual_annotation'],
-                              help="Grouping key used to compute F1. Default uses cell-annotated clusters (ctpt_consensus_prediction).")
+                          choices=['ctpt_consensus_prediction', 'manual_annotation', 'leiden'],
+                          help="Grouping key used to compute F1. Default uses cell-annotated clusters (ctpt_consensus_prediction).")
     stage2_group.add_argument('--marker_score_metric', type=str, default='f1',
                               choices=['f1', 'jaccard', 'capture'],
                               help="Marker scoring metric for cell-type annotation. Default is F1.")
@@ -2735,10 +3829,81 @@ if __name__ == '__main__':
         action='store_true',
         help="Include the mean CellTypist annotation confidence score in the geometric mean calculation for the optimization target."
     )
-    parsed_args = parser.parse_args()
+    # ============================================================
+    stage2_group.add_argument(
+        '--min_confidence',
+        type=float,
+        default=None,
+        help=("(Optional) Per-cell CellTypist confidence threshold in [0,1]. "
+              "Cells with ctpt_confidence < this value are dropped from all "
+              "downstream analysis (per sample). Both ORIGINAL (pre-filter) and "
+              "PASSED (post-filter) UMAPs and annotation CSVs are written.")
+    )
+    stage2_group.add_argument(
+        '--compute_soft_cas',
+        action='store_true',
+        default=False,
+        help=(
+            "Compute optional soft-CAS metrics using the full CellTypist probability matrix. "
+            "This provides a sensitivity analysis for probabilistic annotation concordance. "
+            "It does not affect optimization unless --use_soft_cas is also set."
+        )
+    )
 
-    if parsed_args.multi_sample and parsed_args.integration_method not in parsed_args.output_prefix:
-        parsed_args.output_prefix += f"_{parsed_args.integration_method}"
-    
+    stage2_group.add_argument(
+        '--use_soft_cas',
+        action='store_true',
+        default=False,
+        help=(
+            "Include the soft-CAS dot-product score in the balanced optimization objective. "
+            "Default is False. This option automatically activates --compute_soft_cas after "
+            "argument parsing. Soft-CAS affects only the balanced objective; for non-balanced "
+            "targets it is computed/reported but not used for optimization."
+        )
+    )
+    stage3_group = parser.add_argument_group('Stage 3: Multi-Sample Integration')
+    stage3_group.add_argument(
+        '--samples', nargs='+', default=None, metavar='NAME=PATH',
+        help="(Stage 3) Two or more samples as NAME=PATH pairs, e.g. "
+             "--samples WT=/path/wt Treated=/path/treated Drug=/path/drug. "
+             "Each sample is independently optimized (Stage 1+2) and then merged for integration."
+    )
+    stage3_group.add_argument('--sample_names', nargs='+', default=None,
+                            help="Space-separated sample names. Must be paired 1:1 with --sample_paths.")
+    stage3_group.add_argument('--sample_paths', nargs='+', default=None,
+                            help="Space-separated sample data directories. Must be paired 1:1 with --sample_names.")
+    stage3_group.add_argument('--enable_stage3_integration', action='store_true',
+                              help="Run the Stage 3 merge + Harmony integration + marker re-annotation pipeline.")
+    stage3_group.add_argument('--integration_hvg_strategy', type=str, default='sample_specific_union',
+                              choices=['fixed_global', 'batch_consensus',
+                                       'sample_specific_union', 'sample_specific_weighted'],
+                              help="HVG selection strategy on the merged object for Stage 3.")
+    stage3_group.add_argument('--integration_fixed_n_hvg', type=int, default=3000)
+    stage3_group.add_argument('--integration_n_pcs', type=int, default=30)
+    stage3_group.add_argument('--integration_n_neighbors', type=int, default=15)
+    stage3_group.add_argument('--min_hvg_sample_recurrence', type=int, default=1,
+                              help="Min #samples a gene must be HVG in to enter the union (sample_specific_*).")
+    stage3_group.add_argument('--integration_max_union_genes', type=int, default=5000)
+    stage3_group.add_argument('--stage3_marker_topN', type=int, default=50,
+                              help="Top-N DE genes per integrated cell type used in marker DB F1 match.")
+
+    parsed_args = parser.parse_args()
+    # --- Merge --sample_names / --sample_paths into --samples NAME=PATH form ---
+    if parsed_args.sample_names or parsed_args.sample_paths:
+        if not (parsed_args.sample_names and parsed_args.sample_paths):
+            parser.error("--sample_names and --sample_paths must be given together.")
+        if len(parsed_args.sample_names) != len(parsed_args.sample_paths):
+            parser.error(
+                f"--sample_names ({len(parsed_args.sample_names)}) and "
+                f"--sample_paths ({len(parsed_args.sample_paths)}) must have equal length."
+            )
+        paired = [f"{n}={p}" for n, p in zip(parsed_args.sample_names, parsed_args.sample_paths)]
+        parsed_args.samples = (parsed_args.samples or []) + paired
+
+    # --- Validate that at least one input mode is selected ---
+    if not (parsed_args.data_dir or parsed_args.multi_sample or
+            (parsed_args.samples and parsed_args.enable_stage3_integration)):
+        parser.error("Must specify --data_dir, --multi_sample, or --samples NAME=PATH ... --enable_stage3_integration")
+
     # Call the main orchestrator function
     main(parsed_args)

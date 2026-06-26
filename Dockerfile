@@ -1,21 +1,18 @@
-# Use a base image that has Conda installed
-FROM continuumio/miniconda3:latest
+FROM mambaorg/micromamba:1.5.10
 
-# Set the working directory
-WORKDIR /app
+LABEL maintainer="QiangSu"
+LABEL description="scBOA: single-cell Bayesian Optimization and Analysis"
 
-# Copy the environment file and your code
-COPY environment.yml .
-COPY . /app
+WORKDIR /workspace
 
-# Create the identical conda environment
-RUN conda env create -f environment.yml
+COPY environment.yml /tmp/environment.yml
 
-# Make RUN commands use the new environment:
-SHELL ["conda", "run", "-n", "scanpy-analysis", "/bin/bash", "-c"]
+RUN micromamba install -y -n base -f /tmp/environment.yml && \
+    micromamba clean --all --yes
 
-# Install scBOA locally inside the container
-RUN pip install -e .
+COPY . /workspace
 
-# Ensure the entrypoint uses the conda environment
-ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "scanpy-analysis", "python"]
+ENV PATH=/opt/conda/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+
+CMD ["python", "scBOA.py", "--help"]

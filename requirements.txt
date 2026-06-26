@@ -1,30 +1,27 @@
-# Core analysis and data handling
-anndata
-h5py
-numpy<2.0.0
-pandas
-scanpy>=1.9.0
-
-# Machine learning and optimization
-joblib
-scikit-learn
-scikit-misc
-scikit-optimize>=0.10.2
-
-# Single-cell specific tools
-celltypist>=1.5.0
-leidenalg
-python-igraph
-umap-learn
-
-# Multi-sample Integration tools
-harmonypy>=0.0.10
-scanorama>=1.7.4
-bbknn>=1.6.0
-
-# Plotting and utilities
-matplotlib
-seaborn
-session-info
-tqdm
-openpyxl
+scanpy==1.11.5
+anndata==0.11.4
+pandas==2.3.3
+numpy==2.2.6
+scipy==1.15.3
+scikit-learn==1.7.2
+matplotlib==3.10.7
+seaborn==0.13.2
+scikit-optimize==0.10.2
+optuna==4.8.0
+celltypist==1.7.1
+harmonypy==0.0.10
+leidenalg==0.11.0
+python-igraph==1.0.0
+igraph==1.0.0
+umap-learn==0.5.9.post2
+scikit-misc==0.5.1
+openpyxl==3.1.5
+scrublet==0.2.3
+scanorama==1.7.4
+bbknn==1.6.0
+statsmodels==0.14.6
+tqdm==4.67.1
+joblib==1.5.2
+numba==0.62.1
+h5py==3.15.1
+pynndescent==0.5.13

@@ -4,59 +4,79 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scboa"
-version = "0.1.6"
+version = "0.2.0"
 description = "scBOA: scRNA-seq Bayesian Optimization and Analysis pipeline"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = { file = "LICENSE" }
+
 authors = [
-  { name = "Qiang Su", email = "su@chemie.uni-siegen.de" }
+  { name = "Qiang Su" }
 ]
-maintainers = [
-  { name = "Qiang Su", email = "su@chemie.uni-siegen.de" }
-]
+
 keywords = [
   "single-cell RNA-seq",
   "scRNA-seq",
   "bayesian optimization",
-  "bioinformatics",
-  "cell type annotation",
-  "scanpy"
+  "hyperparameter optimization",
+  "scanpy",
+  "celltypist",
+  "optuna",
+  "harmonypy",
+  "scrublet",
+  "single-cell integration"
 ]
+
 classifiers = [
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Intended Audience :: Science/Research",
-  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Topic :: Scientific/Engineering :: Bio-Informatics"
 ]
 
-# Core dependencies required for the tool to run
 dependencies = [
-  "scanpy>=1.9.0",     # Core analysis framework
-  "anndata",           # Data structure for scanpy
-  "pandas",
-  "numpy",
-  "scipy",
-  "scikit-learn",
-  "matplotlib",
-  "seaborn",
-  "scikit-optimize",   # Bayesian Optimization
-  "celltypist>=1.5.0", # Cell annotation
-  "harmonypy",         # Multi-sample integration
-  "leidenalg",         # Leiden clustering
-  "python-igraph",     # Graph backend
-  "openpyxl",          # Excel export
+  "scanpy==1.11.5",
+  "anndata==0.11.4",
+  "pandas==2.3.3",
+  "numpy==2.2.6",
+  "scipy==1.15.3",
+  "scikit-learn==1.7.2",
+  "matplotlib==3.10.7",
+  "seaborn==0.13.2",
+  "scikit-optimize==0.10.2",
+  "optuna==4.8.0",
+  "celltypist==1.7.1",
+  "harmonypy==0.0.10",
+  "leidenalg==0.11.0",
+  "python-igraph==1.0.0",
+  "igraph==1.0.0",
+  "umap-learn==0.5.9.post2",
+  "scikit-misc==0.5.1",
+  "openpyxl==3.1.5",
+  "scrublet==0.2.3",
+  "scanorama==1.7.4",
+  "bbknn==1.6.0",
+  "statsmodels==0.14.6",
+  "tqdm==4.67.1",
+  "joblib==1.5.2",
+  "numba==0.62.1",
+  "h5py==3.15.1",
+  "pynndescent==0.5.13"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "black",
+  "ruff"
 ]
 
 [project.urls]
 Homepage = "https://github.com/QiangSu/scBOA"
-"Bug Tracker" = "https://github.com/QiangSu/scBOA/issues"
 Source = "https://github.com/QiangSu/scBOA"
+"Bug Tracker" = "https://github.com/QiangSu/scBOA/issues"
 
 [project.scripts]
 scboa = "scboa.cli:run"

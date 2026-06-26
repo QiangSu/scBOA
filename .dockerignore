@@ -1,0 +1,37 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg-info
+
+# Large scRNA-seq outputs
+*.h5ad
+*.h5
+*.loom
+*.mtx
+*.mtx.gz
+*.bam
+*.bai
+*.fastq
+*.fastq.gz
+
+# Output folders
+stage_1_bayesian_optimization/
+stage_2_final_analysis/
+stage_3_combined_integration/
+*_output/
+*_outputs/
+10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/
+
+# Local environments
+venv/
+.env/
+.conda/
+.mamba/
+
+# Jupyter/cache
+.ipynb_checkpoints/
+.cache/
