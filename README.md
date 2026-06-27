@@ -89,7 +89,6 @@ Using a virtual environment prevents conflicts with other Python projects.
 # Create a new conda environment with Python 3.10
 conda create -n scboa_env python=3.10
 conda activate scboa_env
-pip install -r requirements.txt
 
 ```
 
@@ -111,12 +110,20 @@ The `requirements.txt` file specifies Python dependencies used for reproducible 
 pip install -r requirements.txt
 ```
 
-### 5. Prepare Your Data
+### 5. Alternative: Run via Docker (Zero-Installation)
+
+If you prefer not to install Python or Conda environments, you can use the pre-built Docker image. It comes with all dependencies pre-installed and allows you to run `scboa` from any directory.
+
+```bash
+docker pull qiangsu/scboa:latest
+```
+
+### 6. Prepare Your Data
 
 -   **scRNA-seq Data**: Ensure your Cell Ranger output (the folder containing `barcodes.tsv.gz`, `features.tsv.gz`, and `matrix.mtx.gz`) is accessible.
 -   **CellTypist Model**: Download a pre-trained CellTypist model (`.pkl` file). You can find available models on the official [CellTypist models website](https://www.celltypist.org/models).
 
-### 6. Run the Pipeline
+### 7. Run the Pipeline
 
 At least one input mode must be specified:
 
@@ -254,7 +261,7 @@ python scBOA.py \
   --threads 16
 ```
 
-### 7. Optimizer Benchmarking: scBOA vs Optuna-TPE or Random Search
+### 8. Optimizer Benchmarking: scBOA vs Optuna-TPE or Random Search
 
 scBOA includes benchmarking modes for equal-budget comparison with alternative hyperparameter search strategies. These modes use the same preprocessing workflow, search space, objective function, CellTypist model, and evaluation budget as the default scBOA optimizer.
 
@@ -310,7 +317,7 @@ python scBOA.py \
   --threads 16
 ```
 
-## 8. Atlas-Scale Per-Sample Hierarchical Integration
+## 9. Atlas-Scale Per-Sample Hierarchical Integration
 
 For datasets with more than two samples, or for atlas-scale analysis where each sample should first be optimized independently, scBOA provides a Stage 3 hierarchical integration mode. This mode is activated with `--samples NAME=PATH ... --enable_stage3_integration`.
 
@@ -363,7 +370,7 @@ python scBOA.py \
 ```
 In Stage 3 hierarchical integration, Harmony is precomputed once on the merged global PCA representation before the Optuna search. The Stage 3 optimizer then evaluates different numbers of PCs, neighbors, and Leiden resolutions using this precomputed integrated space. This design avoids repeatedly rerunning Harmony inside each optimization trial and improves scalability for large multi-sample analyses.
 
-## 9. Optional Soft-CAS and Confidence-Aware Analysis
+## 10. Optional Soft-CAS and Confidence-Aware Analysis
 
 scBOA can compute soft-CAS metrics using the full CellTypist probability matrix. Unlike hard CAS, which compares individual CellTypist labels with cluster consensus labels, soft-CAS evaluates probabilistic agreement between each cell’s full prediction distribution and its cluster-level identity distribution.
 
@@ -404,7 +411,7 @@ To filter low-confidence CellTypist assignments during downstream analysis, add:
 
 
 
-## 10. Benchmarking Outputs
+## 11. Benchmarking Outputs
 
 Benchmarking outputs are written under `stage_1_bayesian_optimization/` and include `*_yield_scores_report.csv`, `*_optimizer_convergence.png`, `*_per_trial_exact_scores.png`, and `*_FINAL_best_params.txt`, with the optimizer strategy recorded as `Optuna_TPE` or `Random`.
 
@@ -643,18 +650,16 @@ python ./scBOA.py \
 ```
 #### Option B: Execution via Docker (Zero-Installation)
 
-(Assuming your terminal is currently in the scBOA folder containing your data and models)
-Notice the -v $(pwd):/data flag. This links your current folder to Docker. Therefore, all file paths in the command must begin with /data/.
+Docker allows you to run the pipeline without installing any Python dependencies. By mounting your host directory using `-v` and passing your local user permissions, the container will seamlessly read your data and write the outputs directly back to your computer.
+
+*(Note: The `-v /home/data:/home/data` flag ensures the container uses the exact same absolute file paths as your local machine, meaning you don't have to change any paths in the command).*
 
 ```bash
-docker run --rm \
-  -v /path/to/your/data:/data \
-  -v $(pwd):/workspace \
-  -w /workspace \
-  qiangsu/scboa:latest \
-  python /workspace/scBOA.py \
-  --data_dir /home/data/scRNA_seq_data_public/pbmc_10k_v3_fastqs/cellranger_output/pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
-  --output_dir ./10kPBMC_BOCR_biological_docker_output1/ \
+docker run --rm --user $(id -u):$(id -g) -e HOME=/tmp -w /tmp \
+  -v /home/data:/home/data \
+  qiangsu/scboa:latest scboa \
+  --data_dir ./cellranger_output/pbmc_10k_v3_output/outs/filtered_feature_bc_matrix_biological \
+  --output_dir /home/data/10kPBMC_BOCR_biological_docker_output1/ \
   --model_path /home/data/.celltypist/data/reference/Healthy_COVID19_PBMC.pkl \
   --output_prefix 10kPBMC \
   --seed 42 \
