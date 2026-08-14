@@ -1,0 +1,4 @@
+optimizer_A,optimizer_B,n_paired_seeds,mean_diff_AminusB,statistic,p_value,seeds
+Optuna_TPE,Random_search,8,0.7100000000000009,0.0,0.0078125,"1,100,202,43,44,45,50,80"
+Optuna_TPE,scBOA_GP,8,0.02961250000000426,14.0,0.640625,"1,100,202,43,44,45,50,80"
+Random_search,scBOA_GP,8,-0.6803874999999966,0.0,0.0078125,"1,100,202,43,44,45,50,80"

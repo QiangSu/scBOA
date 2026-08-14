@@ -1,0 +1,9 @@
+panel_x,panel_y,n_trials,spearman_rho,p_value,status
+yield_score_target,external_celltypist_broad_accuracy,90,0.8938595346266515,2.0799596022660094e-32,ok
+yield_score_target,external_celltypist_broad_macro_f1,90,0.8910812813966896,6.096270036441171e-32,ok
+yield_score_target,external_leiden_ari,90,0.24776414395124768,0.018548742861359765,ok
+yield_score_target,external_leiden_nmi,90,0.506612863378078,3.4922731419177827e-07,ok
+weighted_mean_cas,external_celltypist_broad_accuracy,90,0.8357649657307463,1.2381366848021064e-24,ok
+simple_mean_cas,external_leiden_ari,90,0.28579428477312036,0.006322223157996878,ok
+mean_mcs,external_celltypist_broad_macro_f1,90,0.31967388618957426,0.0021311594228621378,ok
+mean_f1,external_celltypist_broad_macro_f1,90,-0.05982642358966035,0.5753895922619119,ok

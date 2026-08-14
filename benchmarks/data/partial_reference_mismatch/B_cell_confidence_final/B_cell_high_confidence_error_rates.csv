@@ -1,0 +1,8 @@
+confidence_threshold,n_B_cells,n_noB_errors,n_errors_above_threshold,fraction_of_errors_above_threshold,fraction_of_all_B_cells_above_threshold
+0.01,500,500,164,0.328,0.328
+0.05,500,500,28,0.056,0.056
+0.1,500,500,12,0.024,0.024
+0.2,500,500,7,0.014,0.014
+0.5,500,500,2,0.004,0.004
+0.8,500,500,1,0.002,0.002
+0.9,500,500,0,0.0,0.0

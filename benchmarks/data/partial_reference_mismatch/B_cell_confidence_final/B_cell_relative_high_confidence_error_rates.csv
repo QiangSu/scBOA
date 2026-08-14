@@ -1,0 +1,4 @@
+threshold_name,confidence_threshold,n_errors_above_threshold,fraction_of_errors_above_threshold
+full_B_q25,0.45900368175566275,2,0.004
+full_B_median,0.6510753197156113,2,0.004
+full_B_q75,0.7850832953116073,1,0.002

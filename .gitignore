@@ -23,3 +23,40 @@ output/
 # IDE settings
 .vscode/
 .idea/
+
+# scBOA generated files and analysis outputs
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Large single-cell files
+*.h5ad
+*.h5
+*.loom
+*.mtx
+*.mtx.gz
+*.tsv.gz
+*.csv.gz
+
+# Local environments
+.venv/
+venv/
+env/
+conda-env/
+
+# Analysis outputs
+results/
+output/
+outputs/
+# figures/ — removed: benchmarks/**/figures/ holds source-data CSVs
+plots/
+*_results/
+*_output/
+*_outputs/
+10kPBMC_BOCR_biological_leiden_50calls_50cas_r3/
+
+# OS files
+.DS_Store

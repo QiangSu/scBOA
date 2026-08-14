@@ -1,0 +1,3 @@
+condition,n_hvg,n_pcs,n_neighbors,resolution,yield_score_target,matched_cells,n_facs_labels,n_leiden_clusters,external_leiden_ari,external_leiden_nmi,external_homogeneity,external_completeness,external_celltypist_broad_accuracy,external_celltypist_broad_macro_f1,external_mean_confidence,effective_n_hvg,effective_n_pcs
+Default baseline,3000,50,15,1.0,,4997,5,8,0.6202793476544494,0.7512735617129109,0.8595430531615562,0.6672283538692474,0.9309585751450871,0.9501724839044419,0.5668597530902345,3000,50
+Best scBOA objective trial,3425,17,10,2.0,73.9928,4997,5,21,0.31187822817564476,0.6162048337676692,0.8981400648275983,0.46898553954638666,0.9461677006203723,0.961124423241159,0.5668597530902345,3425,17

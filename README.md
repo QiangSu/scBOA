@@ -713,6 +713,13 @@ Users can browse this folder on GitHub to instantly view the iterative refinemen
 
 ---
 
+## Benchmarks and reviewer-response data
+
+Tabular outputs and reproduction scripts for the external-concordance analysis,
+the parameter-selection method benchmark, the multi-seed optimizer comparison,
+and the partial reference-mismatch benchmark are deposited under
+[`benchmarks/`](benchmarks/README.md).
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.

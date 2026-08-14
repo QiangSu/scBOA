@@ -1,0 +1,14 @@
+Partial label-space mismatch analysis
+=====================================
+
+Ground-truth B cells: 500
+Misclassified by no-B reference: 500
+Error fraction among B cells: 1.0000
+
+Most common no-B error destinations:
+noB_predicted_label  n_cells  fraction_of_B_cell_errors  fraction_of_all_B_cells
+          CD14_mono      470                       0.94                     0.94
+          CD4.Naive       30                       0.06                     0.06
+
+Confidence columns were available and summarized in B_cells_confidence_summary.csv.
+No cell-level CAS column was found. CAS cannot be assessed from these h5ad files.

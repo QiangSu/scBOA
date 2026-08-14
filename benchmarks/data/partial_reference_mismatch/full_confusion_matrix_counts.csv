@@ -1,0 +1,6 @@
+,B_naive,CD14_mono,CD4.Naive,CD8.EM,CD8.Naive,CD8.TE,DC1,DC3,NK_16hi
+B_cells,500,0,0,0,0,0,0,0,0
+CD4_T_Helper,0,0,1687,20,41,2,0,0,0
+CD8_Cytotoxic_T,0,0,119,226,771,126,0,0,7
+Monocytes,1,931,12,2,0,1,26,25,0
+NK_cells,1,0,1,1,0,10,0,0,487

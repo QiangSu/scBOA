@@ -1,0 +1,5 @@
+internal_metric,external_metric,raw_spearman_rho,partial_rho_ctrl_cluster_count,partial_rho_ctrl_cluster_count_and_resolution,role
+yield_score_target,external_leiden_ari,-0.7191722729555916,0.28986188920439243,0.3625493772422442,target
+silhouette_score,external_leiden_ari,0.6140677365963718,0.1222624637046224,0.014782246329965868,positive_control
+mean_f1,external_leiden_ari,-0.20474600387660263,-0.2164507117611819,-0.22067303280351605,positive_control
+mean_mcs,external_leiden_ari,-0.6442222972472229,-0.11352613408731133,-0.1434791589829347,positive_control

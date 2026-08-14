@@ -1,0 +1,2 @@
+n_cells,full_mean,noB_mean,mean_change_noB_minus_full,full_median,noB_median,median_change_noB_minus_full,wilcoxon_alternative,wilcoxon_statistic,wilcoxon_pvalue
+500,0.6165504496193169,0.017988541968731744,-0.5985619076505853,0.6510753197156113,0.0054655819870945005,-0.6266542760753451,full > noB,124251.0,1.341374660247457e-83

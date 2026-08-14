@@ -1,0 +1,7 @@
+external_metric,spearman_rho_vs_cluster_number,p_value,n_trials
+external_leiden_ari,-0.8415091210122709,2.946303746860538e-25,90
+external_leiden_nmi,-0.7880861295272282,3.055612983269944e-20,90
+external_homogeneity,-0.12859164199830406,0.22708690342467192,90
+external_completeness,-0.9586170076164018,8.55731204802953e-50,90
+external_celltypist_broad_accuracy,-0.259875117592589,0.013376434217687659,90
+external_celltypist_broad_macro_f1,-0.25158588201440146,0.0167568213575702,90
