@@ -1,0 +1,25 @@
+,AssignedType
+Astro AQP4 SLC1A2,Astrocyte
+Astro GFAP FABP7,Astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN LAMP5 BMP7,Retinal ganglion cells
+InN LAMP5 RELN,Neuroblasts
+InN PVALB HPSE,Parvalbumin interneuron
+InN SST FREM1,Oligodendrocyte precursor cell
+InN SST HS3ST5,Lake et al.science.ex6
+InN VIP CLSTN2,Lake et al.science.ex8
+InN VIP EXPH5,Lake et al.science.in3
+L2-3 CUX2 ACVR1C THSD7A,Pyramidal cells
+L2-3 CUX2 NTNG1 PALMD,Immature neurons
+L2-4 CUX2 RORB CLMN,Lake et al.science.ex2
+L3-5 RORB GABRG1 KCNH7,Somatostatin interneuron
+L3-5 RORB MKX DCC,Lake et al.science.ex5
+L3-5 RORB PCBP3 IL1RAPL2,Retinal ganglion cells
+L5-6 FEZF2 NXPH2 CDH8,Lake et al.science.ex6
+L6 FEZF2 NPFFR2 TPD52L1,Lake et al.science.ex6
+L6 OPRK1 THEMIS RGS6,Lake et al.science.ex8
+Micro P2RY12 APBB1IP,Microglia
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG OPALIN,Oligodendrocytes
+PC P2RY14 GRM8,Pericyte
+SMC ACTA2 CNN1,Smooth muscle cell

@@ -60,3 +60,17 @@ plots/
 
 # OS files
 .DS_Store
+# Python build artefacts
+dist/
+build/
+*.egg-info/
+src/*.egg-info/
+
+# Local backups / env snapshots
+*.bak.*
+pyproject.toml.bak.*
+
+# Local env snapshots / manifests
+MANIFEST.txt
+docker_env.txt
+local_env.txt

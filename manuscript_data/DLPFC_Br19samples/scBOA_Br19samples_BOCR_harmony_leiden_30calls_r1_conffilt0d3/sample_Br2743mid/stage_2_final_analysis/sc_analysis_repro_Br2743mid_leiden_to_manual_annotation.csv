@@ -1,0 +1,22 @@
+,AssignedType
+Astro GFAP AQP1,Astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN ADARB2 FAM19A1,Neuroblasts
+InN LAMP5 BMP7,Retinal ganglion cells
+InN LAMP5 RELN,Neuron
+InN PVALB HPSE,Purkinje neurons
+InN PVALB PDE3A,Lake et al.science.ex6
+InN SST FREM1,Lake et al.science.ex2
+InN SST HS3ST5,Lake et al.science.ex6
+InN VIP CLSTN2,Lake et al.science.ex6
+InN VIP HS3ST3B1,Lake et al.science.ex8
+L2-3 CUX2 ACVR1C THSD7A,Pyramidal cells
+L3-5 RORB GABRG1 PTPRO,Neuroblasts
+L3-5 RORB MKX SCN5A,Lake et al.science.ex5
+L3-5 RORB PCBP3 IL1RAPL2,Neuroblasts
+L5-6 FEZF2 NXPH2 GRIK1,Lake et al.science.ex6
+L6 FEZF2 SYT6 PTPRT,Lake et al.science.ex6
+L6 OPRK1 SMYD1 KCND2,Lake et al.science.ex8
+Micro P2RY12 APBB1IP,Microglia
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG OPALIN,Mature oligodendrocyte

@@ -1,0 +1,37 @@
+Consensus_Cell_Type,initial_Total_Cells,initial_Matching_Predictions,initial_CAS_Score_(%),refinement_depth_1_Total_Cells,refinement_depth_1_Matching_Predictions,refinement_depth_1_CAS_Score_(%),refinement_depth_2_Total_Cells,refinement_depth_2_Matching_Predictions,refinement_depth_2_CAS_Score_(%),refinement_depth_3_Total_Cells,refinement_depth_3_Matching_Predictions,refinement_depth_3_CAS_Score_(%)
+076 MEA-BST Lhx6 Nfib Gaba,-,-,-,142,50,35.21,-,-,-,-,-,-
+093 RT-ZI Gnb3 Gaba,794,732,92.19,-,-,-,-,-,-,-,-,-
+101 ZI Pax6 Gaba,-,-,-,1436,474,33.01,3396,338,9.95,3396,338,9.95
+107 DMH Hmx2 Gaba,-,-,-,192,34,17.71,-,-,-,-,-,-
+110 BST-po Iigp1 Glut,58,40,68.97,-,-,-,-,-,-,-,-,-
+111 TRS-BAC Sln Glut,-,-,-,35,15,42.86,-,-,-,-,-,-
+129 VMH Nr5a1 Glut,-,-,-,332,70,21.08,-,-,-,-,-,-
+133 PVH-SO-PVa Otp Glut,67,62,92.54,161,23,14.29,-,-,-,-,-,-
+134 PH-ant-LHA Otp Bsx Glut,-,-,-,142,43,30.28,-,-,-,-,-,-
+135 STN-PSTN Pitx2 Glut,-,-,-,127,82,64.57,-,-,-,-,-,-
+140 PMd-LHA Foxb1 Glut,-,-,-,412,41,9.95,-,-,-,-,-,-
+141 PH-SUM Foxa1 Glut,-,-,-,250,62,24.8,-,-,-,-,-,-
+145 MH Tac2 Glut,732,695,94.95,-,-,-,-,-,-,-,-,-
+146 LH Pou4f1 Sox1 Glut,435,232,53.33,-,-,-,-,-,-,-,-,-
+147 AD Serpinb7 Glut,186,171,91.94,-,-,-,-,-,-,-,-,-
+148 AV Col27a1 Glut,641,362,56.47,-,-,-,-,-,-,-,-,-
+149 PVT-PT Ntrk1 Glut,351,335,95.44,-,-,-,-,-,-,-,-,-
+150 CM-IAD-CL-PCN Sema5b Glut,1798,965,53.67,-,-,-,-,-,-,-,-,-
+151 TH Prkcd Grin2c Glut,3330,3017,90.6,1459,431,29.54,2185,373,17.07,2185,373,17.07
+152 RE-Xi Nox4 Glut,846,493,58.27,-,-,-,-,-,-,-,-,-
+154 PF Fzd5 Glut,551,516,93.65,-,-,-,-,-,-,-,-,-
+163 APN C1ql2 Glut,-,-,-,164,96,58.54,-,-,-,-,-,-
+164 APN C1ql4 Glut,-,-,-,268,74,27.61,-,-,-,-,-,-
+202 PRT Tcf7l2 Gaba,-,-,-,423,149,35.22,-,-,-,-,-,-
+213 SCsg Gabrr2 Gaba,27,26,96.3,-,-,-,-,-,-,-,-,-
+215 SNc-VTA-RAmb Foxa1 Dopa,38,26,68.42,-,-,-,-,-,-,-,-,-
+264 PRNc Otp Gly-Gaba,-,-,-,206,20,9.71,-,-,-,-,-,-
+318 Astro-NT NN,2018,1805,89.44,-,-,-,-,-,-,-,-,-
+323 Ependymal NN,12,12,100,-,-,-,-,-,-,-,-,-
+326 OPC NN,641,554,86.43,-,-,-,-,-,-,-,-,-
+327 Oligo NN,6883,6539,95,1000,210,21,316,140,44.3,316,140,44.3
+330 VLMC NN,16,16,100,-,-,-,-,-,-,-,-,-
+331 Peri NN,39,37,94.87,-,-,-,-,-,-,-,-,-
+333 Endo NN,67,56,83.58,-,-,-,-,-,-,-,-,-
+334 Microglia NN,689,680,98.69,199,66,33.17,194,65,33.51,194,65,33.51
+338 Lymphoid NN,-,-,-,5,5,100,-,-,-,-,-,-

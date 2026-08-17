@@ -1,0 +1,19 @@
+--- Bayesian Optimization Results ---
+Optimization Model Type: silhouette
+Marker Gene Model for MCS: non-mitochondrial
+Optimization Target: Silhouette Score
+Winning Strategy: Explore
+Random Seed Used: 42
+
+Best n_hvg: 528
+Best n_pcs: 10
+Best n_neighbors: 29
+Best resolution: 0.219
+
+Highest_silhouette_score: 0.5261
+Corresponding_weighted_mean_cas_pct: 1.67
+Corresponding_simple_mean_cas_pct: 1.24
+Corresponding_mean_mcs_pct: 97.44
+Corresponding_silhouette_score: 0.5261
+Final_n_individual_labels: 49
+Final_n_consensus_labels: 9

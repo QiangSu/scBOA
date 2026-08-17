@@ -1,0 +1,1178 @@
+,ctpt_consensus_prediction,Cluster_ID,Marker_Match_1,Marker_Match_1_F1 (%),Marker_Match_2,Marker_Match_2_F1 (%),Marker_Match_3,Marker_Match_3_F1 (%)
+0,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+2,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+3,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+4,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+5,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+6,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+7,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+8,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+9,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+10,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+11,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+12,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+13,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+14,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+15,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+16,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+17,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+18,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+19,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+20,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+21,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+22,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+23,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+24,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+25,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+26,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+27,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+28,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+29,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+30,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+31,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+32,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+33,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+34,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+35,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+36,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+37,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+38,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+39,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+40,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+41,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+42,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+43,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+44,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+45,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+46,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+47,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+48,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+49,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+50,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+51,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+52,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+53,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+54,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+55,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+56,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+57,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+58,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+59,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+60,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+61,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+62,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+63,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+64,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+65,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+66,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+67,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+68,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+69,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+70,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+71,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+72,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+73,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+74,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+75,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+76,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+77,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+78,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+79,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+80,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+81,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+82,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+83,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+84,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+85,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+86,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+87,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+88,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+89,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+90,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+91,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+92,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+93,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+94,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+95,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+96,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+97,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+98,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+99,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+100,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+101,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+102,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+103,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+104,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+105,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+106,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+107,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+108,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+109,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+110,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+111,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+112,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+113,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+114,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+115,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+116,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+117,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+118,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+119,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+120,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+121,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+122,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+123,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+124,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+125,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+126,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+127,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+128,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+129,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+130,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+131,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+132,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+133,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+134,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+135,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+136,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+137,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+138,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+139,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+140,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+141,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+142,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+143,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+144,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+145,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+146,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+147,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+148,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+149,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+150,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+151,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+152,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+153,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+154,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+155,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+156,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+157,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+158,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+159,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+160,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+161,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+162,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+163,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+164,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+165,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+166,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+167,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+168,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+169,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+170,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+171,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+172,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+173,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+174,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+175,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+176,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+177,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+178,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+179,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+180,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+181,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+182,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+183,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+184,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+185,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+186,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+187,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+188,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+189,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+190,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+191,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+192,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+193,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+194,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+195,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+196,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+197,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+198,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+199,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+200,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+201,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+202,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+203,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+204,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+205,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+206,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+207,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+208,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+209,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+210,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+211,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+212,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+213,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+214,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+215,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+216,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+217,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+218,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+219,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+220,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+221,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+222,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+223,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+224,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+225,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+226,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+227,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+228,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+229,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+230,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+231,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+232,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+233,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+234,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+235,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+236,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+237,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+238,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+239,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+240,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+241,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+242,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+243,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+244,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+245,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+246,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+247,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+248,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+249,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+250,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+251,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+252,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+253,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+254,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+255,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+256,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+257,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+258,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+259,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+260,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+261,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+262,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+263,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+264,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+265,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+266,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+267,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+268,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+269,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+270,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+271,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+272,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+273,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+274,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+275,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+276,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+277,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+278,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+279,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+280,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+281,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+282,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+283,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+284,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+285,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+286,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+287,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+288,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+289,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+290,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+291,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+292,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+293,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+294,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+295,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+296,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+297,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+298,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+299,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+300,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+301,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+302,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+303,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+304,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+305,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+306,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+307,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+308,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+309,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+310,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+311,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+312,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+313,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+314,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+315,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+316,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+317,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+318,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+319,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+320,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+321,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+322,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+323,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+324,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+325,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+326,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+327,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+328,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+329,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+330,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+331,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+332,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+333,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+334,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+335,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+336,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+337,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+338,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+339,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+340,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+341,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+342,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+343,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+344,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+345,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+346,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+347,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+348,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+349,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+350,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+351,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+352,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+353,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+354,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+355,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+356,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+357,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+358,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+359,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+360,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+361,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+362,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+363,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+364,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+365,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+366,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+367,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+368,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+369,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+370,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+371,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+372,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+373,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+374,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+375,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+376,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+377,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+378,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+379,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+380,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+381,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+382,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+383,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+384,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+385,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+386,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+387,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+388,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+389,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+390,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+391,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+392,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+393,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+394,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+395,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+396,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+397,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+398,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+399,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+400,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+401,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+402,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+403,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+404,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+405,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+406,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+407,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+408,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+409,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+410,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+411,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+412,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+413,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+414,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+415,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+416,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+417,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+418,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+419,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+420,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+421,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+422,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+423,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+424,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+425,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+426,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+427,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+428,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+429,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+430,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+431,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+432,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+433,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+434,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+435,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+436,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+437,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+438,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+439,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+440,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+441,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+442,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+443,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+444,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+445,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+446,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+447,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+448,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+449,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+450,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+451,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+452,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+453,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+454,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+455,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+456,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+457,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+458,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+459,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+460,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+461,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+462,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+463,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+464,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+465,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+466,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+467,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+468,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+469,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+470,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+471,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+472,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+473,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+474,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+475,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+476,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+477,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+478,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+479,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+480,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+481,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+482,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+483,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+484,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+485,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+486,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+487,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+488,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+489,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+490,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+491,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+492,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+493,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+494,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+495,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+496,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+497,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+498,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+499,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+500,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+501,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+502,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+503,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+504,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+505,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+506,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+507,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+508,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+509,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+510,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+511,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+512,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+513,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+514,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+515,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+516,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+517,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+518,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+519,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+520,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+521,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+522,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+523,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+524,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+525,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+526,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+527,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+528,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+529,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+530,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+531,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+532,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+533,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+534,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+535,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+536,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+537,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+538,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+539,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+540,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+541,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+542,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+543,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+544,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+545,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+546,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+547,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+548,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+549,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+550,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+551,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+552,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+553,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+554,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+555,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+556,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+557,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+558,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+559,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+560,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+561,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+562,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+563,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+564,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+565,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+566,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+567,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+568,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+569,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+570,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+571,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+572,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+573,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+574,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+575,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+576,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+577,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+578,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+579,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+580,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+581,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+582,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+583,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+584,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+585,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+586,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+587,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+588,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+589,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+590,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+591,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+592,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+593,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+594,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+595,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+596,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+597,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+598,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+599,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+600,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+601,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+602,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+603,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+604,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+605,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+606,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+607,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+608,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+609,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+610,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+611,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+612,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+613,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+614,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+615,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+616,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+617,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+618,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+619,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+620,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+621,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+622,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+623,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+624,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+625,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+626,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+627,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+628,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+629,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+630,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+631,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+632,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+633,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+634,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+635,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+636,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+637,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+638,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+639,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+640,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+641,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+642,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+643,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+644,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+645,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+646,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+647,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+648,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+649,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+650,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+651,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+652,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+653,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+654,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+655,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+656,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+657,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+658,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+659,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+660,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+661,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+662,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+663,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+664,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+665,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+666,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+667,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+668,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+669,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+670,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+671,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+672,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+673,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+674,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+675,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+676,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+677,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+678,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+679,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+680,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+681,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+682,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+683,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+684,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+685,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+686,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+687,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+688,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+689,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+690,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+691,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+692,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+693,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+694,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+695,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+696,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+697,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+698,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+699,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+700,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+701,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+702,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+703,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+704,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+705,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+706,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+707,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+708,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+709,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+710,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+711,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+712,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+713,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+714,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+715,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+716,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+717,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+718,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+719,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+720,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+721,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+722,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+723,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+724,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+725,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+726,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+727,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+728,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+729,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+730,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+731,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+732,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+733,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+734,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+735,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+736,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+737,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+738,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+739,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+740,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+741,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+742,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+743,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+744,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+745,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+746,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+747,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+748,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+749,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+750,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+751,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+752,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+753,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+754,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+755,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+756,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+757,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+758,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+759,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+760,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+761,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+762,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+763,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+764,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+765,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+766,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+767,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+768,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+769,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+770,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+771,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+772,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+773,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+774,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+775,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+776,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+777,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+778,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+779,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+780,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+781,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+782,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+783,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+784,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+785,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+786,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+787,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+788,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+789,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+790,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+791,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+792,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+793,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+794,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+795,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+796,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+797,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+798,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+799,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+800,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+801,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+802,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+803,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+804,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+805,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+806,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+807,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+808,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+809,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+810,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+811,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+812,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+813,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+814,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+815,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+816,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+817,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+818,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+819,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+820,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+821,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+822,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+823,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+824,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+825,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+826,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+827,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+828,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+829,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+830,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+831,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+832,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+833,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+834,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+835,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+836,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+837,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+838,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+839,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+840,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+841,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+842,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+843,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+844,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+845,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+846,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+847,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+848,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+849,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+850,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+851,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+852,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+853,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+854,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+855,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+856,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+857,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+858,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+859,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+860,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+861,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+862,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+863,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+864,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+865,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+866,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+867,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+868,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+869,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+870,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+871,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+872,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+873,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+874,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+875,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+876,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+877,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+878,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+879,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+880,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+881,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+882,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+883,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+884,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+885,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+886,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+887,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+888,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+889,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+890,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+891,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+892,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+893,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+894,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+895,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+896,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+897,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+898,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+899,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+900,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+901,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+902,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+903,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+904,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+905,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+906,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+907,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+908,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+909,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+910,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+911,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+912,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+913,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+914,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+915,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+916,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+917,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+918,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+919,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+920,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+921,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+922,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+923,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+924,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+925,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+926,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+927,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+928,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+929,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+930,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+931,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+932,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+933,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+934,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+935,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+936,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+937,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+938,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+939,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+940,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+941,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+942,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+943,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+944,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+945,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+946,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+947,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+948,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+949,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+950,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+951,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+952,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+953,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+954,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+955,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+956,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+957,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+958,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+959,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+960,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+961,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+962,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+963,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+964,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+965,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+966,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+967,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+968,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+969,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+970,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+971,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+972,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+973,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+974,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+975,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+976,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+977,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+978,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+979,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+980,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+981,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+982,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+983,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+984,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+985,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+986,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+987,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+988,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+989,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+990,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+991,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+992,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+993,Micro P2RY12 APBB1IP,Micro P2RY12 APBB1IP,Microglia,9.917355371900827,Lake et al.science.ex8,5.5045871559633035,Activated cd8+ t cell,3.9215686274509802
+994,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+995,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+996,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+997,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+998,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+999,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1000,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1001,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1002,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1003,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1004,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1005,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1006,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1007,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1008,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1009,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1010,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1011,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1012,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1013,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1014,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1015,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+1016,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1017,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1018,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1019,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1020,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1021,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1022,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1023,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1024,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1025,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1026,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1027,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1028,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1029,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1030,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1031,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1032,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1033,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1034,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1035,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1036,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1037,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1038,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1039,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1040,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1041,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1042,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1043,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1044,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1045,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1046,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1047,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1048,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1049,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1050,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1051,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1052,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+1053,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1054,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1055,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1056,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1057,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1058,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1059,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1060,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1061,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1062,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+1063,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1064,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1065,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1066,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1067,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1068,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1069,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1070,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1071,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1072,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1073,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1074,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1075,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1076,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1077,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1078,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1079,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1080,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1081,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1082,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1083,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1084,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1085,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1086,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1087,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1088,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1089,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1090,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1091,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1092,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1093,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1094,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1095,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1096,L2-3 CUX2 ACVR1C THSD7A,L2-3 CUX2 ACVR1C THSD7A,Excitatory neuron,11.76470588235294,Pyramidal cells,7.0588235294117645,Neurons,4.743083003952569
+1097,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1098,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1099,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1100,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1101,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1102,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1103,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1104,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1105,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1106,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1107,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1108,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1109,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1110,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+1111,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1112,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1113,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1114,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1115,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1116,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1117,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1118,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1119,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1120,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1121,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1122,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1123,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1124,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1125,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1126,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1127,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1128,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1129,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1130,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1131,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1132,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1133,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1134,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1135,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1136,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1137,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1138,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1139,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1140,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1141,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1142,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1143,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1144,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1145,T SKAP1 CD247,T SKAP1 CD247,Lymphocyte,6.666666666666667,B cell,6.0606060606060606,Endothelial cell,5.128205128205128
+1146,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1147,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1148,Astro GFAP AQP1,Astro GFAP AQP1,Radial glia cells,9.375,Astrocyte,9.266409266409266,Glial cell,7.142857142857142
+1149,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1150,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1151,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1152,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1153,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1154,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1155,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1156,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1157,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1158,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1159,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1160,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667
+1161,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1162,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1163,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1164,PC P2RY14 GRM8,PC P2RY14 GRM8,Pericyte,8.695652173913043,Endothelial cell,7.692307692307692,Mural cell,7.017543859649124
+1165,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1166,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1167,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1168,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1169,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1170,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1171,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1172,Oligo MOG GSN,Oligo MOG GSN,Oligodendrocytes,8.695652173913043,Lake et al.science.ex6,4.761904761904763,Ventricular radial glial cell,3.8461538461538463
+1173,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1174,OPC PDGFRA PCDH15,OPC PDGFRA PCDH15,Oligodendrocyte precursor cell,22.22222222222222,Oligodendrocyte progenitor cells,15.384615384615383,Oligodendrocyte progenitor cell,13.114754098360654
+1175,Oligo MOG OPALIN,Oligo MOG OPALIN,Oligodendrocyte,7.725321888412016,Mature oligodendrocyte,7.2727272727272725,Oligodendrocytes,7.246376811594203
+1176,Endo CLDN5 IL1R1,Endo CLDN5 IL1R1,Retinal ganglion cells,8.403361344537815,Purkinje neurons,7.339449541284404,Glutaminergic neurons,6.666666666666667

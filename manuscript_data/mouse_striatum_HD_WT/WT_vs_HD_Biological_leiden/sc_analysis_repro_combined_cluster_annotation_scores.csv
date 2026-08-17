@@ -1,0 +1,88 @@
+Cluster_ID (Leiden),Consensus_Cell_Type,Total_Cells_in_Group,Matching_Individual_Predictions,Cluster_Annotation_Score_CAS (%),source_level
+46,323 Ependymal NN,12,12,100.0,initial_high_confidence
+45,330 VLMC NN,16,16,100.0,initial_high_confidence
+43,327 Oligo NN,35,35,100.0,initial_high_confidence
+3,327 Oligo NN,1723,1719,99.76784677887406,initial_high_confidence
+1,327 Oligo NN,2441,2429,99.50839819746004,initial_high_confidence
+18,145 MH Tac2 Glut,505,502,99.4059405940594,initial_high_confidence
+27,327 Oligo NN,254,252,99.21259842519684,initial_high_confidence
+14,334 Microglia NN,689,680,98.69375907111755,initial_high_confidence
+44,213 SCsg Gabrr2 Gaba,27,26,96.29629629629628,initial_high_confidence
+7,151 TH Prkcd Grin2c Glut,1047,1005,95.98853868194844,initial_high_confidence
+4,327 Oligo NN,1517,1456,95.9789057350033,initial_high_confidence
+8,151 TH Prkcd Grin2c Glut,999,957,95.7957957957958,initial_high_confidence
+25,149 PVT-PT Ntrk1 Glut,351,335,95.44159544159544,initial_high_confidence
+41,331 Peri NN,39,37,94.87179487179488,initial_high_confidence
+31,145 MH Tac2 Glut,159,150,94.33962264150944,initial_high_confidence
+39,327 Oligo NN,50,47,94.0,initial_high_confidence
+17,154 PF Fzd5 Glut,551,516,93.64791288566244,initial_high_confidence
+13,093 RT-ZI Gnb3 Gaba,745,695,93.28859060402684,initial_high_confidence
+36,133 PVH-SO-PVa Otp Glut,67,62,92.53731343283582,initial_high_confidence
+16,326 OPC NN,553,510,92.2242314647378,initial_high_confidence
+30,147 AD Serpinb7 Glut,186,171,91.93548387096774,initial_high_confidence
+2,318 Astro-NT NN,2018,1805,89.44499504459861,initial_high_confidence
+20,151 TH Prkcd Grin2c Glut,502,443,88.24701195219123,initial_high_confidence
+37,333 Endo NN,67,56,83.58208955223881,initial_high_confidence
+22,327 Oligo NN,454,376,82.81938325991189,initial_high_confidence
+12,151 TH Prkcd Grin2c Glut,782,612,78.26086956521739,initial_high_confidence
+40,093 RT-ZI Gnb3 Gaba,49,37,75.51020408163265,initial_high_confidence
+38,110 BST-po Iigp1 Glut,58,40,68.96551724137932,initial_high_confidence
+42,215 SNc-VTA-RAmb Foxa1 Dopa,38,26,68.42105263157895,initial_high_confidence
+35,145 MH Tac2 Glut,68,43,63.23529411764706,initial_high_confidence
+33,327 Oligo NN,128,77,60.15625,initial_high_confidence
+10,152 RE-Xi Nox4 Glut,846,493,58.274231678487,initial_high_confidence
+15,148 AV Col27a1 Glut,641,362,56.47425897035881,initial_high_confidence
+11,150 CM-IAD-CL-PCN Sema5b Glut,823,456,55.40704738760632,initial_high_confidence
+23,146 LH Pou4f1 Sox1 Glut,435,232,53.333333333333336,initial_high_confidence
+26,327 Oligo NN,281,148,52.66903914590748,initial_high_confidence
+9,150 CM-IAD-CL-PCN Sema5b Glut,975,509,52.20512820512821,initial_high_confidence
+34,326 OPC NN,88,44,50.0,initial_high_confidence
+27,338 Lymphoid NN,5,5,100.0,refinement_depth_1
+24,202 PRT Tcf7l2 Gaba,82,71,86.58536585365853,refinement_depth_1
+10,101 ZI Pax6 Gaba,289,231,79.93079584775087,refinement_depth_1
+23,135 STN-PSTN Pitx2 Glut,127,82,64.56692913385827,refinement_depth_1
+16,151 TH Prkcd Grin2c Glut,195,122,62.56410256410256,refinement_depth_1
+18,163 APN C1ql2 Glut,164,96,58.53658536585366,refinement_depth_1
+5,327 Oligo NN,354,152,42.93785310734463,refinement_depth_1
+25,111 TRS-BAC Sln Glut,35,15,42.85714285714285,refinement_depth_1
+21,076 MEA-BST Lhx6 Nfib Gaba,142,50,35.2112676056338,refinement_depth_1
+15,334 Microglia NN,199,66,33.165829145728644,refinement_depth_1
+20,134 PH-ant-LHA Otp Bsx Glut,142,43,30.281690140845072,refinement_depth_1
+9,101 ZI Pax6 Gaba,297,86,28.956228956228955,refinement_depth_1
+11,164 APN C1ql4 Glut,268,74,27.611940298507463,refinement_depth_1
+2,151 TH Prkcd Grin2c Glut,490,129,26.3265306122449,refinement_depth_1
+4,151 TH Prkcd Grin2c Glut,381,100,26.246719160104988,refinement_depth_1
+13,141 PH-SUM Foxa1 Glut,250,62,24.8,refinement_depth_1
+6,202 PRT Tcf7l2 Gaba,341,78,22.873900293255133,refinement_depth_1
+12,151 TH Prkcd Grin2c Glut,252,57,22.61904761904762,refinement_depth_1
+1,101 ZI Pax6 Gaba,524,115,21.946564885496183,refinement_depth_1
+7,129 VMH Nr5a1 Glut,332,70,21.08433734939759,refinement_depth_1
+17,107 DMH Hmx2 Gaba,192,34,17.708333333333332,refinement_depth_1
+22,151 TH Prkcd Grin2c Glut,141,23,16.31205673758865,refinement_depth_1
+26,327 Oligo NN,20,3,15.0,refinement_depth_1
+19,133 PVH-SO-PVa Otp Glut,161,23,14.285714285714286,refinement_depth_1
+8,101 ZI Pax6 Gaba,326,42,12.883435582822086,refinement_depth_1
+3,140 PMd-LHA Foxb1 Glut,412,41,9.951456310679612,refinement_depth_1
+14,264 PRNc Otp Gly-Gaba,206,20,9.70873786407767,refinement_depth_1
+0,327 Oligo NN,626,55,8.78594249201278,refinement_depth_1
+4,327 Oligo NN,316,140,44.30379746835443,refinement_depth_2
+6,334 Microglia NN,194,65,33.50515463917526,refinement_depth_2
+3,151 TH Prkcd Grin2c Glut,511,125,24.46183953033268,refinement_depth_2
+5,151 TH Prkcd Grin2c Glut,237,52,21.940928270042196,refinement_depth_2
+2,101 ZI Pax6 Gaba,575,108,18.782608695652176,refinement_depth_2
+1,151 TH Prkcd Grin2c Glut,1437,196,13.639526791927628,refinement_depth_2
+0,101 ZI Pax6 Gaba,2821,230,8.15313718539525,refinement_depth_2
+4,327 Oligo NN,316,140,44.30379746835443,refinement_depth_3
+6,334 Microglia NN,194,65,33.50515463917526,refinement_depth_3
+3,151 TH Prkcd Grin2c Glut,511,125,24.46183953033268,refinement_depth_3
+5,151 TH Prkcd Grin2c Glut,237,52,21.940928270042196,refinement_depth_3
+2,101 ZI Pax6 Gaba,575,108,18.782608695652176,refinement_depth_3
+1,151 TH Prkcd Grin2c Glut,1437,196,13.639526791927628,refinement_depth_3
+0,101 ZI Pax6 Gaba,2821,230,8.15313718539525,refinement_depth_3
+4,327 Oligo NN,316,140,44.30379746835443,refinement_depth_4
+6,334 Microglia NN,194,65,33.50515463917526,refinement_depth_4
+3,151 TH Prkcd Grin2c Glut,511,125,24.46183953033268,refinement_depth_4
+5,151 TH Prkcd Grin2c Glut,237,52,21.940928270042196,refinement_depth_4
+2,101 ZI Pax6 Gaba,575,108,18.782608695652176,refinement_depth_4
+1,151 TH Prkcd Grin2c Glut,1437,196,13.639526791927628,refinement_depth_4
+0,101 ZI Pax6 Gaba,2821,230,8.15313718539525,refinement_depth_4

@@ -1,0 +1,16 @@
+,AssignedType
+Astro AQP4 SLC1A2,Astrocyte
+Astro GFAP FABP7,Mature astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN LAMP5 BMP7,Gabaergic neurons
+InN SST STK32A,Purkinje neurons
+L2-3 CUX2 NTNG1 PALMD,Excitatory neuron
+L3-5 RORB MKX DCC,Somatostatin interneuron
+L3-5 RORB MKX GRIN3A,Somatostatin interneuron
+Micro P2RY12 CCL3,Lake et al.science.ex8
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG OPALIN,Oligodendrocytes
+PC P2RY14 GRM8,Mural cell
+SMC ACTA2 CNN1,Smooth muscle cell
+T SKAP1 CD247,Macrophage
+VLMC COL1A2 VLMCA8,Lake et al.science.ex2

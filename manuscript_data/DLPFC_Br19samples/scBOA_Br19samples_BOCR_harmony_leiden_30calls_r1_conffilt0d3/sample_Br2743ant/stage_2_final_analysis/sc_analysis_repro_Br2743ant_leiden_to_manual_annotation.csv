@@ -1,0 +1,15 @@
+,AssignedType
+Astro AQP4 SLC1A2,Astrocyte
+Astro GFAP AQP1,Astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN SST HTR2C,Lake et al.science.ex6
+InN VIP EXPH5,Purkinje neurons
+L2-3 CUX2 ACVR1C THSD7A,Neuron
+L3-5 RORB MKX GRIN3A,Cajal-retzius cells
+L6 FEZF2 SYT6 PTPRT,Lake et al.science.ex6
+Micro P2RY12 APBB1IP,Microglia
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG GSN,Oligodendrocyte
+Oligo MOG OPALIN,Oligodendrocytes
+PC P2RY14 GRM8,Pericyte
+T SKAP1 CD247,Lymphocyte

@@ -1,0 +1,18 @@
+,AssignedType
+Astro AQP4 SLC1A2,Astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN LAMP5 BMP7,Lake et al.science.in4
+InN PVALB HPSE,Parvalbumin interneuron
+InN SST FREM1,Purkinje neurons
+InN VIP HS3ST3B1,Purkinje neurons
+L2-3 CUX2 ACVR1C THSD7A,Somatostatin interneuron
+L3-5 RORB GABRG1 KCNH7,Somatostatin interneuron
+L3-5 RORB MKX GRIN3A,Cajal-retzius cells
+L3-5 RORB PCBP3 IL1RAPL2,Retinal ganglion cells
+L5-6 FEZF2 NXPH2 GRIK1,Lake et al.science.ex6
+L6 FEZF2 NPFFR2 KCNK2,Lake et al.science.ex6
+L6 OPRK1 THEMIS RGS6,Retinal ganglion cells
+Micro P2RY12 APBB1IP,Microglia
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG OPALIN,Oligodendrocytes
+PC P2RY14 GRM8,Pericyte

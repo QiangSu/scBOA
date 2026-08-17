@@ -81,9 +81,9 @@ MITO_REGEX_PATTERN = r'^(MT|Mt|mt)[-._:]'
 
 # Default search space for Stage 1, 'n_hvg' may be dynamically changed later
 search_space = [
-    Integer(200, 20000, name='n_hvg'),
-    Integer(10, 100, name='n_pcs'),
-    Integer(10, 50, name='n_neighbors'),
+    Integer(1000, 20000, name='n_hvg'),
+    Integer(10, 45, name='n_pcs'),
+    Integer(10, 30, name='n_neighbors'),
     Real(0.5, 2.0, name='resolution')
 ]
 
@@ -1419,7 +1419,7 @@ def _write_top3_marker_annotation_csv(adata, cluster_top3, groupby_key, output_d
     except Exception as e:
         print(f"[WARNING] Could not write top-3 marker annotation CSV. Reason: {e}")
 
-def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=None, adata_input=None):
+def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=None, adata_input=None, is_refinement=False):
     """
     (Stage 2) Executes the detailed single-sample analysis pipeline using
     parameters discovered in Stage 1. All outputs are saved to a subdirectory.
@@ -1660,6 +1660,60 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     cas_leiden_output_path = os.path.join(output_dir, f"{cli_args.final_run_prefix}_leiden_cluster_annotation_scores.csv")
     cas_leiden_df.to_csv(cas_leiden_output_path, index=False)
     print(f"       -> Saved Leiden-based CAS (technical purity) scores to: {cas_leiden_output_path}")
+
+    # ------------------------------------------------------------
+    # NEW: Leiden-level flagging CSV (initial run only, no refinement)
+    # One row per Leiden cluster, with reference-mismatch flags.
+    # ------------------------------------------------------------
+    if not is_refinement:
+        top_ind_thr    = float(getattr(cli_args, 'ref_mismatch_top_ind_thr', 0.5))
+        n_labels_thr   = int(getattr(cli_args, 'ref_mismatch_n_labels_thr', 5))
+        mean_conf_thr  = float(getattr(cli_args, 'ref_mismatch_mean_conf_thr', 0.5))
+
+        leiden_flag_rows = []
+        for leiden_id, group in adata.obs.groupby('leiden'):
+            n_cells = len(group)
+            if n_cells == 0:
+                continue
+            consensus_name = group['ctpt_consensus_prediction'].iloc[0]
+            matching = int((group['ctpt_individual_prediction'] == consensus_name).sum())
+            cas_pct  = 100.0 * matching / n_cells
+
+            ind_counts       = group['ctpt_individual_prediction'].value_counts()
+            n_ind_labels     = int(ind_counts.shape[0])
+            top_ind_fraction = float(ind_counts.iloc[0] / n_cells) if n_cells > 0 else 0.0
+            mean_conf        = float(group['ctpt_confidence'].mean()) if 'ctpt_confidence' in group.columns else np.nan
+
+            flag_low_top   = bool(top_ind_fraction < top_ind_thr)
+            flag_high_div  = bool(n_ind_labels    > n_labels_thr)
+            flag_low_conf  = bool((not np.isnan(mean_conf)) and (mean_conf < mean_conf_thr))
+            flag_suspect   = bool(flag_low_top and flag_high_div and flag_low_conf)
+
+            leiden_flag_rows.append({
+                "Cluster_ID (Leiden)": leiden_id,
+                "Consensus_Cell_Type": consensus_name,
+                "Total_Cells_in_Group": n_cells,
+                "Matching_Individual_Predictions": matching,
+                "Cluster_Annotation_Score_CAS (%)": cas_pct,
+                "N_Individual_Labels": n_ind_labels,
+                "Top_Individual_Fraction": top_ind_fraction,
+                "Mean_Confidence": mean_conf,
+                "Flag_Low_Top_Individual_Fraction": flag_low_top,
+                "Flag_High_Individual_Diversity": flag_high_div,
+                "Flag_Low_Mean_Confidence": flag_low_conf,
+                "Flag_Reference_Mismatch_Suspect": flag_suspect,
+            })
+
+        leiden_flag_df = pd.DataFrame(leiden_flag_rows).sort_values(
+            by="Cluster_Annotation_Score_CAS (%)", ascending=False
+        )
+        leiden_flag_path = os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_leiden_cluster_annotation_flagging.csv"
+        )
+        leiden_flag_df.to_csv(leiden_flag_path, index=False)
+        print(f"       -> Saved Leiden-level flagging CSV to: {leiden_flag_path}")
+        print(f"          Thresholds used: top_ind<{top_ind_thr}, n_labels>{n_labels_thr}, mean_conf<{mean_conf_thr}")
 
     consensus_purity_results = []
     for name, group in adata.obs.groupby('ctpt_consensus_prediction'):
@@ -1947,7 +2001,7 @@ def run_stage_two_final_analysis(cli_args, optimal_params, output_dir, data_dir=
     
     return adata, cas_path_for_refinement
 
-def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_dir, wt_path=None, treated_path=None, adata_input=None):
+def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_dir, wt_path=None, treated_path=None, adata_input=None, is_refinement=False):
     """
     (Stage 2) Executes the detailed two-sample integration analysis pipeline using
     parameters discovered in Stage 1.
@@ -2134,6 +2188,60 @@ def run_stage_two_final_analysis_multi_sample(cli_args, optimal_params, output_d
         cas_leiden_output_path = os.path.join(output_dir, f"{cli_args.final_run_prefix}_leiden_cluster_annotation_scores.csv")
         cas_leiden_df.to_csv(cas_leiden_output_path, index=False)
         print(f"       -> Saved Leiden-based CAS (technical purity) scores to: {cas_leiden_output_path}")
+
+            # ------------------------------------------------------------
+    # NEW: Leiden-level flagging CSV (initial run only, no refinement)
+    # Multi-sample version. Written per integrated sample-space cluster.
+    # ------------------------------------------------------------
+    if not is_refinement:
+        top_ind_thr   = float(getattr(cli_args, 'ref_mismatch_top_ind_thr', 0.5))
+        n_labels_thr  = int(getattr(cli_args, 'ref_mismatch_n_labels_thr', 5))
+        mean_conf_thr = float(getattr(cli_args, 'ref_mismatch_mean_conf_thr', 0.5))
+
+        leiden_flag_rows = []
+        for leiden_id, group in adata.obs.groupby('leiden'):
+            n_cells = len(group)
+            if n_cells == 0:
+                continue
+            consensus_name = group['ctpt_consensus_prediction'].iloc[0]
+            matching = int((group['ctpt_individual_prediction'] == consensus_name).sum())
+            cas_pct  = 100.0 * matching / n_cells
+
+            ind_counts       = group['ctpt_individual_prediction'].value_counts()
+            n_ind_labels     = int(ind_counts.shape[0])
+            top_ind_fraction = float(ind_counts.iloc[0] / n_cells) if n_cells > 0 else 0.0
+            mean_conf        = float(group['ctpt_confidence'].mean()) if 'ctpt_confidence' in group.columns else np.nan
+
+            flag_low_top  = bool(top_ind_fraction < top_ind_thr)
+            flag_high_div = bool(n_ind_labels    > n_labels_thr)
+            flag_low_conf = bool((not np.isnan(mean_conf)) and (mean_conf < mean_conf_thr))
+            flag_suspect  = bool(flag_low_top and flag_high_div and flag_low_conf)
+
+            leiden_flag_rows.append({
+                "Cluster_ID (Leiden)": leiden_id,
+                "Consensus_Cell_Type": consensus_name,
+                "Total_Cells_in_Group": n_cells,
+                "Matching_Individual_Predictions": matching,
+                "Cluster_Annotation_Score_CAS (%)": cas_pct,
+                "N_Individual_Labels": n_ind_labels,
+                "Top_Individual_Fraction": top_ind_fraction,
+                "Mean_Confidence": mean_conf,
+                "Flag_Low_Top_Individual_Fraction": flag_low_top,
+                "Flag_High_Individual_Diversity": flag_high_div,
+                "Flag_Low_Mean_Confidence": flag_low_conf,
+                "Flag_Reference_Mismatch_Suspect": flag_suspect,
+            })
+
+        leiden_flag_df = pd.DataFrame(leiden_flag_rows).sort_values(
+            by="Cluster_Annotation_Score_CAS (%)", ascending=False
+        )
+        leiden_flag_path = os.path.join(
+            output_dir,
+            f"{cli_args.final_run_prefix}_leiden_cluster_annotation_flagging.csv"
+        )
+        leiden_flag_df.to_csv(leiden_flag_path, index=False)
+        print(f"       -> Saved Leiden-level flagging CSV (multi-sample) to: {leiden_flag_path}")
+        print(f"          Thresholds used: top_ind<{top_ind_thr}, n_labels>{n_labels_thr}, mean_conf<{mean_conf_thr}")
 
         consensus_purity_results = []
         for name, group in adata.obs.groupby(FINAL_ANNOTATION_COLUMN):
@@ -2730,11 +2838,13 @@ def run_iterative_refinement_pipeline(args, adata_s2, cas_csv_path_s2):
 
         if is_multi_sample_refinement:
             adata_refinement_processed, cas_csv_path_refinement = run_stage_two_final_analysis_multi_sample(
-                cli_args=args, optimal_params=refinement_optimal_params, output_dir=stage2_refinement_dir, adata_input=adata_refine_raw
+                cli_args=args, optimal_params=refinement_optimal_params, output_dir=stage2_refinement_dir,
+                adata_input=adata_refine_raw, is_refinement=True
             )
         else:
             adata_refinement_processed, cas_csv_path_refinement = run_stage_two_final_analysis(
-                cli_args=args, optimal_params=refinement_optimal_params, output_dir=stage2_refinement_dir, adata_input=adata_refine_raw
+                cli_args=args, optimal_params=refinement_optimal_params, output_dir=stage2_refinement_dir,
+                adata_input=adata_refine_raw, is_refinement=True
             )
         
         args.final_run_prefix = original_final_run_prefix # Restore for next loop
@@ -3798,6 +3908,13 @@ if __name__ == '__main__':
     stage2_group.add_argument('--marker_prior_species', type=str, default='Human', help="Species filter for marker DB (e.g., 'Human' or 'Mouse').")
     stage2_group.add_argument('--marker_prior_organ', type=str, default='Blood', help="Organ/tissue filter for marker DB (e.g., 'Blood', 'Peripheral Blood').")
     stage2_group.add_argument('--n_degs_for_capture', type=int, default=5, help="Number of top DEGs per cluster to use for the Marker Capture Score calculation in Stage 2.")
+        # --- New: thresholds for the Leiden-level flagging CSV ---
+    stage2_group.add_argument('--ref_mismatch_top_ind_thr', type=float, default=0.3,
+                              help="Flag cluster if the top individual-label fraction is below this value (0-1). Default 0.3.")
+    stage2_group.add_argument('--ref_mismatch_n_labels_thr', type=int, default=5,
+                              help="Flag cluster if the number of distinct individual labels exceeds this integer. Default 5.")
+    stage2_group.add_argument('--ref_mismatch_mean_conf_thr', type=float, default=0.3,
+                              help="Flag cluster if the mean CellTypist confidence is below this value (0-1). Default 0.3.")
     stage2_group.add_argument('--cas_refine_threshold', type=float, default=None, help="(Optional) CAS percentage threshold (0-100). If a cluster's CAS is below this, its cells are pooled for a second, refined optimization run.")
     stage2_group.add_argument('--f1_db_celltype_col', type=str, default=None,
                               help="(Optional) Column name in the marker DB CSV containing cell type names for F1 scoring. Auto-detected if not provided.")
@@ -3888,6 +4005,23 @@ if __name__ == '__main__':
                               help="Top-N DE genes per integrated cell type used in marker DB F1 match.")
 
     parsed_args = parser.parse_args()
+
+    # ------------------------------------------------------------------
+    # Soft-CAS argument consistency
+    # ------------------------------------------------------------------
+    # If soft-CAS is used in the optimization objective, it must also be computed.
+    if parsed_args.use_soft_cas:
+        parsed_args.compute_soft_cas = True
+
+    # Soft-CAS currently affects only the balanced objective.
+    # If another target is selected, soft-CAS will still be computed/reported
+    # but will not change the optimization score.
+    if parsed_args.use_soft_cas and parsed_args.target not in ['all', 'balanced']:
+        print(
+            "[WARNING] --use_soft_cas was provided, but --target is not 'all' or 'balanced'. "
+            "Soft-CAS will be computed and reported, but it will not affect the optimization objective."
+        )
+
     # --- Merge --sample_names / --sample_paths into --samples NAME=PATH form ---
     if parsed_args.sample_names or parsed_args.sample_paths:
         if not (parsed_args.sample_names and parsed_args.sample_paths):

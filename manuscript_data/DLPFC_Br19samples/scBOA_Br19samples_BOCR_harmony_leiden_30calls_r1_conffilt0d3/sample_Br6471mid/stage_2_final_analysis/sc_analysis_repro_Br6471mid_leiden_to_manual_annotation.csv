@@ -1,0 +1,20 @@
+,AssignedType
+Astro AQP4 SLC1A2,Astrocytes
+Astro GFAP AQP1,Astrocyte
+Astro GFAP FABP7,Astrocyte
+Endo CLDN5 SLC7A5,Excitatory neuron
+InN ADARB2 FAM19A1,Neuroblasts
+InN LAMP5 LHX6 TAC1,Gabaergic neurons
+InN PVALB ANOS1,Parvalbumin interneuron
+InN SST ADAMTSL1,Purkinje neurons
+InN VIP EXPH5,Lake et al.science.ex8
+L2-3 CUX2 ACVR1C THSD7A,Immature neurons
+L2-3 CUX2 NTNG1 PALMD,Cajal-retzius cells
+L3-5 RORB GABRG1 KCNH7,Pyramidal cells
+L3-5 RORB MKX GRIN3A,Cajal-retzius cells
+L6 FEZF2 NPFFR2 TPD52L1,Lake et al.science.ex6
+L6 OPRK1 THEMIS RGS6,Neuron
+Micro P2RY12 APBB1IP,Microglia
+OPC PDGFRA PCDH15,Oligodendrocyte precursor cell
+Oligo MOG OPALIN,Oligodendrocytes
+PC P2RY14 GRM8,Mural cell
