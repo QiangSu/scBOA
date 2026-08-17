@@ -489,6 +489,32 @@ Benchmarking outputs are written under `stage_1_bayesian_optimization/` and incl
 | `--compute_soft_cas` | Compute soft-CAS metrics. | Flag. Computes probability-based soft-CAS metrics from the full CellTypist probability matrix. Does not affect optimization unless `--use_soft_cas` is also set. |
 | `--use_soft_cas` | Include soft-CAS in balanced objective. | Flag. Automatically enables `--compute_soft_cas`. Adds the soft-CAS dot-product score as an additional factor in the balanced objective. |
 
+### Optional cluster flagging (reference-mismatch heuristic)
+
+After Stage 2 assigns consensus labels, scBOA can emit a `*_flagging_*.csv`
+listing Leiden clusters that look inconsistent with the reference marker
+database. A cluster is flagged when **all three** thresholds are exceeded:
+
+| Flag | Meaning | Default |
+|---|---|---|
+| `--ref_mismatch_top_ind_thr` | Max fraction assigned to the top individual (per-cell) label | `0.5` |
+| `--ref_mismatch_mean_conf_thr` | Mean CellTypist confidence within the cluster | `0.5` |
+| `--ref_mismatch_n_labels_thr`  | Number of distinct individual labels the cluster spans | `5` |
+
+Omit all three flags to keep the previous behaviour (no flagging CSV is
+produced). Example:
+
+```bash
+python scBOA.py \
+  --data_dir  /path/to/10x_matrix \
+  --output_dir /path/to/out \
+  --model_path /path/to/Adult_Human_PancreaticIslet.pkl \
+  ...   # other Stage 1/2 flags
+  --ref_mismatch_top_ind_thr 0.6 \
+  --ref_mismatch_mean_conf_thr 0.6 \
+  --ref_mismatch_n_labels_thr 5
+```
+
 #### `Stage 3: Multi-Sample Hierarchical Integration`
 
 | Argument | Description | Explanation/Usage |
@@ -710,6 +736,25 @@ Users can browse this folder on GitHub to instantly view the iterative refinemen
     ├── refinement_depth_2/   # (Final analysis UMAPs & F1 scores for iteration 2)
     └── refinement_depth_3/   # (Final analysis UMAPs & F1 scores for iteration 3)
 ```
+
+## Manuscript datasets
+
+Per-sample scBOA outputs for the three datasets analyzed in the manuscript are
+deposited under [`manuscript_data/`](manuscript_data/). Only tabular
+(`.csv`, `.txt`) files are hosted here; large binary artefacts such as
+`*.h5ad`, `.png`, and `.skopt` are omitted to keep the repository lightweight.
+
+| Dataset | Source | Path |
+|---|---|---|
+| 10x Human PBMC 10k v3 | 10x Genomics public dataset | `manuscript_data/pbmc_10k_v3/` |
+| Baron et al. Human pancreatic islet | Baron et al., *Cell Systems* 2016 | `manuscript_data/baron_pancreas/` |
+| DLPFC 19-sample cohort | Maynard et al. spatial-transcriptomics companion scRNA-seq | `manuscript_data/dlpfc_br19/` |
+
+Each dataset was analyzed with scBOA together with its matched CellTypist model
+(`Healthy_COVID19_PBMC`, `Adult_Human_PancreaticIslet`, `Healthy_Adult_Heart`
+respectively). See the original dataset publications listed above for the raw
+data, and the section 9 above for the exact scBOA command line used per
+dataset.
 
 ---
 
