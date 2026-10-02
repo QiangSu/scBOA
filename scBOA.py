@@ -81,10 +81,10 @@ MITO_REGEX_PATTERN = r'^(MT|Mt|mt)[-._:]'
 
 # Default search space for Stage 1, 'n_hvg' may be dynamically changed later
 search_space = [
-    Integer(1000, 20000, name='n_hvg'),
-    Integer(10, 45, name='n_pcs'),
-    Integer(10, 30, name='n_neighbors'),
-    Real(0.5, 2.0, name='resolution')
+    Integer(200, 20000, name='n_hvg'),
+    Integer(10, 100, name='n_pcs'),
+    Integer(10, 50, name='n_neighbors'),
+    Real(0.2, 2.0, name='resolution')
 ]
 
 # --- Global variables for Stage 1 ---
