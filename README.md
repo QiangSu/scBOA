@@ -16,6 +16,12 @@ The current version supports three major workflows:
 
 scBOA also includes optional benchmarking backends for equal-budget comparison with Optuna-TPE and random search, probabilistic soft-CAS scoring based on CellTypist probability matrices, marker-prior F1 scoring, confidence-aware optimization, and confidence-based filtering.
 
+## Publication
+
+Su, Q., Long, Y., Duan, F. et al. **scBOA: Bayesian optimization of single-cell analysis pipelines for robust annotation and discovery.** *Nature Communications* (2026). https://doi.org/10.1038/s41467-026-78718-z
+
+If you use scBOA in your research, please cite this article.
+
 ## Repository Structure
 
 ```
